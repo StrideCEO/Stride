@@ -9,24 +9,29 @@
 </head>
 <body>
 
-  <!-- HERO / LOGO SPLASH -->
+  <!-- STRAVA-STYLE FULL IMAGE HERO -->
+  <section class="hero-image">
+    <img src="hero.jpg" alt="Stride Campaign Image">
+  </section>
+
+  <!-- PURPLE LOGO SECTION -->
   <section class="hero" onclick="openAppStore()">
     <img src="stride-logo.png" alt="Stride Logo" class="logo">
     <h1>Visit Stride Now</h1>
   </section>
 
-  <!-- COMPARISON -->
+  <!-- FEATURES -->
   <section class="comparison">
+    <h2 class="features-title">Features</h2>
 
     <div class="compare-grid">
       <div class="col">
         <h3>Other Running Apps</h3>
         <ul class="bad">
-          <li>Don’t track your PRs</li>
-          <li>AI that doesn’t adapt</li>
-          <li>Complicated training plans</li>
-          <li>No real community feed</li>
-          <li>Outdated GPS experience</li>
+          <li>Generic training plans</li>
+          <li>No true PR tracking</li>
+          <li>Overcomplicated UI</li>
+          <li>Weak insights</li>
         </ul>
       </div>
 
@@ -35,44 +40,43 @@
       <div class="col">
         <h3>Stride</h3>
         <ul class="good">
-          <li>Finally track all your PRs</li>
-          <li>AI connected to your mileage, PRs, shoes & goals</li>
-          <li>AI training plans so you don’t do the work</li>
-          <li>Clean community feed built for runners</li>
-          <li>Clean & slick GPS tracker</li>
+          <li>Personalized training</li>
+          <li>Real PR tracking</li>
+          <li>Clean, simple design</li>
+          <li>Smart insights that adapt</li>
         </ul>
       </div>
     </div>
   </section>
 
- 
+  <!-- FINAL STRAVA-STYLE SECTION -->
+  <section class="final">
+    <h1>STRIDE</h1>
+
+    <div class="links">
+      <a href="https://www.instagram.com/strideapp_" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/@stride_1of1" target="_blank">YouTube</a>
+      <a href="https://www.tiktok.com/@stride.usa" target="_blank">TikTok</a>
+    </div>
+
+    <div class="appstore">
+      <a href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+             alt="Download on the App Store">
+      </a>
+    </div>
+
+    <p class="copyright">
+      © 2026 Stride, Inc. All Rights Reserved
+    </p>
+  </section>
 
   <script>
     function openAppStore() {
-      window.location.href = "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
+      window.location.href =
+        "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
     }
   </script>
 
 </body>
- <!-- FINAL CLEAN SECTION -->
-<section class="final">
-  <h1>STRIDE</h1>
-
-  <div class="links">
-    <a href="https://www.instagram.com/strideapp_" target="_blank">Instagram</a>
-    <a href="https://www.youtube.com/@stride_1of1" target="_blank">YouTube</a>
-    <a href="https://www.tiktok.com/@stride.usa" target="_blank">TikTok</a>
-  </div>
-
-  <div class="appstore">
-    <a href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank">
-      <img
-        src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-        alt="Download on the App Store">
-    </a>
-  </div>
-
-  <p class="copyright">
-    © 2026 Stride, Inc. All Rights Reserved
-  </p>
-</section>
+</html>
