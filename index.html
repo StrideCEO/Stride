@@ -13,11 +13,13 @@
     }
 
     body {
-      height: 100vh;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: black;
+      background: #0b0b0f;
+      color: white;
+      line-height: 1.6;
     }
 
+    /* HERO */
     .hero {
       height: 100vh;
       background: url("splash.png.jpeg") center / cover no-repeat;
@@ -25,28 +27,87 @@
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
-      padding-bottom: 40px;
+      padding: 40px 20px;
     }
 
     .appstore-link {
       text-decoration: none;
       color: white;
       font-size: 1rem;
-      opacity: 0.95;
-      border: 1px solid rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.5);
       padding: 14px 32px;
       border-radius: 999px;
-      backdrop-filter: blur(12px);
-      transition: all 0.2s ease;
+      backdrop-filter: blur(10px);
     }
 
-    .appstore-link:hover {
-      background: rgba(255,255,255,0.15);
-      opacity: 1;
+    /* SECTIONS */
+    section {
+      padding: 80px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    p {
+      color: #cbd5f5;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    /* FEATURES */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 50px;
+    }
+
+    .feature-card {
+      background: #111827;
+      border-radius: 18px;
+      padding: 24px;
+      text-align: left;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .feature-card p {
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    /* CTA */
+    .cta {
+      text-align: center;
+      padding-bottom: 120px;
+    }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 14px 36px;
+      border-radius: 999px;
+      background: #5b5ce2;
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
     }
   </style>
 </head>
+
 <body>
+
+  <!-- HERO -->
   <div class="hero">
     <a
       class="appstore-link"
@@ -56,5 +117,78 @@
       View on the App Store
     </a>
   </div>
+
+  <!-- INTRO -->
+  <section>
+    <h2>Run Smarter with Stride</h2>
+    <p>
+      Stride is a modern running app designed to help runners train intelligently,
+      track real progress, and build consistency with purpose.
+    </p>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <h2>Features</h2>
+
+    <div class="features">
+      <div class="feature-card">
+        <h3>Personal Records</h3>
+        <p>Automatically track PRs across distances and see real improvement.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>AI Coach</h3>
+        <p>Smarter insights to guide training decisions and recovery.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Training Plans</h3>
+        <p>Structured plans built for growth, consistency, and race prep.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Stride GPS</h3>
+        <p>Accurate GPS tracking with real‑time pace and distance.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Race Log</h3>
+        <p>Track races, results, and performance history.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Running Journal</h3>
+        <p>Log how runs feel physically and mentally.</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Social Feed</h3>
+        <p>Connect with runners and share progress.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section>
+    <h2>Why I Built Stride</h2>
+    <p>
+      I’m a 20‑year‑old runner who wanted a better way to train — one focused on
+      understanding your body, long‑term progress, and training smarter instead
+      of guessing. Stride was built to change how runners approach improvement.
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Train Smarter. Run with Stride.</h2>
+    <a
+      href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026"
+      target="_blank"
+    >
+      Download on the App Store
+    </a>
+  </section>
+
 </body>
 </html>
