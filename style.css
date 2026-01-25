@@ -5,125 +5,104 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-html {
+html, body {
   scroll-behavior: smooth;
-}
-
-body {
-  background: linear-gradient(180deg, #6b2fb9, #2a0f44);
+  background: radial-gradient(circle at top, #5e2ea6, #1a082b);
   color: white;
-  text-align: center;
 }
 
 /* HERO */
 .hero {
-  padding: 100px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo {
+  width: 220px;
+  margin-bottom: 40px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+  border-radius: 40px;
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 2.8rem;
+  font-weight: 500;
 }
 
-.hero p {
-  margin-top: 15px;
-  opacity: 0.9;
-}
-
-/* FEATURES */
-.features {
-  padding: 80px 20px;
-  background: rgba(255,255,255,0.05);
-}
-
-.features ul {
-  list-style: none;
-  max-width: 500px;
+/* COMPARISON */
+.comparison {
+  padding: 120px 20px;
+  max-width: 1100px;
   margin: auto;
 }
 
-.features li {
-  padding: 12px 0;
+.comparison h2 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 80px;
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 2px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.divider {
+  background: rgba(255,255,255,0.2);
+}
+
+.col h3 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+ul {
+  list-style: none;
+}
+
+.bad li::before {
+  content: "✕ ";
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+.good li::before {
+  content: "✓ ";
+  color: #4dff88;
+  font-weight: bold;
+}
+
+li {
   font-size: 1.1rem;
-}
-
-/* CTA */
-.cta {
-  padding: 80px 20px;
-}
-
-.appstore-btn {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 15px 30px;
-  background: white;
-  color: #4b1c78;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
+  padding: 12px 0;
+  line-height: 1.4;
 }
 
 /* FOOTER */
 footer {
-  padding: 30px;
-  opacity: 0.6;
-}
-/* PHONE PREVIEW */
-.phone-preview {
-  position: relative;
-  height: 420px;
-  margin-top: 50px;
+  text-align: center;
+  padding: 40px;
+  opacity: 0.7;
+  font-size: 0.95rem;
 }
 
-.phone {
-  width: 220px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 30px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-  animation: float 6s ease-in-out infinite;
-}
+/* MOBILE */
+@media (max-width: 900px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
 
-.phone.left {
-  transform: translateX(-180px) rotate(-10deg);
-  animation-delay: 0s;
-}
+  .divider {
+    display: none;
+  }
 
-.phone.center {
-  width: 240px;
-  z-index: 2;
-  animation-delay: 1s;
-}
-
-.phone.right {
-  transform: translateX(180px) rotate(10deg);
-  animation-delay: 2s;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-18px); }
-}
-
-/* EMAIL */
-.email {
-  padding: 80px 20px;
-}
-
-.email input {
-  padding: 14px;
-  border-radius: 30px;
-  border: none;
-  width: 250px;
-}
-
-.email button {
-  padding: 14px 26px;
-  margin-left: 10px;
-  border-radius: 30px;
-  border: none;
-  background: white;
-  color: #4b1c78;
-  font-weight: 600;
-  cursor: pointer;
+  .comparison h2 {
+    font-size: 2.2rem;
+  }
 }
