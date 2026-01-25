@@ -175,3 +175,19 @@ li {
 .app-branding .appstore img {
   width: 180px;
 }
+/* STRIDE CTA BETWEEN FEATURES */
+.stride-cta {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.stride-cta img {
+  width: 80px;
+  margin-bottom: 15px;
+}
+
+.stride-cta h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
