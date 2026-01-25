@@ -1,3 +1,4 @@
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -8,63 +9,21 @@
 body {
   background: radial-gradient(circle at top, #5e2ea6, #1a082b);
   color: white;
+  overflow-x: hidden;
 }
-/* HERO IMAGE (NO WHITE GAP) */
+
+/* FULL-BLEED HERO IMAGE */
 .hero-image {
   width: 100%;
-  padding: 4rem 1rem 0;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.hero-image img {
-  width: 100%;
-  max-width: 900px;
-  max-height: 70vh;
-  object-fit: contain;
-  display: block;
 }
 
 .hero-image img {
   width: 100%;
-  max-width: 900px;
-  max-height: 70vh;
-  object-fit: contain;
+  height: auto;
   display: block;
 }
 
-/* Mobile adjustment */
-@media (max-width: 768px) {
-  .hero-image img {
-    max-height: 55vh;
-  }
-}
-
-
-/* LOGO HERO (FIXED) */
-.hero {
-  padding: 4rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.logo {
-  width: 220px;
-  border-radius: 40px;
-  margin-bottom: 30px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  font-weight: 500;
-}
-
-/* FEATURES */
+/* FEATURES SECTION */
 .comparison {
   padding: 120px 20px;
   max-width: 1100px;
@@ -111,16 +70,37 @@ li {
   font-size: 1.05rem;
 }
 
+/* BRAND CTA (CLEAN, LARGE LOGO, AFTER FEATURES) */
+.brand-cta {
+  text-align: center;
+  padding: 140px 20px;
+  cursor: pointer;
+}
+
+.brand-cta img {
+  width: 220px;
+  border-radius: 40px;
+  margin-bottom: 30px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+}
+
+.brand-cta h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  margin-bottom: 12px;
+}
+
+.brand-cta p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  letter-spacing: 0.2em;
+}
+
 /* FINAL SECTION */
 .final {
   padding: 120px 20px;
   text-align: center;
-}
-
-.final h1 {
-  font-size: 4rem;
-  letter-spacing: 0.2em;
-  margin-bottom: 40px;
 }
 
 .links {
@@ -160,34 +140,12 @@ li {
   .divider {
     display: none;
   }
-}
-/* APP LOGO BELOW FEATURES */
-.app-branding {
-  padding: 80px 20px;
-  text-align: center;
-}
 
-.app-branding img {
-  width: 100px;
-  margin-bottom: 20px;
-}
+  .brand-cta {
+    padding: 100px 20px;
+  }
 
-.app-branding .appstore img {
-  width: 180px;
-}
-/* STRIDE CTA BETWEEN FEATURES */
-.stride-cta {
-  text-align: center;
-  padding: 40px 20px;
-}
-
-.stride-cta img {
-  width: 80px;
-  margin-bottom: 15px;
-}
-
-.stride-cta h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
+  .brand-cta h1 {
+    font-size: 3rem;
+  }
 }
