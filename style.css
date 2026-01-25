@@ -1,0 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(180deg, #6b2fb9, #2a0f44);
+  color: white;
+  text-align: center;
+}
+
+/* HERO */
+.hero {
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero p {
+  margin-top: 15px;
+  opacity: 0.9;
+}
+
+/* FEATURES */
+.features {
+  padding: 80px 20px;
+  background: rgba(255,255,255,0.05);
+}
+
+.features ul {
+  list-style: none;
+  max-width: 500px;
+  margin: auto;
+}
+
+.features li {
+  padding: 12px 0;
+  font-size: 1.1rem;
+}
+
+/* CTA */
+.cta {
+  padding: 80px 20px;
+}
+
+.appstore-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 15px 30px;
+  background: white;
+  color: #4b1c78;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* FOOTER */
+footer {
+  padding: 30px;
+  opacity: 0.6;
+}
