@@ -23,7 +23,7 @@ body {
   display: block;
 }
 
-/* FEATURES SECTION */
+/* FEATURES */
 .comparison {
   padding: 120px 20px;
   max-width: 1100px;
@@ -70,7 +70,7 @@ li {
   font-size: 1.05rem;
 }
 
-/* BRAND CTA (CLEAN, LARGE LOGO, AFTER FEATURES) */
+/* BRAND CTA */
 .brand-cta {
   text-align: center;
   padding: 140px 20px;
@@ -97,7 +97,7 @@ li {
   letter-spacing: 0.2em;
 }
 
-/* FINAL SECTION */
+/* FINAL */
 .final {
   padding: 120px 20px;
   text-align: center;
@@ -114,11 +114,6 @@ li {
   color: white;
   text-decoration: none;
   opacity: 0.8;
-  transition: opacity 0.2s ease;
-}
-
-.links a:hover {
-  opacity: 1;
 }
 
 .appstore img {
@@ -139,13 +134,5 @@ li {
 
   .divider {
     display: none;
-  }
-
-  .brand-cta {
-    padding: 100px 20px;
-  }
-
-  .brand-cta h1 {
-    font-size: 3rem;
   }
 }
