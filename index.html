@@ -9,55 +9,52 @@
 </head>
 <body>
 
-  <!-- HERO / SPLASH -->
-  <section class="hero">
-    <h1>Run Smarter<br>with Stride</h1>
-    <p>The clean, intelligent running app built for progress.</p>
+  <!-- HERO / LOGO SPLASH -->
+  <section class="hero" onclick="openAppStore()">
+    <img src="images/stride-logo.png" alt="Stride Logo" class="logo">
+    <h1>Visit Stride Now</h1>
+  </section>
 
-    <!-- ANIMATED APP PREVIEWS -->
-    <div class="phone-preview">
-      <img src="images/preview1.png" class="phone left">
-      <img src="images/preview2.png" class="phone center">
-      <img src="images/preview3.png" class="phone right">
+  <!-- COMPARISON -->
+  <section class="comparison">
+    <h2>Download Stride Now</h2>
+
+    <div class="compare-grid">
+      <div class="col">
+        <h3>Other Running Apps</h3>
+        <ul class="bad">
+          <li>Don’t track your PRs</li>
+          <li>AI that doesn’t adapt</li>
+          <li>Complicated training plans</li>
+          <li>No real community feed</li>
+          <li>Outdated GPS experience</li>
+        </ul>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="col">
+        <h3>Stride</h3>
+        <ul class="good">
+          <li>Finally track all your PRs</li>
+          <li>AI connected to your mileage, PRs, shoes & goals</li>
+          <li>AI training plans so you don’t do the work</li>
+          <li>Clean community feed built for runners</li>
+          <li>Clean & slick GPS tracker</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section class="features">
-    <ul>
-      <li>🏃‍♂️ Smart training insights</li>
-      <li>📊 Track runs & progress</li>
-      <li>🎯 Set goals & hit PRs</li>
-      <li>📅 Stay consistent</li>
-    </ul>
-  </section>
-
-  <!-- EMAIL SIGNUP -->
-  <section class="email">
-    <h2>Stay in the Loop</h2>
-    <p>Product updates, features, and improvements.</p>
-
-    <form action="mailto:novabusiness1400@gmail.com" method="post" enctype="text/plain">
-      <input type="email" name="email" placeholder="Enter your email" required>
-      <button type="submit">Notify Me</button>
-    </form>
-  </section>
-
-  <!-- DOWNLOAD -->
-  <section class="cta">
-    <h2>Download Stride</h2>
-    <p>Available on the App Store</p>
-
-    <a class="appstore-btn"
-       href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026"
-       target="_blank">
-      Download on App Store
-    </a>
-  </section>
-
   <footer>
-    © 2026 Stride · Built for runners
+    © 2025 Stride: Run Smarter
   </footer>
+
+  <script>
+    function openAppStore() {
+      window.location.href = "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
+    }
+  </script>
 
 </body>
 </html>
