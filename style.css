@@ -12,109 +12,94 @@ body {
   overflow-x: hidden;
 }
 
-/* STRAVA-STYLE HERO */
-.hero-strava {
+/* HERO SECTION */
+.hero {
   min-height: 100vh;
-  padding: 24px 20px 80px;
+  padding: 32px 20px 80px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-}
-
-.hero-top {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  position: relative;
 }
 
-.menu-icon {
-  position: absolute;
-  left: 0;
+/* TOP STRIDE (MATCHES BOTTOM STRIDE STYLE) */
+.hero-brand {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  margin-bottom: 40px;
+}
+
+/* HEADLINE */
+.hero-headline {
+  width: 100%;
+  max-width: 720px;
+}
+
+.hero-headline h1 {
+  font-size: 3.4rem;
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 40px;
+}
+
+/* STORY */
+.hero-story {
+  width: 100%;
+  max-width: 720px;
+  margin-bottom: 80px;
+}
+
+.hero-story h2 {
   font-size: 1.8rem;
-  opacity: 0.8;
-}
-
-.brand-name {
-  font-weight: 800;
-  letter-spacing: 0.2em;
-  font-size: 1.2rem;
-}
-
-.hero-content {
-  max-width: 600px;
-}
-
-.hero-content h1 {
-  font-size: 3.2rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 24px;
-}
-
-.hero-sub {
-  font-size: 1.2rem;
-  opacity: 0.9;
-}
-
-/* STORY SECTION (PURPLE, STRAVA-STYLE) */
-.story-strava {
-  padding: 120px 20px;
-}
-
-.story-inner {
-  max-width: 700px;
-  margin: auto;
-}
-
-.story-inner h2 {
-  font-size: 2.2rem;
   font-weight: 700;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
-.story-inner p {
+.hero-story p {
   font-size: 1.05rem;
   line-height: 1.7;
-  opacity: 0.9;
-  margin-bottom: 24px;
+  opacity: 0.92;
+  margin-bottom: 18px;
 }
 
-.story-highlight {
+.hero-highlight {
   font-weight: 600;
   opacity: 1;
 }
 
-/* BRAND CTA */
-.brand-cta {
-  text-align: center;
-  padding: 140px 20px;
-  cursor: pointer;
+/* CENTER LOGO */
+.hero-logo {
+  margin: 40px 0 30px;
 }
 
-.brand-cta img {
+.hero-logo img {
   width: 220px;
   border-radius: 40px;
-  margin-bottom: 30px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.6);
 }
 
-.brand-cta h1 {
-  font-size: 4rem;
+/* CTA UNDER LOGO */
+.hero-cta {
+  text-align: center;
+  cursor: pointer;
+}
+
+.hero-cta h3 {
+  font-size: 1.8rem;
   font-weight: 800;
+  letter-spacing: 0.3em;
+  margin-bottom: 8px;
+}
+
+.hero-cta span {
+  font-size: 0.9rem;
   letter-spacing: 0.25em;
-  margin-bottom: 12px;
-}
-
-.brand-cta p {
-  font-size: 1.1rem;
   opacity: 0.85;
-  letter-spacing: 0.2em;
 }
 
-/* FINAL */
+/* FOOTER */
 .final {
-  padding: 120px 20px;
+  padding: 80px 20px 120px;
   text-align: center;
 }
 
@@ -122,7 +107,7 @@ body {
   display: flex;
   justify-content: center;
   gap: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .links a {
@@ -143,7 +128,11 @@ body {
 
 /* MOBILE */
 @media (max-width: 900px) {
-  .hero-content h1 {
-    font-size: 2.6rem;
+  .hero-headline h1 {
+    font-size: 2.8rem;
+  }
+
+  .hero-brand {
+    font-size: 1.3rem;
   }
 }
