@@ -23,14 +23,12 @@
       color: #ffffff;
     }
 
-    /* HERO */
     .hero {
       max-width: 1100px;
       margin: 0 auto;
       padding: 56px 24px 96px;
     }
 
-    /* STRIDE TOP */
     .hero-brand {
       font-size: clamp(3.8rem, 6vw, 6.5rem);
       font-weight: 800;
@@ -38,7 +36,6 @@
       margin-bottom: 32px;
     }
 
-    /* HEADLINE */
     .hero-headline h1 {
       font-size: clamp(2.2rem, 4vw, 3.2rem);
       font-weight: 600;
@@ -46,10 +43,8 @@
       margin-bottom: 32px;
     }
 
-    /* STORY */
     .hero-story {
       max-width: 720px;
-      margin-bottom: 72px;
     }
 
     .hero-story h2 {
@@ -67,30 +62,57 @@
 
     .hero-highlight {
       font-weight: 600;
-      opacity: 1;
+      margin-bottom: 56px;
     }
 
-    /* LOGO + CTA WRAPPER (CENTERED TOGETHER) */
+    /* FEATURES */
+    .features {
+      background: #ffffff;
+      color: #000000;
+      border-radius: 20px;
+      padding: 32px 28px;
+      max-width: 760px;
+      margin-bottom: 96px;
+    }
+
+    .features-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      margin-bottom: 20px;
+      opacity: 0.6;
+    }
+
+    .features ul {
+      list-style: none;
+    }
+
+    .features li {
+      font-size: 1rem;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .features li:last-child {
+      border-bottom: none;
+      opacity: 0.6;
+    }
+
+    /* LOGO + CTA */
     .logo-cta {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 40px;
-      margin: 120px 0 80px;
+      margin-top: 40px;
     }
 
-    /* LOGO – SMOOTH CUTOUT */
     .hero-logo img {
       width: 180px;
       border-radius: 28px;
-      background: transparent;
-      image-rendering: auto;
-      filter:
-        drop-shadow(0 20px 40px rgba(0,0,0,0.45))
-        saturate(1.05);
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
     }
 
-    /* CTA */
     .hero-cta {
       cursor: pointer;
       border: 2px solid #ffffff;
@@ -112,7 +134,6 @@
       letter-spacing: 0.18em;
     }
 
-    /* FOOTER */
     .final {
       border-top: 1px solid rgba(255,255,255,0.2);
       padding: 48px 24px;
@@ -172,9 +193,21 @@
       <p class="hero-highlight">Start with Stride.</p>
     </div>
 
-    <!-- LOGO + CTA CENTERED TOGETHER -->
-    <div class="logo-cta">
+    <!-- FEATURES SECTION -->
+    <div class="features">
+      <div class="features-title">FEATURES</div>
+      <ul>
+        <li>Track all your PRs (XC, Track, Road)</li>
+        <li>AI Coach for instant feedback</li>
+        <li>Training plans built around your goals</li>
+        <li>Race log to track your season</li>
+        <li>Running journal + mileage insights</li>
+        <li>And more…</li>
+      </ul>
+    </div>
 
+    <!-- LOGO + CTA -->
+    <div class="logo-cta">
       <div class="hero-logo">
         <img src="stride-logo.png" alt="Stride App Logo">
       </div>
@@ -183,7 +216,6 @@
         <h3>STRIDE</h3>
         <span>VISIT STRIDE NOW</span>
       </div>
-
     </div>
 
   </section>
@@ -193,7 +225,7 @@
     <div class="links">
       <a href="https://www.instagram.com/strideapp_" target="_blank">Instagram</a>
       <a href="https://www.youtube.com/@stride_1of1" target="_blank">YouTube</a>
-      <a href="https://www.tiktok.com/@stride.app" target="_blank">TikTok</a>
+      <a href="https://www.tiktok.com/@stride.usa" target="_blank">TikTok</a>
     </div>
 
     <div class="appstore">
