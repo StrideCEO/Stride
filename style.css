@@ -12,62 +12,77 @@ body {
   overflow-x: hidden;
 }
 
-/* FULL-BLEED HERO IMAGE */
-.hero-image {
-  width: 100%;
+/* STRAVA-STYLE HERO */
+.hero-strava {
+  min-height: 100vh;
+  padding: 24px 20px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.hero-image img {
-  width: 100%;
-  height: auto;
-  display: block;
+.hero-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-/* FEATURES */
-.comparison {
+.menu-icon {
+  position: absolute;
+  left: 0;
+  font-size: 1.8rem;
+  opacity: 0.8;
+}
+
+.brand-name {
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  font-size: 1.2rem;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+
+.hero-sub {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* STORY SECTION (PURPLE, STRAVA-STYLE) */
+.story-strava {
   padding: 120px 20px;
-  max-width: 1100px;
+}
+
+.story-inner {
+  max-width: 700px;
   margin: auto;
 }
 
-.features-title {
-  text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 80px;
+.story-inner h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
 }
 
-.compare-grid {
-  display: grid;
-  grid-template-columns: 1fr 2px 1fr;
-  gap: 40px;
-}
-
-.divider {
-  background: rgba(255,255,255,0.2);
-}
-
-.col h3 {
-  font-size: 1.6rem;
-  margin-bottom: 25px;
-}
-
-ul {
-  list-style: none;
-}
-
-.bad li::before {
-  content: "✕ ";
-  color: #ff5c5c;
-}
-
-.good li::before {
-  content: "✓ ";
-  color: #4dff88;
-}
-
-li {
-  padding: 10px 0;
+.story-inner p {
   font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.story-highlight {
+  font-weight: 600;
+  opacity: 1;
 }
 
 /* BRAND CTA */
@@ -128,11 +143,7 @@ li {
 
 /* MOBILE */
 @media (max-width: 900px) {
-  .compare-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .divider {
-    display: none;
+  .hero-content h1 {
+    font-size: 2.6rem;
   }
 }
