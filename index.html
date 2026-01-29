@@ -19,6 +19,13 @@
       overflow-x: hidden;
     }
 
+    /* ✅ LOCK SCROLL WHEN MENU OPEN */
+    body.menu-open{
+      overflow: hidden;
+      height: 100vh;
+      touch-action: none;
+    }
+
     /* FULL SCREEN HERO IMAGE */
     .hero-landing{
       position: relative;
@@ -109,29 +116,42 @@
       backdrop-filter: blur(8px);
     }
 
-    /* ===== STRAVA-STYLE MENU ===== */
-
-    /* top LEFT like Strava */
-    .topbar{
+    /* ===== STRAVA-STYLE TOP BAR (STRIDE) ===== */
+    .sitebar{
       position: absolute;
-      top: 18px;
-      left: 18px;
-      z-index: 50;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.10);
     }
 
+    .brand{
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      font-size: 18px;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+
+    /* hamburger inside bar */
     .hamburger{
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.20);
-      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.22);
       display: grid;
       place-items: center;
       padding: 0;
     }
 
-    /* lines closer together */
     .hamburger-inner{
       display: grid;
       gap: 3px; /* tighter */
@@ -146,6 +166,7 @@
       border-radius: 99px;
     }
 
+    /* MENU BACKDROP */
     .menu-backdrop{
       position: fixed;
       inset: 0;
@@ -154,8 +175,10 @@
       pointer-events: none;
       transition: opacity 180ms ease;
       z-index: 80;
+      touch-action: none;
     }
 
+    /* SIDE MENU */
     .side-menu{
       position: fixed;
       top: 0;
@@ -171,12 +194,15 @@
       flex-direction: column;
       padding: 18px;
       box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+      overscroll-behavior: contain;
+      touch-action: pan-y;
     }
 
-    .menu-open .side-menu{
+    /* OPEN STATES */
+    body.menu-open .side-menu{
       transform: translateX(0);
     }
-    .menu-open .menu-backdrop{
+    body.menu-open .menu-backdrop{
       opacity: 1;
       pointer-events: auto;
     }
@@ -216,7 +242,6 @@
       padding-top: 18px;
     }
 
-    /* purple "Get the App" button */
     .menu-btn{
       display: block;
       width: 100%;
@@ -326,13 +351,14 @@
   <!-- HERO -->
   <section class="hero-landing">
 
-    <!-- TOP LEFT HAMBURGER -->
-    <div class="topbar">
+    <!-- STRAVA-LIKE TOP BAR -->
+    <div class="sitebar">
       <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
         <div class="hamburger-inner">
           <span></span><span></span><span></span>
         </div>
       </button>
+      <div class="brand">STRIDE</div>
     </div>
 
     <!-- BACKDROP + SIDE MENU -->
@@ -345,10 +371,8 @@
 
       <nav class="side-menu__nav">
         <a href="#about" onclick="closeMenu()">Home</a>
-
         <!-- Features stays here, but does NOTHING for now -->
         <a href="javascript:void(0)" onclick="closeMenu()">Features</a>
-
         <a href="#download" onclick="closeMenu()">Get the App</a>
       </nav>
 
@@ -447,6 +471,13 @@
     document.addEventListener("keydown", (e) => {
       if(e.key === "Escape") closeMenu();
     });
+
+    /* ✅ extra safety: prevent scrolling the page when menu is open (mobile) */
+    document.addEventListener("touchmove", function(e){
+      if(document.body.classList.contains("menu-open")){
+        e.preventDefault();
+      }
+    }, { passive: false });
   </script>
 
 </body>
