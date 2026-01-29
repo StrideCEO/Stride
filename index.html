@@ -153,10 +153,7 @@
       padding: 0;
     }
 
-    .hamburger-inner{
-      display: grid;
-      gap: 3px;
-    }
+    .hamburger-inner{ display: grid; gap: 3px; }
 
     .hamburger span{
       display: block;
@@ -258,13 +255,11 @@
     .main{
       padding: 44px 24px 10px;
     }
-
     .main h2{
       font-size: 1.15rem;
       opacity: 0.9;
       margin-bottom: 14px;
     }
-
     .main p{
       font-size: 1.05rem;
       line-height: 1.65;
@@ -273,21 +268,38 @@
       margin-bottom: 14px;
     }
 
-    /* ===== STRAVA-STYLE SCROLL (IMAGE THEN TEXT) ===== */
-    .showcase{
-      padding: 24px 24px 10px;
+    /* ===== STRAVA-STYLE CAROUSEL ===== */
+    .carousel-wrap{
+      padding: 22px 24px 38px;
     }
 
-    .shot{
-      margin: 22px 0;
-      padding: 18px;
-      border-radius: 18px;
+    .carousel{
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 18px;
+      padding-bottom: 12px;
+      scrollbar-width: none;          /* Firefox */
+    }
+
+    .carousel::-webkit-scrollbar{ display: none; } /* iOS/Chrome */
+
+    .slide{
+      flex: 0 0 100%;
+      scroll-snap-align: start;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 18px;
       backdrop-filter: blur(10px);
     }
 
-    .shot img{
+    @media (min-width: 900px){
+      .slide{ flex-basis: 70%; }
+    }
+
+    .slide img{
       width: 100%;
       display: block;
       border-radius: 18px;
@@ -296,16 +308,37 @@
       margin-bottom: 14px;
     }
 
-    .shot .text h3{
+    .slide h3{
       font-size: 1.15rem;
       margin-bottom: 8px;
       letter-spacing: 0.01em;
     }
 
-    .shot .text p{
+    .slide p{
       opacity: 0.9;
       line-height: 1.6;
       max-width: 760px;
+    }
+
+    .dots{
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 12px;
+      user-select: none;
+    }
+
+    .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.25);
+      cursor: pointer;
+    }
+
+    .dot.active{
+      background: rgba(255,255,255,0.95);
     }
 
     /* LOGO + CTA */
@@ -382,7 +415,7 @@
 </head>
 
 <body>
-  <!-- STRAVA-LIKE TOP BAR -->
+  <!-- TOP BAR -->
   <div class="sitebar">
     <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
       <div class="hamburger-inner">
@@ -404,7 +437,7 @@
 
     <nav class="side-menu__nav">
       <a href="#top" onclick="closeMenu()">Home</a>
-      <a href="javascript:void(0)" onclick="closeMenu()">Features</a>
+      <a href="#features" onclick="closeMenu()">Features</a>
       <a href="#download" onclick="closeMenu()">Get the App</a>
     </nav>
 
@@ -442,7 +475,7 @@
     </div>
   </section>
 
-  <!-- ABOUT (keep Join Stride) -->
+  <!-- JOIN STRIDE -->
   <section class="main container" id="about">
     <h2>Join Stride.</h2>
     <p>
@@ -452,33 +485,33 @@
     </p>
   </section>
 
-  <!-- SHOWCASE (Strava-style scroll) -->
-  <section class="showcase container" id="showcase">
-    <div class="shot">
-      <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
-      <div class="text">
+  <!-- FEATURES CAROUSEL -->
+  <section class="carousel-wrap container" id="features">
+    <div class="carousel" id="carousel">
+      <article class="slide">
+        <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
         <h3>Dashboard that keeps you locked in.</h3>
         <p>A clean weekly view so you can see your progress fast — mileage, trends, and what matters without getting overwhelmed.</p>
-      </div>
-    </div>
+      </article>
 
-    <div class="shot">
-      <img src="coach.jpg" alt="Stride AI Coach screenshot">
-      <div class="text">
+      <article class="slide">
+        <img src="coach.jpg" alt="Stride AI Coach screenshot">
         <h3>AI Coach that actually helps.</h3>
         <p>Ask questions, get pacing advice, recovery tips, and training guidance — all inside your running ecosystem.</p>
-      </div>
-    </div>
+      </article>
 
-    <div class="shot">
-      <img src="training.jpg" alt="Stride Training Plan screenshot">
-      <div class="text">
+      <article class="slide">
+        <img src="training.jpg" alt="Stride Training Plan screenshot">
         <h3>Training plan that stays simple.</h3>
         <p>Your week laid out clearly — so you always know what’s next, what’s completed, and how your plan is building over time.</p>
-      </div>
+      </article>
     </div>
 
-    <!-- LOGO + CTA -->
+    <div class="dots" id="dots" aria-label="Carousel pagination"></div>
+  </section>
+
+  <!-- LOGO + CTA -->
+  <section class="container">
     <div class="logo-cta">
       <div class="hero-logo">
         <img src="stride-logo.png" alt="Stride App Logo">
@@ -491,7 +524,7 @@
     </div>
   </section>
 
-  <!-- FOOTER / DOWNLOAD -->
+  <!-- FOOTER -->
   <section class="final" id="download">
     <div class="links">
       <a href="https://www.instagram.com/strideapp_" target="_blank">Instagram</a>
@@ -507,44 +540,66 @@
       </a>
     </div>
 
-    <p class="copyright">
-      © 2026 Stride, Inc. All Rights Reserved
-    </p>
+    <p class="copyright">© 2026 Stride, Inc. All Rights Reserved</p>
   </section>
 
   <script>
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
-    window.addEventListener('load', () => {
-      if (!location.hash) window.scrollTo(0, 0);
-    });
+    // ✅ Always load at TOP
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('load', () => { if (!location.hash) window.scrollTo(0,0); });
 
-    function openAppStore() {
+    function openAppStore(){
       window.location.href = "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
     }
 
     function openMenu(){
       document.body.classList.add("menu-open");
       const menu = document.getElementById("sideMenu");
-      if(menu) menu.setAttribute("aria-hidden", "false");
+      if(menu) menu.setAttribute("aria-hidden","false");
     }
 
     function closeMenu(){
       document.body.classList.remove("menu-open");
       const menu = document.getElementById("sideMenu");
-      if(menu) menu.setAttribute("aria-hidden", "true");
+      if(menu) menu.setAttribute("aria-hidden","true");
     }
 
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape") closeMenu();
+    document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeMenu(); });
+    document.addEventListener("touchmove",(e)=>{
+      if(document.body.classList.contains("menu-open")) e.preventDefault();
+    }, { passive:false });
+
+    // ===== Carousel dots + sync =====
+    const carousel = document.getElementById("carousel");
+    const dotsWrap = document.getElementById("dots");
+    const slides = Array.from(carousel.querySelectorAll(".slide"));
+
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.className = "dot" + (i === 0 ? " active" : "");
+      b.type = "button";
+      b.setAttribute("aria-label", `Go to slide ${i+1}`);
+      b.addEventListener("click", () => {
+        carousel.scrollTo({ left: carousel.clientWidth * i, behavior: "smooth" });
+      });
+      dotsWrap.appendChild(b);
     });
 
-    document.addEventListener("touchmove", function(e){
-      if(document.body.classList.contains("menu-open")){
-        e.preventDefault();
+    const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
+    let ticking = false;
+
+    function setActiveDot(){
+      const index = Math.round(carousel.scrollLeft / carousel.clientWidth);
+      dots.forEach((d, i) => d.classList.toggle("active", i === index));
+      ticking = false;
+    }
+
+    carousel.addEventListener("scroll", () => {
+      if(!ticking){
+        window.requestAnimationFrame(setActiveDot);
+        ticking = true;
       }
-    }, { passive: false });
+    });
   </script>
 </body>
 </html>
