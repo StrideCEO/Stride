@@ -28,143 +28,6 @@
       touch-action: none;
     }
 
-    /* ===== TOP BAR (PURPLE) ===== */
-    .sitebar{
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 60;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: linear-gradient(90deg, rgba(106,44,255,0.95), rgba(58,15,115,0.90));
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
-    }
-
-    .brand{
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      font-size: 16px;
-      text-transform: uppercase;
-      opacity: 0.98;
-    }
-
-    .hamburger{
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.22);
-      display: grid;
-      place-items: center;
-      padding: 0;
-      cursor: pointer;
-    }
-
-    .hamburger-inner{
-      display: grid;
-      gap: 3px; /* closer lines */
-    }
-
-    .hamburger span{
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #fff;
-      opacity: 0.95;
-      border-radius: 99px;
-    }
-
-    /* spacing so content isn't under the fixed top bar */
-    .spacer-top{ height: 72px; }
-
-    /* MENU BACKDROP */
-    .menu-backdrop{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 180ms ease;
-      z-index: 80;
-      touch-action: none;
-    }
-
-    /* SIDE MENU */
-    .side-menu{
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: min(78vw, 340px);
-      background: #ffffff;
-      color: #111;
-      transform: translateX(-105%);
-      transition: transform 220ms ease;
-      z-index: 90;
-      display: flex;
-      flex-direction: column;
-      padding: 18px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-      overscroll-behavior: contain;
-    }
-
-    /* OPEN STATES */
-    body.menu-open .side-menu{ transform: translateX(0); }
-    body.menu-open .menu-backdrop{
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .side-menu__header{
-      display: flex;
-      justify-content: flex-start;
-      padding: 6px 0 14px;
-    }
-
-    .close-btn{
-      border: none;
-      background: transparent;
-      font-size: 28px;
-      line-height: 1;
-      cursor: pointer;
-      color: #111;
-    }
-
-    .side-menu__nav{
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      padding: 8px 0 18px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .side-menu__nav a{
-      text-decoration: none;
-      color: #111;
-      font-weight: 700;
-      font-size: 1.15rem;
-    }
-
-    .side-menu__actions{
-      margin-top: auto;
-      padding-top: 18px;
-    }
-
-    .menu-btn{
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: #6a2cff; /* purple */
-      color: #fff;
-      text-decoration: none;
-      font-weight: 900;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-
     /* FULL SCREEN HERO IMAGE */
     .hero-landing{
       position: relative;
@@ -188,7 +51,7 @@
     }
 
     .container{
-      max-width: 980px;
+      max-width: 1100px;
       margin: 0 auto;
       padding: 0 24px;
       width: 100%;
@@ -255,6 +118,142 @@
       backdrop-filter: blur(8px);
     }
 
+    /* ===== TOP BAR (PURPLE) ===== */
+    .sitebar{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 60;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: linear-gradient(90deg, rgba(106,44,255,0.95), rgba(58,15,115,0.90));
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      font-size: 16px;
+      text-transform: uppercase;
+      opacity: 0.98;
+    }
+
+    .hamburger{
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.22);
+      display: grid;
+      place-items: center;
+      padding: 0;
+    }
+
+    .hamburger-inner{
+      display: grid;
+      gap: 3px;
+    }
+
+    .hamburger span{
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      opacity: 0.95;
+      border-radius: 99px;
+    }
+
+    /* MENU BACKDROP */
+    .menu-backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease;
+      z-index: 80;
+      touch-action: none;
+    }
+
+    /* SIDE MENU */
+    .side-menu{
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: min(78vw, 340px);
+      background: #ffffff;
+      color: #111;
+      transform: translateX(-105%);
+      transition: transform 220ms ease;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      padding: 18px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+      overscroll-behavior: contain;
+    }
+
+    body.menu-open .side-menu{ transform: translateX(0); }
+    body.menu-open .menu-backdrop{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .side-menu__header{
+      display: flex;
+      justify-content: flex-start;
+      padding: 6px 0 14px;
+    }
+
+    .close-btn{
+      border: none;
+      background: transparent;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      color: #111;
+    }
+
+    .side-menu__nav{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 8px 0 18px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .side-menu__nav a{
+      text-decoration: none;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .side-menu__actions{
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .menu-btn{
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #6a2cff;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 900;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .spacer-top{ height: 72px; }
+
     /* ABOUT */
     .main{
       padding: 44px 24px 10px;
@@ -274,12 +273,12 @@
       margin-bottom: 14px;
     }
 
-    /* ✅ STRAVA-LIKE SCROLL SECTIONS (STACKED) */
+    /* ===== STRAVA-STYLE SCROLL (IMAGE THEN TEXT) ===== */
     .showcase{
-      padding: 26px 24px 10px;
+      padding: 24px 24px 10px;
     }
 
-    .feature-block{
+    .shot{
       margin: 22px 0;
       padding: 18px;
       border-radius: 18px;
@@ -288,27 +287,25 @@
       backdrop-filter: blur(10px);
     }
 
-    .feature-block h3{
-      font-size: 1.15rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.01em;
-    }
-
-    .feature-block p{
-      opacity: 0.9;
-      line-height: 1.6;
-      max-width: 700px;
-      margin-bottom: 14px;
-    }
-
-    .feature-block img{
+    .shot img{
       width: 100%;
-      max-width: 420px;
       display: block;
-      margin: 0 auto;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.14);
       box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+      margin-bottom: 14px;
+    }
+
+    .shot .text h3{
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .shot .text p{
+      opacity: 0.9;
+      line-height: 1.6;
+      max-width: 760px;
     }
 
     /* LOGO + CTA */
@@ -385,7 +382,6 @@
 </head>
 
 <body>
-
   <!-- STRAVA-LIKE TOP BAR -->
   <div class="sitebar">
     <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
@@ -408,7 +404,6 @@
 
     <nav class="side-menu__nav">
       <a href="#top" onclick="closeMenu()">Home</a>
-      <!-- keep features here, do nothing for now -->
       <a href="javascript:void(0)" onclick="closeMenu()">Features</a>
       <a href="#download" onclick="closeMenu()">Get the App</a>
     </nav>
@@ -447,9 +442,7 @@
     </div>
   </section>
 
-  <!-- ✅ REMOVED THE 3 BOXES SECTION COMPLETELY -->
-
-  <!-- ABOUT (KEEP JOIN STRIDE) -->
+  <!-- ABOUT (keep Join Stride) -->
   <section class="main container" id="about">
     <h2>Join Stride.</h2>
     <p>
@@ -459,34 +452,30 @@
     </p>
   </section>
 
-  <!-- SHOWCASE (STACKED LIKE STRAVA WHEN YOU SCROLL) -->
+  <!-- SHOWCASE (Strava-style scroll) -->
   <section class="showcase container" id="showcase">
-
-    <div class="feature-block">
-      <h3>Dashboard that keeps you locked in.</h3>
-      <p>
-        A clean weekly view so you can see your progress fast — mileage, trends, and what matters
-        without getting overwhelmed.
-      </p>
+    <div class="shot">
       <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
+      <div class="text">
+        <h3>Dashboard that keeps you locked in.</h3>
+        <p>A clean weekly view so you can see your progress fast — mileage, trends, and what matters without getting overwhelmed.</p>
+      </div>
     </div>
 
-    <div class="feature-block">
-      <h3>Training plan that stays simple.</h3>
-      <p>
-        Your week laid out clearly — so you always know what’s next, what’s completed,
-        and how your plan is building over time.
-      </p>
-      <img src="training.jpg" alt="Stride Training Plan screenshot">
-    </div>
-
-    <div class="feature-block">
-      <h3>AI Coach that actually helps.</h3>
-      <p>
-        Ask questions, get pacing advice, recovery tips, and training guidance —
-        all inside your running ecosystem.
-      </p>
+    <div class="shot">
       <img src="coach.jpg" alt="Stride AI Coach screenshot">
+      <div class="text">
+        <h3>AI Coach that actually helps.</h3>
+        <p>Ask questions, get pacing advice, recovery tips, and training guidance — all inside your running ecosystem.</p>
+      </div>
+    </div>
+
+    <div class="shot">
+      <img src="training.jpg" alt="Stride Training Plan screenshot">
+      <div class="text">
+        <h3>Training plan that stays simple.</h3>
+        <p>Your week laid out clearly — so you always know what’s next, what’s completed, and how your plan is building over time.</p>
+      </div>
     </div>
 
     <!-- LOGO + CTA -->
@@ -524,7 +513,6 @@
   </section>
 
   <script>
-    // ✅ Always load at TOP (fixes “opens at bottom”)
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
@@ -533,8 +521,7 @@
     });
 
     function openAppStore() {
-      window.location.href =
-        "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
+      window.location.href = "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
     }
 
     function openMenu(){
@@ -553,13 +540,11 @@
       if(e.key === "Escape") closeMenu();
     });
 
-    // ✅ prevent scrolling the page when menu is open (mobile)
     document.addEventListener("touchmove", function(e){
       if(document.body.classList.contains("menu-open")){
         e.preventDefault();
       }
     }, { passive: false });
   </script>
-
 </body>
 </html>
