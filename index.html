@@ -111,10 +111,11 @@
 
     /* ===== STRAVA-STYLE MENU ===== */
 
+    /* top LEFT like Strava */
     .topbar{
       position: absolute;
       top: 18px;
-      right: 18px;   /* top right like Strava */
+      left: 18px;
       z-index: 50;
     }
 
@@ -127,8 +128,13 @@
       backdrop-filter: blur(10px);
       display: grid;
       place-items: center;
-      gap: 6px;
       padding: 0;
+    }
+
+    /* lines closer together */
+    .hamburger-inner{
+      display: grid;
+      gap: 3px; /* tighter */
     }
 
     .hamburger span{
@@ -210,17 +216,19 @@
       padding-top: 18px;
     }
 
+    /* purple "Get the App" button */
     .menu-btn{
       display: block;
       width: 100%;
       text-align: center;
       padding: 14px 16px;
       border-radius: 12px;
-      background: #ff5a1f; /* Strava-ish orange */
+      background: #6a2cff;
       color: #fff;
       text-decoration: none;
       font-weight: 900;
       letter-spacing: 0.02em;
+      border: 1px solid rgba(0,0,0,0.06);
     }
 
     /* MAIN SECTIONS */
@@ -240,26 +248,6 @@
       opacity: 0.9;
       max-width: 760px;
       margin-bottom: 14px;
-    }
-
-    .card{
-      margin-top: 18px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 18px;
-      padding: 18px 16px;
-      max-width: 760px;
-    }
-
-    .card ul{
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .card li{
-      opacity: 0.95;
-      line-height: 1.4;
     }
 
     .logo-cta{
@@ -338,10 +326,12 @@
   <!-- HERO -->
   <section class="hero-landing">
 
-    <!-- TOP RIGHT HAMBURGER -->
+    <!-- TOP LEFT HAMBURGER -->
     <div class="topbar">
       <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
-        <span></span><span></span><span></span>
+        <div class="hamburger-inner">
+          <span></span><span></span><span></span>
+        </div>
       </button>
     </div>
 
@@ -355,7 +345,10 @@
 
       <nav class="side-menu__nav">
         <a href="#about" onclick="closeMenu()">Home</a>
-        <a href="#features" onclick="closeMenu()">Features</a>
+
+        <!-- Features stays here, but does NOTHING for now -->
+        <a href="javascript:void(0)" onclick="closeMenu()">Features</a>
+
         <a href="#download" onclick="closeMenu()">Get the App</a>
       </nav>
 
@@ -412,20 +405,6 @@
     </div>
   </section>
 
-  <!-- FEATURES (simple anchor section so menu works) -->
-  <section class="main container" id="features">
-    <h2>Features.</h2>
-    <div class="card">
-      <ul>
-        <li>Track PRs (XC, Track, Road)</li>
-        <li>AI Coach for instant feedback</li>
-        <li>Training plans built around your goals</li>
-        <li>Race log to track your season</li>
-        <li>Running journal + mileage insights</li>
-      </ul>
-    </div>
-  </section>
-
   <!-- FOOTER / DOWNLOAD -->
   <section class="final" id="download">
     <div class="links">
@@ -465,7 +444,6 @@
       if(menu) menu.setAttribute("aria-hidden", "true");
     }
 
-    // Close menu with ESC on desktop
     document.addEventListener("keydown", (e) => {
       if(e.key === "Escape") closeMenu();
     });
