@@ -6,160 +6,191 @@
   <title>Stride – Run Smarter</title>
 
   <style>
-    * {
+    *{
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    body {
-      background: radial-gradient(
-        circle at top,
-        #5b2aa6 0%,
-        #3b0f6f 45%,
-        #1a062e 100%
-      );
+    /* More "app-like" purple background */
+    body{
+      background: radial-gradient(circle at top, #6a2cff 0%, #3a0f73 45%, #14001f 100%);
       color: #ffffff;
     }
 
-    .hero {
+    /* FULL SCREEN HERO IMAGE */
+    .hero-landing{
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      background: url("hero.jpg") center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-landing__overlay{
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.20) 0%,
+        rgba(0,0,0,0.55) 55%,
+        rgba(15,0,25,0.92) 100%
+      );
+    }
+
+    .container{
       max-width: 1100px;
       margin: 0 auto;
-      padding: 56px 24px 96px;
+      padding: 0 24px;
+      width: 100%;
     }
 
-    .hero-brand {
-      font-size: clamp(3.8rem, 6vw, 6.5rem);
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      margin-bottom: 32px;
+    .hero-landing__content{
+      position: relative;
+      z-index: 2;
+      padding: 0 0 72px 0;
     }
 
-    .hero-headline h1 {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
-      font-weight: 600;
-      line-height: 1.1;
-      margin-bottom: 32px;
-    }
-
-    .hero-story {
-      max-width: 720px;
-    }
-
-    .hero-story h2 {
-      font-size: 1.2rem;
-      margin-bottom: 12px;
-      opacity: 0.9;
-    }
-
-    .hero-story p {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin-bottom: 16px;
-      opacity: 0.9;
-    }
-
-    .hero-highlight {
-      font-weight: 600;
-      margin-bottom: 56px;
-    }
-
-    /* FEATURES */
-    .features {
-      background: #ffffff;
-      color: #000000;
-      border-radius: 20px;
-      padding: 32px 28px;
-      max-width: 760px;
-      margin-bottom: 96px;
-    }
-
-    .features-title {
-      font-size: 0.75rem;
+    .hero-landing__kicker{
+      letter-spacing: 0.22em;
       font-weight: 700;
-      letter-spacing: 0.25em;
-      margin-bottom: 20px;
-      opacity: 0.6;
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 14px;
     }
 
-    .features ul {
-      list-style: none;
+    .hero-landing__title{
+      font-size: clamp(52px, 9vw, 96px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
     }
 
-    .features li {
-      font-size: 1rem;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
+    .hero-landing__sub{
+      font-size: clamp(16px, 2.7vw, 20px);
+      opacity: 0.92;
+      max-width: 520px;
+      line-height: 1.4;
+      margin-bottom: 22px;
     }
 
-    .features li:last-child {
-      border-bottom: none;
-      opacity: 0.6;
+    .hero-buttons{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    /* LOGO + CTA */
-    .logo-cta {
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .btn.primary{
+      background: #ffffff;
+      color: #111;
+      border-color: #fff;
+    }
+
+    .btn.ghost{
+      background: rgba(255,255,255,0.10);
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+
+    /* MAIN SECTION BELOW HERO */
+    .main{
+      padding: 64px 24px 40px;
+    }
+
+    .main h2{
+      font-size: 1.15rem;
+      opacity: 0.9;
+      margin-bottom: 14px;
+    }
+
+    .main p{
+      font-size: 1.05rem;
+      line-height: 1.65;
+      opacity: 0.9;
+      max-width: 760px;
+      margin-bottom: 14px;
+    }
+
+    .logo-cta{
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 40px;
-      margin-top: 40px;
+      gap: 28px;
+      margin-top: 42px;
     }
 
-    .hero-logo img {
+    .hero-logo img{
       width: 180px;
       border-radius: 28px;
       filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
     }
 
-    .hero-cta {
+    .hero-cta{
       cursor: pointer;
-      border: 2px solid #ffffff;
+      border: 2px solid rgba(255,255,255,0.9);
       padding: 18px 28px;
       text-align: center;
-      background: transparent;
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
     }
 
-    .hero-cta h3 {
+    .hero-cta h3{
       font-size: 1.1rem;
-      font-weight: 700;
+      font-weight: 900;
       margin-bottom: 6px;
       letter-spacing: 0.25em;
     }
 
-    .hero-cta span {
+    .hero-cta span{
       font-size: 0.75rem;
-      opacity: 0.85;
+      opacity: 0.9;
       letter-spacing: 0.18em;
     }
 
-    .final {
-      border-top: 1px solid rgba(255,255,255,0.2);
+    /* FOOTER */
+    .final{
+      border-top: 1px solid rgba(255,255,255,0.18);
       padding: 48px 24px;
       text-align: center;
+      background: rgba(0,0,0,0.10);
     }
 
-    .links {
+    .links{
       display: flex;
       justify-content: center;
       gap: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
-    .links a {
+    .links a{
       text-decoration: none;
       color: #ffffff;
       opacity: 0.85;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
     }
 
-    .appstore img {
+    .appstore img{
       width: 160px;
-      margin: 24px 0;
+      margin: 20px 0 18px;
     }
 
-    .copyright {
+    .copyright{
       font-size: 0.8rem;
       opacity: 0.7;
     }
@@ -168,45 +199,42 @@
 
 <body>
 
-  <section class="hero">
+  <!-- TOP HERO IMAGE -->
+  <section class="hero-landing">
+    <div class="hero-landing__overlay"></div>
 
-    <div class="hero-brand">STRIDE</div>
+    <div class="container hero-landing__content">
+      <p class="hero-landing__kicker">STRIDE</p>
 
-    <div class="hero-headline">
-      <h1>
-        Run.<br>
-        Smarter.<br>
-        Train.
+      <h1 class="hero-landing__title">
+        RUN.<br>
+        SMARTER.
       </h1>
-    </div>
 
-    <div class="hero-story">
-      <h2>Join Stride.</h2>
-
-      <p>
-        Stride is here to build a generation of runners who train with intention.
-        Our mission is to turn running into a guided journey, using AI mentoring,
-        where your PRs, your training plan, your season, and your mindset all live
-        in one place—so no runner feels lost, overwhelmed, or alone in the process.
+      <p class="hero-landing__sub">
+        AI coaching + your season organized — PRs, training, and mindset in one place.
       </p>
 
-      <p class="hero-highlight">Start with Stride.</p>
+      <div class="hero-buttons">
+        <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank">
+          Download
+        </a>
+        <a class="btn ghost" href="#about">
+          Learn more
+        </a>
+      </div>
     </div>
+  </section>
 
-    <!-- FEATURES SECTION -->
-    <div class="features">
-      <div class="features-title">FEATURES</div>
-      <ul>
-        <li>Track all your PRs (XC, Track, Road)</li>
-        <li>AI Coach for instant feedback</li>
-        <li>Training plans built around your goals</li>
-        <li>Race log to track your season</li>
-        <li>Running journal + mileage insights</li>
-        <li>And more…</li>
-      </ul>
-    </div>
+  <!-- SIMPLE CONTENT (NO FEATURES TAB) -->
+  <section class="main container" id="about">
+    <h2>Join Stride.</h2>
+    <p>
+      Stride is here to build a generation of runners who train with intention.
+      Our mission is to turn running into a guided journey using AI mentoring —
+      so no runner feels lost, overwhelmed, or alone in the process.
+    </p>
 
-    <!-- LOGO + CTA -->
     <div class="logo-cta">
       <div class="hero-logo">
         <img src="stride-logo.png" alt="Stride App Logo">
@@ -217,11 +245,10 @@
         <span>VISIT STRIDE NOW</span>
       </div>
     </div>
-
   </section>
 
-  <section class="final">
-
+  <!-- FOOTER -->
+  <section class="final" id="download">
     <div class="links">
       <a href="https://www.instagram.com/strideapp_" target="_blank">Instagram</a>
       <a href="https://www.youtube.com/@stride_1of1" target="_blank">YouTube</a>
@@ -239,7 +266,6 @@
     <p class="copyright">
       © 2026 Stride, Inc. All Rights Reserved
     </p>
-
   </section>
 
   <script>
