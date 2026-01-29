@@ -7,409 +7,375 @@
 
   <style>
     *{
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    html, body{ height: 100%; }
+    html, body{ height:100%; }
 
+    /* ✅ ONE COLOR PURPLE BACKGROUND */
     body{
-      background: radial-gradient(circle at top, #6a2cff 0%, #3a0f73 45%, #14001f 100%);
-      color: #ffffff;
-      overflow-x: hidden;
+      background:#4b18c9; /* solid purple */
+      color:#fff;
+      overflow-x:hidden;
     }
 
     /* ✅ LOCK SCROLL WHEN MENU OPEN */
     body.menu-open{
-      overflow: hidden;
-      height: 100vh;
-      touch-action: none;
+      overflow:hidden;
+      height:100vh;
+      touch-action:none;
     }
 
-    /* FULL SCREEN HERO IMAGE */
+    /* ===== TOP BAR ===== */
+    .sitebar{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:60;
+      padding:14px 18px;
+      display:flex;
+      align-items:center;
+      gap:14px;
+      background:#5a24ff; /* purple bar */
+      border-bottom:1px solid rgba(255,255,255,0.12);
+    }
+
+    .brand{
+      font-weight:900;
+      letter-spacing:0.14em;
+      font-size:16px;
+      text-transform:uppercase;
+      opacity:.98;
+    }
+
+    .hamburger{
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      background:rgba(0,0,0,0.20);
+      display:grid;
+      place-items:center;
+      padding:0;
+      cursor:pointer;
+    }
+    .hamburger-inner{ display:grid; gap:3px; }
+    .hamburger span{
+      display:block;
+      width:20px;
+      height:2px;
+      background:#fff;
+      border-radius:99px;
+      opacity:.95;
+    }
+
+    /* spacing so content isn't under the fixed top bar */
+    .spacer-top{ height:72px; }
+
+    /* MENU BACKDROP */
+    .menu-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity 180ms ease;
+      z-index:80;
+      touch-action:none;
+    }
+
+    /* SIDE MENU */
+    .side-menu{
+      position:fixed;
+      top:0; left:0;
+      height:100vh;
+      width:min(78vw, 340px);
+      background:#fff;
+      color:#111;
+      transform:translateX(-105%);
+      transition:transform 220ms ease;
+      z-index:90;
+      display:flex;
+      flex-direction:column;
+      padding:18px;
+      box-shadow:0 24px 60px rgba(0,0,0,0.35);
+      overscroll-behavior:contain;
+    }
+    body.menu-open .side-menu{ transform:translateX(0); }
+    body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
+
+    .side-menu__header{
+      display:flex;
+      justify-content:flex-start;
+      padding:6px 0 14px;
+    }
+    .close-btn{
+      border:none;
+      background:transparent;
+      font-size:28px;
+      line-height:1;
+      cursor:pointer;
+      color:#111;
+    }
+    .side-menu__nav{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      padding:8px 0 18px;
+      border-bottom:1px solid #eee;
+    }
+    .side-menu__nav a{
+      text-decoration:none;
+      color:#111;
+      font-weight:700;
+      font-size:1.15rem;
+    }
+    .side-menu__actions{ margin-top:auto; padding-top:18px; }
+    .menu-btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      padding:14px 16px;
+      border-radius:12px;
+      background:#6a2cff;
+      color:#fff;
+      text-decoration:none;
+      font-weight:900;
+      border:1px solid rgba(0,0,0,0.06);
+    }
+
+    /* ===== HERO ===== */
     .hero-landing{
-      position: relative;
-      min-height: 100vh;
-      width: 100%;
-      background: url("hero.jpg") center/cover no-repeat;
-      display: flex;
-      align-items: flex-end;
+      position:relative;
+      min-height:100vh;
+      width:100%;
+      background:url("hero.jpg") center/cover no-repeat;
+      display:flex;
+      align-items:flex-end;
     }
-
     .hero-landing__overlay{
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
         180deg,
         rgba(0,0,0,0.10) 0%,
         rgba(0,0,0,0.35) 55%,
         rgba(15,0,25,0.85) 100%
       );
-      z-index: 1;
+      z-index:1;
     }
-
     .container{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
-      width: 100%;
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 24px;
+      width:100%;
     }
-
     .hero-landing__content{
-      position: relative;
-      z-index: 2;
-      padding: 0 0 72px 0;
+      position:relative;
+      z-index:2;
+      padding:0 0 72px 0;
     }
-
     .hero-landing__kicker{
-      letter-spacing: 0.22em;
-      font-weight: 700;
-      font-size: 12px;
-      opacity: 0.9;
-      margin-bottom: 14px;
+      letter-spacing:0.22em;
+      font-weight:700;
+      font-size:12px;
+      opacity:0.9;
+      margin-bottom:14px;
     }
-
     .hero-landing__title{
-      font-size: clamp(52px, 9vw, 96px);
-      font-weight: 900;
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
+      font-size:clamp(52px, 9vw, 96px);
+      font-weight:900;
+      line-height:0.95;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      margin-bottom:14px;
     }
-
     .hero-landing__sub{
-      font-size: clamp(16px, 2.7vw, 20px);
-      opacity: 0.92;
-      max-width: 560px;
-      line-height: 1.4;
-      margin-bottom: 22px;
+      font-size:clamp(16px, 2.7vw, 20px);
+      opacity:0.92;
+      max-width:560px;
+      line-height:1.4;
+      margin-bottom:22px;
     }
-
     .hero-buttons{
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
     }
-
     .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px 18px;
-      border-radius: 999px;
-      font-weight: 800;
-      text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.25);
-      cursor: pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:12px 18px;
+      border-radius:999px;
+      font-weight:800;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,0.25);
+      cursor:pointer;
     }
-
     .btn.primary{
-      background: #ffffff;
-      color: #111;
-      border-color: #fff;
+      background:#fff;
+      color:#111;
+      border-color:#fff;
     }
-
     .btn.ghost{
-      background: rgba(255,255,255,0.10);
-      color: #fff;
-      backdrop-filter: blur(8px);
+      background:rgba(255,255,255,0.10);
+      color:#fff;
+      backdrop-filter:blur(8px);
     }
 
-    /* ===== TOP BAR (PURPLE) ===== */
-    .sitebar{
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 60;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: linear-gradient(90deg, rgba(106,44,255,0.95), rgba(58,15,115,0.90));
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
-    }
-
-    .brand{
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      font-size: 16px;
-      text-transform: uppercase;
-      opacity: 0.98;
-    }
-
-    .hamburger{
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.22);
-      display: grid;
-      place-items: center;
-      padding: 0;
-    }
-
-    .hamburger-inner{ display: grid; gap: 3px; }
-
-    .hamburger span{
-      display: block;
-      width: 20px;
-      height: 2px;
-      background: #fff;
-      opacity: 0.95;
-      border-radius: 99px;
-    }
-
-    /* MENU BACKDROP */
-    .menu-backdrop{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 180ms ease;
-      z-index: 80;
-      touch-action: none;
-    }
-
-    /* SIDE MENU */
-    .side-menu{
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: min(78vw, 340px);
-      background: #ffffff;
-      color: #111;
-      transform: translateX(-105%);
-      transition: transform 220ms ease;
-      z-index: 90;
-      display: flex;
-      flex-direction: column;
-      padding: 18px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-      overscroll-behavior: contain;
-    }
-
-    body.menu-open .side-menu{ transform: translateX(0); }
-    body.menu-open .menu-backdrop{
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .side-menu__header{
-      display: flex;
-      justify-content: flex-start;
-      padding: 6px 0 14px;
-    }
-
-    .close-btn{
-      border: none;
-      background: transparent;
-      font-size: 28px;
-      line-height: 1;
-      cursor: pointer;
-      color: #111;
-    }
-
-    .side-menu__nav{
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      padding: 8px 0 18px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .side-menu__nav a{
-      text-decoration: none;
-      color: #111;
-      font-weight: 700;
-      font-size: 1.15rem;
-    }
-
-    .side-menu__actions{
-      margin-top: auto;
-      padding-top: 18px;
-    }
-
-    .menu-btn{
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 14px 16px;
-      border-radius: 12px;
-      background: #6a2cff;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 900;
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-
-    .spacer-top{ height: 72px; }
-
-    /* ABOUT */
+    /* ===== JOIN STRIDE ===== */
     .main{
-      padding: 44px 24px 10px;
+      padding:34px 24px 6px;
     }
     .main h2{
-      font-size: 1.15rem;
-      opacity: 0.9;
-      margin-bottom: 14px;
+      font-size:1.15rem;
+      opacity:0.95;
+      margin-bottom:12px;
     }
     .main p{
-      font-size: 1.05rem;
-      line-height: 1.65;
-      opacity: 0.9;
-      max-width: 760px;
-      margin-bottom: 14px;
+      font-size:1.05rem;
+      line-height:1.65;
+      opacity:0.92;
+      max-width:760px;
+      margin-bottom:10px;
     }
 
-    /* ===== STRAVA-STYLE CAROUSEL ===== */
-    .carousel-wrap{
-      padding: 22px 24px 38px;
-    }
-
+    /* ===== STRAVA-LIKE CAROUSEL (scrolls) ===== */
     .carousel{
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 18px;
-      padding-bottom: 12px;
-      scrollbar-width: none;          /* Firefox */
+      padding:18px 24px 10px;
     }
 
-    .carousel::-webkit-scrollbar{ display: none; } /* iOS/Chrome */
+    .card{
+      background:rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:18px;
+      padding:16px;
+      backdrop-filter:blur(10px);
+      box-shadow:0 18px 45px rgba(0,0,0,0.25);
+    }
+
+    .carousel-track{
+      display:flex;
+      gap:14px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:10px;
+    }
+    .carousel-track::-webkit-scrollbar{ display:none; }
+    .carousel-track{ scrollbar-width:none; }
 
     .slide{
-      flex: 0 0 100%;
-      scroll-snap-align: start;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 18px;
-      padding: 18px;
-      backdrop-filter: blur(10px);
-    }
-
-    @media (min-width: 900px){
-      .slide{ flex-basis: 70%; }
+      flex:0 0 100%;
+      scroll-snap-align:start;
     }
 
     .slide img{
-      width: 100%;
-      display: block;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.14);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-      margin-bottom: 14px;
+      width:100%;
+      display:block;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.12);
+      background:rgba(255,255,255,0.06);
+      margin-bottom:14px;
     }
 
     .slide h3{
-      font-size: 1.15rem;
-      margin-bottom: 8px;
-      letter-spacing: 0.01em;
+      font-size:1.05rem;
+      margin-bottom:8px;
+      letter-spacing:0.01em;
     }
-
     .slide p{
-      opacity: 0.9;
-      line-height: 1.6;
-      max-width: 760px;
+      opacity:0.92;
+      line-height:1.6;
+      font-size:0.98rem;
     }
 
     .dots{
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 12px;
-      user-select: none;
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      margin:12px 0 6px;
     }
-
     .dot{
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.35);
-      border: 1px solid rgba(255,255,255,0.25);
-      cursor: pointer;
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.40);
+      transition:transform 140ms ease, opacity 140ms ease;
+      opacity:0.8;
     }
-
     .dot.active{
-      background: rgba(255,255,255,0.95);
+      background:#fff;
+      transform:scale(1.12);
+      opacity:1;
     }
 
-    /* LOGO + CTA */
+    /* ===== LOGO + CTA ===== */
     .logo-cta{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 28px;
-      margin: 34px 0 30px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:22px;
+      margin:26px 0 22px;
+      padding:0 24px;
     }
-
     .hero-logo img{
-      width: 180px;
-      border-radius: 28px;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.45));
+      width:180px;
+      border-radius:28px;
+      filter:drop-shadow(0 20px 40px rgba(0,0,0,0.45));
     }
-
     .hero-cta{
-      cursor: pointer;
-      border: 2px solid rgba(255,255,255,0.9);
-      padding: 18px 28px;
-      text-align: center;
-      background: rgba(255,255,255,0.06);
-      border-radius: 14px;
+      cursor:pointer;
+      border:2px solid rgba(255,255,255,0.9);
+      padding:18px 28px;
+      text-align:center;
+      background:rgba(0,0,0,0.18);
+      border-radius:14px;
+      width:min(420px, 100%);
     }
-
     .hero-cta h3{
-      font-size: 1.1rem;
-      font-weight: 900;
-      margin-bottom: 6px;
-      letter-spacing: 0.25em;
+      font-size:1.1rem;
+      font-weight:900;
+      margin-bottom:6px;
+      letter-spacing:0.25em;
     }
-
     .hero-cta span{
-      font-size: 0.75rem;
-      opacity: 0.9;
-      letter-spacing: 0.18em;
+      font-size:0.75rem;
+      opacity:0.9;
+      letter-spacing:0.18em;
     }
 
-    /* FOOTER */
+    /* ===== FOOTER ===== */
     .final{
-      border-top: 1px solid rgba(255,255,255,0.18);
-      padding: 48px 24px;
-      text-align: center;
-      background: rgba(0,0,0,0.10);
-      margin-top: 28px;
+      border-top:1px solid rgba(255,255,255,0.18);
+      padding:36px 24px 44px;
+      text-align:center;
+      background:rgba(0,0,0,0.12);
+      margin-top:18px;
     }
-
     .links{
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
+      display:flex;
+      justify-content:center;
+      gap:24px;
+      margin-bottom:18px;
+      flex-wrap:wrap;
     }
-
     .links a{
-      text-decoration: none;
-      color: #ffffff;
-      opacity: 0.85;
-      font-size: 0.95rem;
+      text-decoration:none;
+      color:#fff;
+      opacity:0.88;
+      font-size:0.95rem;
     }
-
     .appstore img{
-      width: 160px;
-      margin: 20px 0 18px;
+      width:160px;
+      margin:18px 0 16px;
     }
-
     .copyright{
-      font-size: 0.8rem;
-      opacity: 0.7;
+      font-size:0.8rem;
+      opacity:0.75;
     }
   </style>
 </head>
@@ -437,12 +403,12 @@
 
     <nav class="side-menu__nav">
       <a href="#top" onclick="closeMenu()">Home</a>
-      <a href="#features" onclick="closeMenu()">Features</a>
+      <a href="javascript:void(0)" onclick="closeMenu()">Features</a>
       <a href="#download" onclick="closeMenu()">Get the App</a>
     </nav>
 
     <div class="side-menu__actions">
-      <a class="menu-btn" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank">
+      <a class="menu-btn" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
         Get the App
       </a>
     </div>
@@ -465,7 +431,7 @@
       </p>
 
       <div class="hero-buttons">
-        <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank">
+        <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
           Download
         </a>
         <a class="btn ghost" href="#about">
@@ -485,120 +451,151 @@
     </p>
   </section>
 
-  <!-- FEATURES CAROUSEL -->
-  <section class="carousel-wrap container" id="features">
-    <div class="carousel" id="carousel">
-      <article class="slide">
-        <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
-        <h3>Dashboard that keeps you locked in.</h3>
-        <p>A clean weekly view so you can see your progress fast — mileage, trends, and what matters without getting overwhelmed.</p>
-      </article>
+  <!-- CAROUSEL (scroll like Strava) -->
+  <section class="carousel container" id="showcase">
+    <div class="card">
+      <div class="carousel-track" id="carouselTrack" aria-label="Stride screenshots carousel">
+        <!-- Slide 1 -->
+        <div class="slide" data-index="0">
+          <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
+          <h3>Dashboard that keeps you locked in.</h3>
+          <p>
+            A clean weekly view so you can see your progress fast — mileage, trends, and what matters
+            without getting overwhelmed.
+          </p>
+        </div>
 
-      <article class="slide">
-        <img src="coach.jpg" alt="Stride AI Coach screenshot">
-        <h3>AI Coach that actually helps.</h3>
-        <p>Ask questions, get pacing advice, recovery tips, and training guidance — all inside your running ecosystem.</p>
-      </article>
+        <!-- Slide 2 (AI Coach IMAGE, but TRAINING PLAN DESCRIPTION) ✅ SWAPPED -->
+        <div class="slide" data-index="1">
+          <img src="coach.jpg" alt="Stride AI Coach screenshot">
+          <h3>Training plan that stays simple.</h3>
+          <p>
+            Your week laid out clearly — so you always know what’s next, what’s completed,
+            and how your plan is building over time.
+          </p>
+        </div>
 
-      <article class="slide">
-        <img src="training.jpg" alt="Stride Training Plan screenshot">
-        <h3>Training plan that stays simple.</h3>
-        <p>Your week laid out clearly — so you always know what’s next, what’s completed, and how your plan is building over time.</p>
-      </article>
+        <!-- Slide 3 (Training Plan IMAGE, but AI COACH DESCRIPTION) ✅ SWAPPED -->
+        <div class="slide" data-index="2">
+          <img src="training.jpg" alt="Stride Training Plan screenshot">
+          <h3>AI Coach that actually helps.</h3>
+          <p>
+            Ask questions, get pacing advice, recovery tips, and training guidance —
+            all inside your running ecosystem.
+          </p>
+        </div>
+      </div>
+
+      <div class="dots" id="dots">
+        <div class="dot active" data-dot="0"></div>
+        <div class="dot" data-dot="1"></div>
+        <div class="dot" data-dot="2"></div>
+      </div>
     </div>
-
-    <div class="dots" id="dots" aria-label="Carousel pagination"></div>
   </section>
 
   <!-- LOGO + CTA -->
-  <section class="container">
-    <div class="logo-cta">
-      <div class="hero-logo">
-        <img src="stride-logo.png" alt="Stride App Logo">
-      </div>
+  <section class="logo-cta">
+    <div class="hero-logo">
+      <img src="stride-logo.png" alt="Stride App Logo">
+    </div>
 
-      <div class="hero-cta" onclick="openAppStore()">
-        <h3>STRIDE</h3>
-        <span>VISIT STRIDE NOW</span>
-      </div>
+    <div class="hero-cta" onclick="openAppStore()">
+      <h3>STRIDE</h3>
+      <span>VISIT STRIDE NOW</span>
     </div>
   </section>
 
   <!-- FOOTER -->
   <section class="final" id="download">
     <div class="links">
-      <a href="https://www.instagram.com/strideapp_" target="_blank">Instagram</a>
-      <a href="https://www.youtube.com/@stride_1of1" target="_blank">YouTube</a>
-      <a href="https://www.tiktok.com/@stride.usa" target="_blank">TikTok</a>
+      <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">Instagram</a>
+      <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">YouTube</a>
+      <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">TikTok</a>
     </div>
 
     <div class="appstore">
-      <a href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank">
+      <a href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
         <img
           src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
           alt="Download on the App Store">
       </a>
     </div>
 
-    <p class="copyright">© 2026 Stride, Inc. All Rights Reserved</p>
+    <p class="copyright">
+      © 2026 Stride, Inc. All Rights Reserved
+    </p>
   </section>
 
   <script>
     // ✅ Always load at TOP
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.addEventListener('load', () => { if (!location.hash) window.scrollTo(0,0); });
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.addEventListener("load", () => {
+      if (!location.hash) window.scrollTo(0, 0);
+    });
 
-    function openAppStore(){
+    function openAppStore() {
       window.location.href = "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
     }
 
     function openMenu(){
       document.body.classList.add("menu-open");
       const menu = document.getElementById("sideMenu");
-      if(menu) menu.setAttribute("aria-hidden","false");
+      if(menu) menu.setAttribute("aria-hidden", "false");
     }
 
     function closeMenu(){
       document.body.classList.remove("menu-open");
       const menu = document.getElementById("sideMenu");
-      if(menu) menu.setAttribute("aria-hidden","true");
+      if(menu) menu.setAttribute("aria-hidden", "true");
     }
 
-    document.addEventListener("keydown",(e)=>{ if(e.key==="Escape") closeMenu(); });
-    document.addEventListener("touchmove",(e)=>{
-      if(document.body.classList.contains("menu-open")) e.preventDefault();
-    }, { passive:false });
-
-    // ===== Carousel dots + sync =====
-    const carousel = document.getElementById("carousel");
-    const dotsWrap = document.getElementById("dots");
-    const slides = Array.from(carousel.querySelectorAll(".slide"));
-
-    slides.forEach((_, i) => {
-      const b = document.createElement("button");
-      b.className = "dot" + (i === 0 ? " active" : "");
-      b.type = "button";
-      b.setAttribute("aria-label", `Go to slide ${i+1}`);
-      b.addEventListener("click", () => {
-        carousel.scrollTo({ left: carousel.clientWidth * i, behavior: "smooth" });
-      });
-      dotsWrap.appendChild(b);
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeMenu();
     });
 
-    const dots = Array.from(dotsWrap.querySelectorAll(".dot"));
-    let ticking = false;
+    // ✅ prevent scrolling the page when menu is open (mobile)
+    document.addEventListener("touchmove", function(e){
+      if(document.body.classList.contains("menu-open")){
+        e.preventDefault();
+      }
+    }, { passive: false });
 
-    function setActiveDot(){
-      const index = Math.round(carousel.scrollLeft / carousel.clientWidth);
-      dots.forEach((d, i) => d.classList.toggle("active", i === index));
-      ticking = false;
+    // ✅ dots update while scrolling carousel
+    const track = document.getElementById("carouselTrack");
+    const dots = Array.from(document.querySelectorAll(".dot"));
+
+    function setActiveDot(index){
+      dots.forEach((d,i)=>d.classList.toggle("active", i===index));
     }
 
-    carousel.addEventListener("scroll", () => {
-      if(!ticking){
-        window.requestAnimationFrame(setActiveDot);
-        ticking = true;
-      }
+    function getClosestSlideIndex(){
+      const slides = Array.from(track.querySelectorAll(".slide"));
+      const trackRect = track.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+
+      let bestIdx = 0;
+      let bestDist = Infinity;
+
+      slides.forEach((s, i) => {
+        const r = s.getBoundingClientRect();
+        const center = r.left + r.width / 2;
+        const dist = Math.abs(center - trackCenter);
+        if(dist < bestDist){
+          bestDist = dist;
+          bestIdx = i;
+        }
+      });
+
+      return bestIdx;
+    }
+
+    let raf = null;
+    track.addEventListener("scroll", () => {
+      if(raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        setActiveDot(getClosestSlideIndex());
+      });
     });
   </script>
 </body>
