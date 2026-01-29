@@ -116,7 +116,7 @@
       backdrop-filter: blur(8px);
     }
 
-    /* ===== STRAVA-STYLE TOP BAR (STRIDE) ===== */
+    /* ===== STRAVA-STYLE TOP BAR (NOW PURPLE) ===== */
     .sitebar{
       position: absolute;
       top: 0;
@@ -127,9 +127,11 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      background: rgba(0,0,0,0.18);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.10);
+
+      /* ✅ purple bar */
+      background: linear-gradient(180deg, rgba(106,44,255,0.96) 0%, rgba(58,15,115,0.92) 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(8px);
     }
 
     .brand{
@@ -146,7 +148,7 @@
       height: 44px;
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(0,0,0,0.22);
+      background: rgba(0,0,0,0.18);
       display: grid;
       place-items: center;
       padding: 0;
@@ -351,7 +353,7 @@
   <!-- HERO -->
   <section class="hero-landing">
 
-    <!-- STRAVA-LIKE TOP BAR -->
+    <!-- TOP BAR -->
     <div class="sitebar">
       <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
         <div class="hamburger-inner">
@@ -371,7 +373,6 @@
 
       <nav class="side-menu__nav">
         <a href="#about" onclick="closeMenu()">Home</a>
-        <!-- Features stays here, but does NOTHING for now -->
         <a href="javascript:void(0)" onclick="closeMenu()">Features</a>
         <a href="#download" onclick="closeMenu()">Get the App</a>
       </nav>
@@ -481,4 +482,4 @@
   </script>
 
 </body>
-</html> 
+</html>
