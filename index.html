@@ -13,10 +13,10 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    /* More "app-like" purple background */
     body{
       background: radial-gradient(circle at top, #6a2cff 0%, #3a0f73 45%, #14001f 100%);
       color: #ffffff;
+      overflow-x: hidden;
     }
 
     /* FULL SCREEN HERO IMAGE */
@@ -34,10 +34,11 @@
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(0,0,0,0.20) 0%,
-        rgba(0,0,0,0.55) 55%,
-        rgba(15,0,25,0.92) 100%
+        rgba(0,0,0,0.10) 0%,
+        rgba(0,0,0,0.35) 55%,
+        rgba(15,0,25,0.85) 100%
       );
+      z-index: 1;
     }
 
     .container{
@@ -93,6 +94,7 @@
       font-weight: 800;
       text-decoration: none;
       border: 1px solid rgba(255,255,255,0.25);
+      cursor: pointer;
     }
 
     .btn.primary{
@@ -107,7 +109,121 @@
       backdrop-filter: blur(8px);
     }
 
-    /* MAIN SECTION BELOW HERO */
+    /* ===== STRAVA-STYLE MENU ===== */
+
+    .topbar{
+      position: absolute;
+      top: 18px;
+      right: 18px;   /* top right like Strava */
+      z-index: 50;
+    }
+
+    .hamburger{
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.20);
+      backdrop-filter: blur(10px);
+      display: grid;
+      place-items: center;
+      gap: 6px;
+      padding: 0;
+    }
+
+    .hamburger span{
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #fff;
+      opacity: 0.95;
+      border-radius: 99px;
+    }
+
+    .menu-backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease;
+      z-index: 80;
+    }
+
+    .side-menu{
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: min(78vw, 340px);
+      background: #ffffff;
+      color: #111;
+      transform: translateX(-105%);
+      transition: transform 220ms ease;
+      z-index: 90;
+      display: flex;
+      flex-direction: column;
+      padding: 18px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+    }
+
+    .menu-open .side-menu{
+      transform: translateX(0);
+    }
+    .menu-open .menu-backdrop{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .side-menu__header{
+      display: flex;
+      justify-content: flex-start;
+      padding: 6px 0 14px;
+    }
+
+    .close-btn{
+      border: none;
+      background: transparent;
+      font-size: 28px;
+      line-height: 1;
+      cursor: pointer;
+      color: #111;
+    }
+
+    .side-menu__nav{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 8px 0 18px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .side-menu__nav a{
+      text-decoration: none;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+
+    .side-menu__actions{
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .menu-btn{
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #ff5a1f; /* Strava-ish orange */
+      color: #fff;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+    }
+
+    /* MAIN SECTIONS */
     .main{
       padding: 64px 24px 40px;
     }
@@ -124,6 +240,26 @@
       opacity: 0.9;
       max-width: 760px;
       margin-bottom: 14px;
+    }
+
+    .card{
+      margin-top: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 18px 16px;
+      max-width: 760px;
+    }
+
+    .card ul{
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .card li{
+      opacity: 0.95;
+      line-height: 1.4;
     }
 
     .logo-cta{
@@ -199,8 +335,37 @@
 
 <body>
 
-  <!-- TOP HERO IMAGE -->
+  <!-- HERO -->
   <section class="hero-landing">
+
+    <!-- TOP RIGHT HAMBURGER -->
+    <div class="topbar">
+      <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- BACKDROP + SIDE MENU -->
+    <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
+
+    <aside class="side-menu" id="sideMenu" aria-hidden="true">
+      <div class="side-menu__header">
+        <button class="close-btn" aria-label="Close menu" onclick="closeMenu()">✕</button>
+      </div>
+
+      <nav class="side-menu__nav">
+        <a href="#about" onclick="closeMenu()">Home</a>
+        <a href="#features" onclick="closeMenu()">Features</a>
+        <a href="#download" onclick="closeMenu()">Get the App</a>
+      </nav>
+
+      <div class="side-menu__actions">
+        <a class="menu-btn" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank">
+          Get the App
+        </a>
+      </div>
+    </aside>
+
     <div class="hero-landing__overlay"></div>
 
     <div class="container hero-landing__content">
@@ -226,7 +391,7 @@
     </div>
   </section>
 
-  <!-- SIMPLE CONTENT (NO FEATURES TAB) -->
+  <!-- ABOUT -->
   <section class="main container" id="about">
     <h2>Join Stride.</h2>
     <p>
@@ -247,7 +412,21 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FEATURES (simple anchor section so menu works) -->
+  <section class="main container" id="features">
+    <h2>Features.</h2>
+    <div class="card">
+      <ul>
+        <li>Track PRs (XC, Track, Road)</li>
+        <li>AI Coach for instant feedback</li>
+        <li>Training plans built around your goals</li>
+        <li>Race log to track your season</li>
+        <li>Running journal + mileage insights</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER / DOWNLOAD -->
   <section class="final" id="download">
     <div class="links">
       <a href="https://www.instagram.com/strideapp_" target="_blank">Instagram</a>
@@ -273,6 +452,23 @@
       window.location.href =
         "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
     }
+
+    function openMenu(){
+      document.body.classList.add("menu-open");
+      const menu = document.getElementById("sideMenu");
+      if(menu) menu.setAttribute("aria-hidden", "false");
+    }
+
+    function closeMenu(){
+      document.body.classList.remove("menu-open");
+      const menu = document.getElementById("sideMenu");
+      if(menu) menu.setAttribute("aria-hidden", "true");
+    }
+
+    // Close menu with ESC on desktop
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeMenu();
+    });
   </script>
 
 </body>
