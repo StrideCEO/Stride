@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stride – Run Smarter</title>
 
+  <!-- ✅ Social icons (no images needed) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <style>
     *{
       box-sizing:border-box;
@@ -16,7 +19,7 @@
     html, body{ height:100%; }
 
     :root{
-      --logoPurple:#5A24FF; /* tweak if needed */
+      --logoPurple:#5A24FF; /* tweak if you want */
     }
 
     body{
@@ -253,7 +256,7 @@
       margin-bottom:10px;
     }
 
-    /* ===== FEATURES HEADING (professional) ===== */
+    /* ===== FEATURES HEADING ===== */
     .features-title{
       padding:10px 24px 0;
     }
@@ -270,7 +273,7 @@
       margin-top:10px;
     }
 
-    /* ===== STRAVA-LIKE CAROUSEL ===== */
+    /* ===== CAROUSEL ===== */
     .carousel{
       padding:14px 24px 10px;
     }
@@ -342,7 +345,7 @@
       flex-direction:column;
       align-items:center;
       gap:22px;
-      margin:26px 0 22px;
+      margin:26px 0 12px;
       padding:0 24px;
     }
     .hero-logo img{
@@ -371,9 +374,11 @@
       letter-spacing:0.18em;
     }
 
-    /* ===== CONTACT (bigger + cleaner, no paragraph) ===== */
+    /* ===== CONTACT (REAL ICONS) ===== */
+    #contact{ padding-top: 10px; }
+
     .contact-title{
-      font-size:1.35rem;
+      font-size:1.45rem;
       font-weight:950;
       letter-spacing:0.01em;
       margin-bottom:12px;
@@ -389,20 +394,33 @@
     .contact-row{
       display:flex;
       flex-direction:column;
-      gap:12px;
+      gap:14px;
     }
+
     .contact-item{
       display:flex;
-      gap:10px;
       align-items:center;
+      gap:12px;
       font-size:1.02rem;
-      opacity:0.95;
+      opacity:0.96;
     }
+
+    /* icon size = emoji size */
+    .contact-item i{
+      width:34px;
+      min-width:34px;
+      height:34px;
+      display:grid;
+      place-items:center;
+      font-size:22px;
+      filter:drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+    }
+
     .contact-item a{
       color:#fff;
       text-decoration:underline;
       text-underline-offset:3px;
-      font-weight:800;
+      font-weight:900;
     }
 
     /* ===== FOOTER ===== */
@@ -512,7 +530,7 @@
     </p>
   </section>
 
-  <!-- FEATURES HEADING (NEW) -->
+  <!-- FEATURES HEADING -->
   <section class="features-title container" id="features">
     <h2>Features</h2>
     <div class="rule"></div>
@@ -570,31 +588,33 @@
     </div>
   </section>
 
-  <!-- CONTACT (MOVED BELOW LOGO/CTA) -->
+  <!-- CONTACT (REAL SOCIAL LOGOS) -->
   <section class="section container" id="contact">
     <div class="contact-title">Contact</div>
 
     <div class="contact-card">
       <div class="contact-row">
+
         <div class="contact-item">
-          <span>📩</span>
+          <i class="fa-solid fa-envelope"></i>
           <div>Email: <a href="mailto:novabusiness1400@gmail.com">novabusiness1400@gmail.com</a></div>
         </div>
 
         <div class="contact-item">
-          <span>📷</span>
+          <i class="fa-brands fa-instagram"></i>
           <div>Instagram: <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">@strideapp_</a></div>
         </div>
 
         <div class="contact-item">
-          <span>🎥</span>
+          <i class="fa-brands fa-youtube"></i>
           <div>YouTube: <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a></div>
         </div>
 
         <div class="contact-item">
-          <span>🎶</span>
+          <i class="fa-brands fa-tiktok"></i>
           <div>TikTok: <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">@stride.usa</a></div>
         </div>
+
       </div>
     </div>
   </section>
@@ -652,7 +672,6 @@
       }
     }, { passive: false });
 
-    // dots update while scrolling carousel
     const track = document.getElementById("carouselTrack");
     const dots = Array.from(document.querySelectorAll(".dot"));
 
