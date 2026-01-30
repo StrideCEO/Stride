@@ -1,5 +1,5 @@
 /* =========================
-   STRIDE SITE CSS (NEW)
+   STRIDE SITE CSS (UPDATED)
    Paste this ENTIRE file
    ========================= */
 
@@ -13,9 +13,9 @@
 
 html, body{ height:100%; }
 
-/* ✅ BACKGROUND (use logo purple) */
+/* ✅ BACKGROUND (logo purple) */
 body{
-  background:#4b18c9;            /* change this if you want slightly different logo-purple */
+  background:#4b18c9;
   color:#fff;
   overflow-x:hidden;
 }
@@ -141,7 +141,7 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
 .side-menu__actions{
   margin-top:auto;
   padding-top:18px;
-  padding-bottom:28px;  /* pushes button up a bit */
+  padding-bottom:28px;
 }
 
 .menu-btn{
@@ -167,7 +167,6 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
   align-items:flex-end;
 }
 
-/* hero overlay (keep it dark so text pops) */
 .hero-landing__overlay{
   position:absolute;
   inset:0;
@@ -388,7 +387,7 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
   letter-spacing:0.18em;
 }
 
-/* ===== CONTACT (bigger + cleaner) ===== */
+/* ===== CONTACT (icons/logos) ===== */
 .contact-title{
   font-size:1.55rem;
   font-weight:900;
@@ -412,20 +411,13 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
   font-size:1.05rem;
 }
 
-.contact-row a{
-  color:#fff;
-  font-weight:800;
-  text-decoration:underline;
-  text-underline-offset:4px;
-}
-
-/* ✅ real logos same size as emoji */
 .contact-item{
   display:flex;
   align-items:center;
   gap:12px;
 }
 
+/* ✅ icon slot same size as your emoji */
 .contact-icon{
   width:34px;
   height:34px;
@@ -434,12 +426,32 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
   place-items:center;
 }
 
+/* ✅ works for BOTH: <img> icons OR <i> font icons */
 .contact-icon img{
   width:34px;
   height:34px;
   object-fit:contain;
   display:block;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+}
+.contact-icon i{
+  font-size:28px;  /* match emoji size */
+  line-height:1;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+}
+
+/* text */
+.contact-label{
+  font-weight:800;
+  opacity:0.95;
+  min-width:108px;
+}
+
+.contact-item a{
+  color:#fff;
+  font-weight:800;
+  text-decoration:underline;
+  text-underline-offset:4px;
 }
 
 /* ===== FOOTER ===== */
