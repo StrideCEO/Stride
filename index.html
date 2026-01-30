@@ -15,9 +15,14 @@
 
     html, body{ height:100%; }
 
-    /* ✅ ONE COLOR PURPLE BACKGROUND */
+    /* ✅ ONE COLOR PURPLE BACKGROUND (MATCH LOGO PURPLE) */
+    :root{
+      /* Change this if you want it slightly lighter/darker */
+      --logoPurple:#5A24FF;
+    }
+
     body{
-      background:#4b18c9; /* solid purple */
+      background:var(--logoPurple);
       color:#fff;
       overflow-x:hidden;
     }
@@ -29,7 +34,7 @@
       touch-action:none;
     }
 
-    /* ===== TOP BAR ===== */
+    /* ===== TOP BAR (WHITE) ===== */
     .sitebar{
       position:fixed;
       top:0; left:0; right:0;
@@ -38,8 +43,8 @@
       display:flex;
       align-items:center;
       gap:14px;
-      background:#5a24ff; /* purple bar */
-      border-bottom:1px solid rgba(255,255,255,0.12);
+      background:#ffffff;
+      border-bottom:1px solid rgba(0,0,0,0.08);
     }
 
     .brand{
@@ -47,6 +52,7 @@
       letter-spacing:0.14em;
       font-size:16px;
       text-transform:uppercase;
+      color:#111;
       opacity:.98;
     }
 
@@ -54,8 +60,8 @@
       width:44px;
       height:44px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,0.18);
-      background:rgba(0,0,0,0.20);
+      border:1px solid rgba(0,0,0,0.12);
+      background:rgba(0,0,0,0.04);
       display:grid;
       place-items:center;
       padding:0;
@@ -66,7 +72,7 @@
       display:block;
       width:20px;
       height:2px;
-      background:#fff;
+      background:#111;
       border-radius:99px;
       opacity:.95;
     }
@@ -132,14 +138,21 @@
       font-weight:700;
       font-size:1.15rem;
     }
-    .side-menu__actions{ margin-top:auto; padding-top:18px; }
+
+    /* ✅ Move the "Get the App" area up a little */
+    .side-menu__actions{
+      margin-top:auto;
+      padding-top:18px;
+      padding-bottom:24px; /* adds bottom space so the button sits a bit higher */
+    }
+
     .menu-btn{
       display:block;
       width:100%;
       text-align:center;
       padding:14px 16px;
       border-radius:12px;
-      background:#6a2cff;
+      background:var(--logoPurple);
       color:#fff;
       text-decoration:none;
       font-weight:900;
@@ -455,7 +468,6 @@
   <section class="carousel container" id="showcase">
     <div class="card">
       <div class="carousel-track" id="carouselTrack" aria-label="Stride screenshots carousel">
-        <!-- Slide 1 -->
         <div class="slide" data-index="0">
           <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
           <h3>Dashboard that keeps you locked in.</h3>
@@ -465,7 +477,6 @@
           </p>
         </div>
 
-        <!-- Slide 2 (AI Coach IMAGE, but TRAINING PLAN DESCRIPTION) ✅ SWAPPED -->
         <div class="slide" data-index="1">
           <img src="coach.jpg" alt="Stride AI Coach screenshot">
           <h3>Training plan that stays simple.</h3>
@@ -475,7 +486,6 @@
           </p>
         </div>
 
-        <!-- Slide 3 (Training Plan IMAGE, but AI COACH DESCRIPTION) ✅ SWAPPED -->
         <div class="slide" data-index="2">
           <img src="training.jpg" alt="Stride Training Plan screenshot">
           <h3>AI Coach that actually helps.</h3>
