@@ -25,7 +25,6 @@
       overflow-x:hidden;
     }
 
-    /* ✅ LOCK SCROLL WHEN MENU OPEN */
     body.menu-open{
       overflow:hidden;
       height:100vh;
@@ -136,7 +135,6 @@
       font-size:1.15rem;
     }
 
-    /* ✅ Move the "Get the App" area up a little */
     .side-menu__actions{
       margin-top:auto;
       padding-top:18px;
@@ -236,13 +234,15 @@
       backdrop-filter:blur(8px);
     }
 
-    /* ===== SIMPLE SECTIONS ===== */
+    /* ===== SECTIONS ===== */
     .section{
       padding:34px 24px 6px;
     }
     .section h2{
-      font-size:1.15rem;
-      opacity:0.95;
+      font-size:1.2rem;
+      font-weight:900;
+      letter-spacing:0.01em;
+      opacity:0.98;
       margin-bottom:12px;
     }
     .section p{
@@ -253,9 +253,26 @@
       margin-bottom:10px;
     }
 
+    /* ===== FEATURES HEADING (professional) ===== */
+    .features-title{
+      padding:10px 24px 0;
+    }
+    .features-title h2{
+      font-size:1.15rem;
+      font-weight:900;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      opacity:0.98;
+    }
+    .features-title .rule{
+      height:1px;
+      background:rgba(255,255,255,0.18);
+      margin-top:10px;
+    }
+
     /* ===== STRAVA-LIKE CAROUSEL ===== */
     .carousel{
-      padding:18px 24px 10px;
+      padding:14px 24px 10px;
     }
     .card{
       background:rgba(0,0,0,0.18);
@@ -319,37 +336,6 @@
       opacity:1;
     }
 
-    /* ===== CONTACT CARD ===== */
-    .contact-card{
-      background:rgba(0,0,0,0.18);
-      border:1px solid rgba(255,255,255,0.14);
-      border-radius:18px;
-      padding:16px;
-      box-shadow:0 18px 45px rgba(0,0,0,0.25);
-    }
-    .contact-row{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top:10px;
-    }
-    .contact-item{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      font-size:1rem;
-      opacity:0.95;
-    }
-    .contact-item span{
-      opacity:0.9;
-    }
-    .contact-item a{
-      color:#fff;
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-weight:700;
-    }
-
     /* ===== LOGO + CTA ===== */
     .logo-cta{
       display:flex;
@@ -383,6 +369,40 @@
       font-size:0.75rem;
       opacity:0.9;
       letter-spacing:0.18em;
+    }
+
+    /* ===== CONTACT (bigger + cleaner, no paragraph) ===== */
+    .contact-title{
+      font-size:1.35rem;
+      font-weight:950;
+      letter-spacing:0.01em;
+      margin-bottom:12px;
+      opacity:0.98;
+    }
+    .contact-card{
+      background:rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 18px 45px rgba(0,0,0,0.25);
+    }
+    .contact-row{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .contact-item{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size:1.02rem;
+      opacity:0.95;
+    }
+    .contact-item a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:800;
     }
 
     /* ===== FOOTER ===== */
@@ -441,6 +461,7 @@
     <nav class="side-menu__nav">
       <a href="#top" onclick="closeMenu()">Home</a>
       <a href="#about-us" onclick="closeMenu()">About Us</a>
+      <a href="#features" onclick="closeMenu()">Features</a>
       <a href="#contact" onclick="closeMenu()">Contact</a>
       <a href="#download" onclick="closeMenu()">Get the App</a>
     </nav>
@@ -479,7 +500,7 @@
     </div>
   </section>
 
-  <!-- ABOUT US (NEW) -->
+  <!-- ABOUT US -->
   <section class="section container" id="about-us">
     <h2>About Us.</h2>
     <p>
@@ -491,14 +512,10 @@
     </p>
   </section>
 
-  <!-- JOIN STRIDE (your original section) -->
-  <section class="section container" id="join">
-    <h2>Join Stride.</h2>
-    <p>
-      Stride is here to build a generation of runners who train with intention.
-      Our mission is to turn running into a guided journey using AI mentoring —
-      so no runner feels lost, overwhelmed, or alone in the process.
-    </p>
+  <!-- FEATURES HEADING (NEW) -->
+  <section class="features-title container" id="features">
+    <h2>Features</h2>
+    <div class="rule"></div>
   </section>
 
   <!-- CAROUSEL -->
@@ -541,50 +558,6 @@
     </div>
   </section>
 
-  <!-- CONTACT (NEW) -->
-  <section class="section container" id="contact">
-    <h2>Contact.</h2>
-    <div class="contact-card">
-      <p style="margin-bottom:6px;">
-        Got feedback, bugs, or ideas? DM anytime — Stride is built with the community.
-      </p>
-
-      <div class="contact-row">
-        <div class="contact-item">
-          <span>📩</span>
-          <div>
-            Email:
-            <a href="mailto:novabusiness1400@gmail.com">novabusiness1400@gmail.com</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <span>📷</span>
-          <div>
-            Instagram:
-            <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">@strideapp_</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <span>🎥</span>
-          <div>
-            YouTube:
-            <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a>
-          </div>
-        </div>
-
-        <div class="contact-item">
-          <span>🎶</span>
-          <div>
-            TikTok:
-            <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">@stride.usa</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- LOGO + CTA -->
   <section class="logo-cta">
     <div class="hero-logo">
@@ -594,6 +567,35 @@
     <div class="hero-cta" onclick="openAppStore()">
       <h3>STRIDE</h3>
       <span>VISIT STRIDE NOW</span>
+    </div>
+  </section>
+
+  <!-- CONTACT (MOVED BELOW LOGO/CTA) -->
+  <section class="section container" id="contact">
+    <div class="contact-title">Contact</div>
+
+    <div class="contact-card">
+      <div class="contact-row">
+        <div class="contact-item">
+          <span>📩</span>
+          <div>Email: <a href="mailto:novabusiness1400@gmail.com">novabusiness1400@gmail.com</a></div>
+        </div>
+
+        <div class="contact-item">
+          <span>📷</span>
+          <div>Instagram: <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">@strideapp_</a></div>
+        </div>
+
+        <div class="contact-item">
+          <span>🎥</span>
+          <div>YouTube: <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a></div>
+        </div>
+
+        <div class="contact-item">
+          <span>🎶</span>
+          <div>TikTok: <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">@stride.usa</a></div>
+        </div>
+      </div>
     </div>
   </section>
 
