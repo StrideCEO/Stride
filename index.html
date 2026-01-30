@@ -15,10 +15,8 @@
 
     html, body{ height:100%; }
 
-    /* ✅ ONE COLOR PURPLE BACKGROUND (MATCH LOGO PURPLE) */
     :root{
-      /* Change this if you want it slightly lighter/darker */
-      --logoPurple:#5A24FF;
+      --logoPurple:#5A24FF; /* tweak if needed */
     }
 
     body{
@@ -77,7 +75,6 @@
       opacity:.95;
     }
 
-    /* spacing so content isn't under the fixed top bar */
     .spacer-top{ height:72px; }
 
     /* MENU BACKDROP */
@@ -143,9 +140,8 @@
     .side-menu__actions{
       margin-top:auto;
       padding-top:18px;
-      padding-bottom:24px; /* adds bottom space so the button sits a bit higher */
+      padding-bottom:24px;
     }
-
     .menu-btn{
       display:block;
       width:100%;
@@ -179,6 +175,7 @@
       );
       z-index:1;
     }
+
     .container{
       max-width:1100px;
       margin:0 auto;
@@ -239,16 +236,16 @@
       backdrop-filter:blur(8px);
     }
 
-    /* ===== JOIN STRIDE ===== */
-    .main{
+    /* ===== SIMPLE SECTIONS ===== */
+    .section{
       padding:34px 24px 6px;
     }
-    .main h2{
+    .section h2{
       font-size:1.15rem;
       opacity:0.95;
       margin-bottom:12px;
     }
-    .main p{
+    .section p{
       font-size:1.05rem;
       line-height:1.65;
       opacity:0.92;
@@ -256,11 +253,10 @@
       margin-bottom:10px;
     }
 
-    /* ===== STRAVA-LIKE CAROUSEL (scrolls) ===== */
+    /* ===== STRAVA-LIKE CAROUSEL ===== */
     .carousel{
       padding:18px 24px 10px;
     }
-
     .card{
       background:rgba(0,0,0,0.18);
       border:1px solid rgba(255,255,255,0.14);
@@ -269,7 +265,6 @@
       backdrop-filter:blur(10px);
       box-shadow:0 18px 45px rgba(0,0,0,0.25);
     }
-
     .carousel-track{
       display:flex;
       gap:14px;
@@ -285,7 +280,6 @@
       flex:0 0 100%;
       scroll-snap-align:start;
     }
-
     .slide img{
       width:100%;
       display:block;
@@ -294,7 +288,6 @@
       background:rgba(255,255,255,0.06);
       margin-bottom:14px;
     }
-
     .slide h3{
       font-size:1.05rem;
       margin-bottom:8px;
@@ -324,6 +317,37 @@
       background:#fff;
       transform:scale(1.12);
       opacity:1;
+    }
+
+    /* ===== CONTACT CARD ===== */
+    .contact-card{
+      background:rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 18px 45px rgba(0,0,0,0.25);
+    }
+    .contact-row{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:10px;
+    }
+    .contact-item{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:1rem;
+      opacity:0.95;
+    }
+    .contact-item span{
+      opacity:0.9;
+    }
+    .contact-item a{
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:3px;
+      font-weight:700;
     }
 
     /* ===== LOGO + CTA ===== */
@@ -416,7 +440,8 @@
 
     <nav class="side-menu__nav">
       <a href="#top" onclick="closeMenu()">Home</a>
-      <a href="javascript:void(0)" onclick="closeMenu()">Features</a>
+      <a href="#about-us" onclick="closeMenu()">About Us</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
       <a href="#download" onclick="closeMenu()">Get the App</a>
     </nav>
 
@@ -447,15 +472,27 @@
         <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
           Download
         </a>
-        <a class="btn ghost" href="#about">
+        <a class="btn ghost" href="#about-us">
           Learn more
         </a>
       </div>
     </div>
   </section>
 
-  <!-- JOIN STRIDE -->
-  <section class="main container" id="about">
+  <!-- ABOUT US (NEW) -->
+  <section class="section container" id="about-us">
+    <h2>About Us.</h2>
+    <p>
+      Stride is built for runners who want clarity — not chaos. We combine training structure, personal records,
+      and an AI Coach that helps you make better decisions day to day.
+    </p>
+    <p>
+      The goal is simple: help runners train with intention, stay consistent, and improve faster — without feeling lost.
+    </p>
+  </section>
+
+  <!-- JOIN STRIDE (your original section) -->
+  <section class="section container" id="join">
     <h2>Join Stride.</h2>
     <p>
       Stride is here to build a generation of runners who train with intention.
@@ -464,7 +501,7 @@
     </p>
   </section>
 
-  <!-- CAROUSEL (scroll like Strava) -->
+  <!-- CAROUSEL -->
   <section class="carousel container" id="showcase">
     <div class="card">
       <div class="carousel-track" id="carouselTrack" aria-label="Stride screenshots carousel">
@@ -504,6 +541,50 @@
     </div>
   </section>
 
+  <!-- CONTACT (NEW) -->
+  <section class="section container" id="contact">
+    <h2>Contact.</h2>
+    <div class="contact-card">
+      <p style="margin-bottom:6px;">
+        Got feedback, bugs, or ideas? DM anytime — Stride is built with the community.
+      </p>
+
+      <div class="contact-row">
+        <div class="contact-item">
+          <span>📩</span>
+          <div>
+            Email:
+            <a href="mailto:novabusiness1400@gmail.com">novabusiness1400@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span>📷</span>
+          <div>
+            Instagram:
+            <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">@strideapp_</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span>🎥</span>
+          <div>
+            YouTube:
+            <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span>🎶</span>
+          <div>
+            TikTok:
+            <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">@stride.usa</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- LOGO + CTA -->
   <section class="logo-cta">
     <div class="hero-logo">
@@ -538,7 +619,6 @@
   </section>
 
   <script>
-    // ✅ Always load at TOP
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.addEventListener("load", () => {
       if (!location.hash) window.scrollTo(0, 0);
@@ -564,14 +644,13 @@
       if(e.key === "Escape") closeMenu();
     });
 
-    // ✅ prevent scrolling the page when menu is open (mobile)
     document.addEventListener("touchmove", function(e){
       if(document.body.classList.contains("menu-open")){
         e.preventDefault();
       }
     }, { passive: false });
 
-    // ✅ dots update while scrolling carousel
+    // dots update while scrolling carousel
     const track = document.getElementById("carouselTrack");
     const dots = Array.from(document.querySelectorAll(".dot"));
 
