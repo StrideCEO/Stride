@@ -142,19 +142,32 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
   margin-top:auto;
   padding-top:18px;
   padding-bottom:28px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
-.menu-btn{
+.menu-btn,
+.menu-btn-secondary{
   display:block;
   width:100%;
   text-align:center;
   padding:14px 16px;
   border-radius:12px;
-  background:#4b18c9;
-  color:#fff;
   text-decoration:none;
   font-weight:900;
+}
+
+.menu-btn{
+  background:#4b18c9;
+  color:#fff;
   border:1px solid rgba(0,0,0,0.06);
+}
+
+.menu-btn-secondary{
+  background:rgba(75,24,201,0.08);
+  color:#111;
+  border:1px solid rgba(0,0,0,0.08);
 }
 
 /* ===== HERO ===== */
