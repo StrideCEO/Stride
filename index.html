@@ -22,7 +22,6 @@
     }
 
     :root{
-      --bg:#0a0713;
       --panel:rgba(255,255,255,0.08);
       --border:rgba(255,255,255,0.12);
       --text:#ffffff;
@@ -432,13 +431,55 @@
       transform:scale(1.08);
     }
 
+    /* mission */
+    .mission{
+      padding:28px 0 8px;
+    }
+
+    .mission-card{
+      background:linear-gradient(180deg, rgba(106,53,255,0.20), rgba(106,53,255,0.14));
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:28px;
+      padding:34px 30px;
+      box-shadow:0 24px 60px rgba(0,0,0,0.28);
+      backdrop-filter:blur(12px);
+    }
+
+    .mission-card h2{
+      font-size:clamp(2.1rem, 5vw, 4rem);
+      line-height:0.96;
+      font-weight:950;
+      letter-spacing:-0.05em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+      max-width:780px;
+    }
+
+    .mission-card p{
+      max-width:760px;
+      color:rgba(255,255,255,0.82);
+      font-size:clamp(1.05rem, 2.2vw, 1.22rem);
+      line-height:1.78;
+      margin-bottom:24px;
+    }
+
+    .mission-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+    }
+
+    .mission-actions .btn{
+      min-width:260px;
+    }
+
     /* logo cta */
     .logo-cta{
       display:flex;
       flex-direction:column;
       align-items:center;
       gap:22px;
-      margin:26px 0 12px;
+      margin:30px 0 12px;
       padding:0 24px;
     }
 
@@ -627,6 +668,31 @@
         font-size:0.98rem;
       }
 
+      .mission{
+        padding:22px 0 6px;
+      }
+
+      .mission-card{
+        padding:24px 18px;
+        border-radius:22px;
+      }
+
+      .mission-card h2{
+        font-size:clamp(2rem, 12vw, 3.2rem);
+        margin-bottom:14px;
+      }
+
+      .mission-card p{
+        font-size:1rem;
+        line-height:1.72;
+        margin-bottom:20px;
+      }
+
+      .mission-actions .btn{
+        width:100%;
+        min-width:0;
+      }
+
       .contact-item{
         align-items:flex-start;
       }
@@ -763,6 +829,25 @@
             <div class="carousel-dot"></div>
             <div class="carousel-dot"></div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mission container">
+      <div class="mission-card">
+        <h2>BUILT FOR RUNNERS<br>WHO WANT CLARITY</h2>
+
+        <p>
+          Stride is built to help runners train with more direction, stay consistent, and actually understand their progress. It brings together your training, PRs, and guidance in one clean place so every week feels more organized, more focused, and easier to move through.
+        </p>
+
+        <div class="mission-actions">
+          <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
+            Download the App
+          </a>
+          <a class="btn secondary" href="#contact">
+            Contact Stride
+          </a>
         </div>
       </div>
     </section>
