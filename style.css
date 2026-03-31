@@ -262,16 +262,27 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
 
 /* ===== SECTIONS ===== */
 .section{
-  padding:48px 24px 10px;
+  padding:64px 24px 10px !important;
 }
 
 .features-title{
-  font-size:1.2rem;
-  font-weight:900;
-  letter-spacing:0.02em;
-  margin-bottom:16px;
-  color:#ffffff;
-  opacity:1;
+  margin-top:8px !important;
+  margin-bottom:22px !important;
+}
+
+.features-title h2{
+  font-size:1.35rem !important;
+  font-weight:950 !important;
+  letter-spacing:0.03em !important;
+  color:#ffffff !important;
+  opacity:1 !important;
+  margin-bottom:14px !important;
+}
+
+.features-title .rule{
+  height:1px;
+  background:rgba(255,255,255,0.28) !important;
+  width:100%;
 }
 
 .section p{
