@@ -474,37 +474,56 @@
       font-size:0.97rem;
     }
 
-    /* showcase */
-    .showcase-stack{
-      display:grid;
-      gap:18px;
-    }
-
-    .feature-card{
-      display:grid;
-      grid-template-columns:0.92fr 1.08fr;
-      gap:20px;
-      align-items:center;
+    /* features carousel */
+    .features-shell{
+      position:relative;
       background:var(--panel);
       border:1px solid var(--border);
       border-radius:26px;
       padding:18px;
       box-shadow:var(--shadow);
       backdrop-filter:blur(12px);
+      overflow:hidden;
     }
 
-    .feature-card.reverse{
-      grid-template-columns:1.08fr 0.92fr;
+    .features-carousel-wrap{
+      position:relative;
     }
 
-    .feature-card.reverse .feature-copy{ order:1; }
-    .feature-card.reverse .feature-image{ order:2; }
+    .features-carousel{
+      display:flex;
+      gap:18px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      scroll-behavior:smooth;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      padding-bottom:8px;
+    }
 
-    .feature-image{
-      background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    .features-carousel::-webkit-scrollbar{
+      display:none;
+    }
+
+    .feature-slide{
+      flex:0 0 100%;
+      scroll-snap-align:start;
+      min-width:100%;
+    }
+
+    .feature-slide-card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
       border:1px solid rgba(255,255,255,0.10);
       border-radius:24px;
+      padding:16px;
+    }
+
+    .feature-image{
+      border-radius:22px;
       padding:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.08);
+      margin-bottom:16px;
     }
 
     .feature-image img{
@@ -514,53 +533,77 @@
       background:#fff;
     }
 
-    .feature-copy .tag{
-      display:inline-block;
-      padding:7px 11px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.12);
-      color:#fff;
-      font-size:0.78rem;
-      font-weight:800;
-      text-transform:uppercase;
-      letter-spacing:0.12em;
-      margin-bottom:12px;
-    }
-
     .feature-copy h3{
-      font-size:1.55rem;
-      line-height:1.1;
+      font-size:clamp(1.35rem, 2.6vw, 1.9rem);
+      line-height:1.12;
       font-weight:950;
       letter-spacing:-0.03em;
-      margin-bottom:12px;
+      margin-bottom:10px;
     }
 
     .feature-copy p{
       color:var(--muted);
-      line-height:1.75;
+      line-height:1.7;
       font-size:1rem;
-      margin-bottom:16px;
+      max-width:760px;
     }
 
-    .feature-points{
-      display:grid;
-      gap:10px;
-    }
-
-    .feature-points div{
-      display:flex;
-      align-items:flex-start;
-      gap:10px;
+    .carousel-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:52px;
+      height:52px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.16);
+      background:rgba(8,8,14,0.72);
       color:#fff;
-      font-weight:700;
-      line-height:1.5;
-      font-size:0.96rem;
+      display:grid;
+      place-items:center;
+      font-size:18px;
+      cursor:pointer;
+      z-index:5;
+      backdrop-filter:blur(14px);
+      box-shadow:0 16px 30px rgba(0,0,0,0.30);
+      transition:opacity 160ms ease, transform 160ms ease;
     }
 
-    .feature-points i{
-      margin-top:3px;
-      color:#c7b6ff;
+    .carousel-arrow:hover{
+      transform:translateY(-50%) scale(1.04);
+    }
+
+    .carousel-arrow.left{
+      left:14px;
+    }
+
+    .carousel-arrow.right{
+      right:14px;
+    }
+
+    .carousel-arrow.hidden{
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(-50%) scale(0.92);
+    }
+
+    .carousel-dots{
+      display:flex;
+      justify-content:center;
+      gap:8px;
+      margin-top:16px;
+    }
+
+    .carousel-dot{
+      width:9px;
+      height:9px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.36);
+      transition:transform 140ms ease, opacity 140ms ease, background 140ms ease;
+    }
+
+    .carousel-dot.active{
+      background:#fff;
+      transform:scale(1.08);
     }
 
     /* closing banner */
@@ -690,15 +733,8 @@
     @media (max-width: 980px){
       .hero-grid,
       .benefits-grid,
-      .feature-card,
-      .feature-card.reverse,
       .stats-grid{
         grid-template-columns:1fr;
-      }
-
-      .feature-card.reverse .feature-copy,
-      .feature-card.reverse .feature-image{
-        order:initial;
       }
 
       .hero-shell{
@@ -725,6 +761,22 @@
 
       .section{
         padding-top:46px;
+      }
+    }
+
+    @media (max-width: 700px){
+      .carousel-arrow{
+        width:42px;
+        height:42px;
+        font-size:15px;
+      }
+
+      .carousel-arrow.left{
+        left:10px;
+      }
+
+      .carousel-arrow.right{
+        right:10px;
       }
     }
 
@@ -771,8 +823,20 @@
         font-size:1.55rem;
       }
 
+      .feature-slide-card{
+        padding:12px;
+      }
+
+      .feature-image{
+        padding:10px;
+      }
+
       .feature-copy h3{
-        font-size:1.32rem;
+        font-size:1.3rem;
+      }
+
+      .feature-copy p{
+        font-size:0.98rem;
       }
 
       .contact-item{
@@ -918,61 +982,67 @@
     <section class="section container" id="features">
       <h2 class="section-title">Everything built to help you move better</h2>
       <p class="section-sub">
-        The experience should feel clean, fast, and focused. No clutter. Just the stuff that actually helps runners improve.
+        Swipe through the core parts of Stride. It works on phone and desktop, and keeps the same clean order as before.
       </p>
 
-      <div class="showcase-stack">
-        <div class="feature-card">
-          <div class="feature-image">
-            <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
-          </div>
-          <div class="feature-copy">
-            <div class="tag">Dashboard</div>
-            <h3>A dashboard that keeps you locked in</h3>
-            <p>
-              See your week fast. Mileage, trends, and what matters most all stay visible without making the app feel overwhelming.
-            </p>
-            <div class="feature-points">
-              <div><i class="fa-solid fa-check"></i>Weekly view built for clarity</div>
-              <div><i class="fa-solid fa-check"></i>Easy way to see your progress</div>
-              <div><i class="fa-solid fa-check"></i>Clean layout that feels fast</div>
-            </div>
-          </div>
-        </div>
+      <div class="features-shell">
+        <div class="features-carousel-wrap">
+          <button class="carousel-arrow left hidden" id="featurePrev" aria-label="Previous feature">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
 
-        <div class="feature-card reverse">
-          <div class="feature-copy">
-            <div class="tag">Training</div>
-            <h3>Your plan should feel simple, not messy</h3>
-            <p>
-              Stride helps you keep the week organized so you know what is coming, what is done, and how your training is building over time.
-            </p>
-            <div class="feature-points">
-              <div><i class="fa-solid fa-check"></i>Clear structure for the full week</div>
-              <div><i class="fa-solid fa-check"></i>Less guessing every day</div>
-              <div><i class="fa-solid fa-check"></i>Better rhythm through the season</div>
-            </div>
-          </div>
-          <div class="feature-image">
-            <img src="training.jpg" alt="Stride Training screenshot">
-          </div>
-        </div>
+          <button class="carousel-arrow right" id="featureNext" aria-label="Next feature">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
 
-        <div class="feature-card">
-          <div class="feature-image">
-            <img src="coach.jpg" alt="Stride AI Coach screenshot">
-          </div>
-          <div class="feature-copy">
-            <div class="tag">AI Coach</div>
-            <h3>Advice that actually feels connected to your running</h3>
-            <p>
-              Ask training questions, get pacing help, think through recovery, and use the AI Coach as part of your actual running flow.
-            </p>
-            <div class="feature-points">
-              <div><i class="fa-solid fa-check"></i>Pacing and race-prep help</div>
-              <div><i class="fa-solid fa-check"></i>Recovery and training guidance</div>
-              <div><i class="fa-solid fa-check"></i>Built inside your ecosystem</div>
+          <div class="features-carousel" id="featuresCarousel">
+            <div class="feature-slide">
+              <div class="feature-slide-card">
+                <div class="feature-image">
+                  <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
+                </div>
+                <div class="feature-copy">
+                  <h3>Dashboard that keeps you locked in.</h3>
+                  <p>
+                    A clean weekly view so you can see your progress fast — mileage, trends, and what matters without getting overwhelmed.
+                  </p>
+                </div>
+              </div>
             </div>
+
+            <div class="feature-slide">
+              <div class="feature-slide-card">
+                <div class="feature-image">
+                  <img src="coach.jpg" alt="Stride Training Plan screenshot">
+                </div>
+                <div class="feature-copy">
+                  <h3>Training plan that stays simple.</h3>
+                  <p>
+                    Your week laid out clearly — so you always know what’s next, what’s completed, and how your plan is building over time.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="feature-slide">
+              <div class="feature-slide-card">
+                <div class="feature-image">
+                  <img src="training.jpg" alt="Stride AI Coach screenshot">
+                </div>
+                <div class="feature-copy">
+                  <h3>AI Coach that actually helps.</h3>
+                  <p>
+                    Ask questions, get pacing advice, recovery tips, and training guidance — all inside your running ecosystem.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-dots" id="featureDots">
+            <div class="carousel-dot active"></div>
+            <div class="carousel-dot"></div>
+            <div class="carousel-dot"></div>
           </div>
         </div>
       </div>
@@ -1052,6 +1122,7 @@
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.addEventListener("load", () => {
       if (!location.hash) window.scrollTo(0, 0);
+      updateFeatureCarousel();
     });
 
     function openMenu(){
@@ -1075,6 +1146,78 @@
         e.preventDefault();
       }
     }, { passive: false });
+
+    const featuresCarousel = document.getElementById("featuresCarousel");
+    const featureSlides = Array.from(featuresCarousel.querySelectorAll(".feature-slide"));
+    const featureDots = Array.from(document.querySelectorAll("#featureDots .carousel-dot"));
+    const featurePrev = document.getElementById("featurePrev");
+    const featureNext = document.getElementById("featureNext");
+
+    function getFeatureIndex(){
+      const carouselRect = featuresCarousel.getBoundingClientRect();
+      const carouselCenter = carouselRect.left + carouselRect.width / 2;
+
+      let bestIndex = 0;
+      let bestDistance = Infinity;
+
+      featureSlides.forEach((slide, index) => {
+        const rect = slide.getBoundingClientRect();
+        const center = rect.left + rect.width / 2;
+        const distance = Math.abs(center - carouselCenter);
+
+        if(distance < bestDistance){
+          bestDistance = distance;
+          bestIndex = index;
+        }
+      });
+
+      return bestIndex;
+    }
+
+    function scrollToFeature(index){
+      const safeIndex = Math.max(0, Math.min(index, featureSlides.length - 1));
+      const target = featureSlides[safeIndex];
+      featuresCarousel.scrollTo({
+        left: target.offsetLeft,
+        behavior: "smooth"
+      });
+    }
+
+    function updateFeatureCarousel(){
+      const index = getFeatureIndex();
+
+      featureDots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === index);
+      });
+
+      if(index === 0){
+        featurePrev.classList.add("hidden");
+      } else {
+        featurePrev.classList.remove("hidden");
+      }
+
+      if(index === featureSlides.length - 1){
+        featureNext.classList.add("hidden");
+      } else {
+        featureNext.classList.remove("hidden");
+      }
+    }
+
+    let featureRAF = null;
+    featuresCarousel.addEventListener("scroll", () => {
+      if(featureRAF) cancelAnimationFrame(featureRAF);
+      featureRAF = requestAnimationFrame(updateFeatureCarousel);
+    });
+
+    featurePrev.addEventListener("click", () => {
+      scrollToFeature(getFeatureIndex() - 1);
+    });
+
+    featureNext.addEventListener("click", () => {
+      scrollToFeature(getFeatureIndex() + 1);
+    });
+
+    window.addEventListener("resize", updateFeatureCarousel);
   </script>
 </body>
 </html>
