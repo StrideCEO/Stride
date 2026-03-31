@@ -262,7 +262,7 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
 
 /* ===== SECTIONS ===== */
 .section{
-  padding:64px 24px 10px !important;
+  padding:78px 24px 10px !important;
 }
 
 .features-title{
