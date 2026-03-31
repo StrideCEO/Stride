@@ -15,16 +15,34 @@
       font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    html, body{ height:100%; }
+    html, body{
+      width:100%;
+      overflow-x:hidden;
+      scroll-behavior:smooth;
+    }
 
     :root{
-      --logoPurple:#5A24FF;
+      --bg:#0a0713;
+      --panel:rgba(255,255,255,0.08);
+      --panel-2:rgba(255,255,255,0.06);
+      --border:rgba(255,255,255,0.12);
+      --text:#ffffff;
+      --muted:rgba(255,255,255,0.78);
+      --purple:#6a35ff;
+      --purple-2:#8c63ff;
+      --purple-3:#32106f;
+      --black:#09080d;
+      --white:#ffffff;
+      --shadow:0 24px 60px rgba(0,0,0,0.35);
+      --radius:22px;
+      --max:1150px;
     }
 
     body{
-      background:var(--logoPurple);
-      color:#fff;
-      overflow-x:hidden;
+      background:
+        radial-gradient(circle at top, rgba(106,53,255,0.28) 0%, rgba(10,7,19,0) 36%),
+        linear-gradient(180deg, #09080d 0%, #18072f 40%, #4b18c9 100%);
+      color:var(--text);
     }
 
     body.menu-open{
@@ -33,15 +51,26 @@
       touch-action:none;
     }
 
+    a{ color:inherit; }
+
+    .container{
+      width:100%;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 20px;
+    }
+
+    /* top bar */
     .sitebar{
       position:fixed;
       top:0; left:0; right:0;
-      z-index:60;
+      z-index:100;
       padding:14px 18px;
       display:flex;
       align-items:center;
       gap:14px;
-      background:#ffffff;
+      background:rgba(255,255,255,0.92);
+      backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(0,0,0,0.08);
     }
 
@@ -58,7 +87,7 @@
       width:44px;
       height:44px;
       border-radius:999px;
-      border:1px solid rgba(0,0,0,0.12);
+      border:1px solid rgba(0,0,0,0.10);
       background:rgba(0,0,0,0.04);
       display:grid;
       place-items:center;
@@ -77,34 +106,33 @@
       opacity:.95;
     }
 
-    .spacer-top{ height:72px; }
+    .spacer-top{ height:76px; }
 
+    /* menu */
     .menu-backdrop{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,0.45);
+      background:rgba(0,0,0,0.48);
       opacity:0;
       pointer-events:none;
       transition:opacity 180ms ease;
-      z-index:80;
-      touch-action:none;
+      z-index:110;
     }
 
     .side-menu{
       position:fixed;
       top:0; left:0;
       height:100vh;
-      width:min(78vw, 340px);
+      width:min(80vw, 340px);
       background:#fff;
       color:#111;
       transform:translateX(-105%);
       transition:transform 220ms ease;
-      z-index:90;
+      z-index:120;
       display:flex;
       flex-direction:column;
       padding:18px;
       box-shadow:0 24px 60px rgba(0,0,0,0.35);
-      overscroll-behavior:contain;
     }
 
     body.menu-open .side-menu{ transform:translateX(0); }
@@ -136,14 +164,14 @@
     .side-menu__nav a{
       text-decoration:none;
       color:#111;
-      font-weight:700;
-      font-size:1.15rem;
+      font-weight:800;
+      font-size:1.08rem;
     }
 
     .side-menu__actions{
       margin-top:auto;
       padding-top:18px;
-      padding-bottom:24px;
+      padding-bottom:26px;
     }
 
     .menu-btn{
@@ -151,273 +179,440 @@
       width:100%;
       text-align:center;
       padding:14px 16px;
-      border-radius:12px;
-      background:var(--logoPurple);
+      border-radius:14px;
+      background:var(--purple);
       color:#fff;
       text-decoration:none;
       font-weight:900;
-      border:1px solid rgba(0,0,0,0.06);
+      border:none;
     }
 
-    .hero-landing{
+    /* hero */
+    .hero{
       position:relative;
-      min-height:100vh;
-      width:100%;
-      background:url("hero.jpg") center/cover no-repeat;
-      display:flex;
-      align-items:flex-end;
+      padding:36px 0 26px;
     }
 
-    .hero-landing__overlay{
+    .hero-shell{
+      position:relative;
+      border:1px solid var(--border);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%),
+        linear-gradient(135deg, rgba(106,53,255,0.30) 0%, rgba(0,0,0,0.08) 70%);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      min-height:640px;
+    }
+
+    .hero-bg{
       position:absolute;
       inset:0;
-      background:linear-gradient(
-        180deg,
-        rgba(0,0,0,0.10) 0%,
-        rgba(0,0,0,0.35) 55%,
-        rgba(15,0,25,0.85) 100%
-      );
-      z-index:1;
+      background:
+        linear-gradient(90deg, rgba(5,5,8,0.80) 0%, rgba(10,7,19,0.66) 45%, rgba(10,7,19,0.18) 100%),
+        url("hero-v2.jpg") center/cover no-repeat;
+      opacity:.92;
     }
 
-    .container{
-      max-width:1100px;
-      margin:0 auto;
-      padding:0 24px;
-      width:100%;
-    }
-
-    .hero-landing__content{
+    .hero-grid{
       position:relative;
       z-index:2;
-      padding:0 0 72px 0;
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:20px;
+      align-items:center;
+      min-height:640px;
+      padding:34px;
     }
 
-    .hero-landing__kicker{
-      letter-spacing:0.22em;
-      font-weight:700;
+    .hero-copy{
+      max-width:620px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.10);
+      border:1px solid rgba(255,255,255,0.14);
       font-size:12px;
-      opacity:0.9;
-      margin-bottom:14px;
+      font-weight:800;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      margin-bottom:18px;
+      backdrop-filter:blur(8px);
     }
 
-    .hero-landing__title{
-      font-size:clamp(52px, 9vw, 96px);
-      font-weight:900;
-      line-height:0.95;
-      letter-spacing:0.02em;
+    .hero h1{
+      font-size:clamp(48px, 10vw, 94px);
+      line-height:0.94;
+      font-weight:950;
+      letter-spacing:-0.04em;
       text-transform:uppercase;
       margin-bottom:14px;
     }
 
-    .hero-landing__sub{
-      font-size:clamp(16px, 2.7vw, 20px);
-      opacity:0.92;
+    .hero-sub{
+      font-size:clamp(17px, 2.4vw, 21px);
+      color:var(--muted);
+      line-height:1.55;
       max-width:560px;
-      line-height:1.4;
-      margin-bottom:22px;
+      margin-bottom:20px;
+    }
+
+    .hero-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:24px;
+    }
+
+    .pill{
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.12);
+      color:#fff;
+      font-size:0.92rem;
+      font-weight:700;
+      backdrop-filter:blur(10px);
     }
 
     .hero-buttons{
       display:flex;
-      gap:12px;
       flex-wrap:wrap;
+      gap:12px;
+      margin-bottom:20px;
     }
 
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      padding:12px 18px;
-      border-radius:999px;
-      font-weight:800;
       text-decoration:none;
-      border:1px solid rgba(255,255,255,0.25);
-      cursor:pointer;
+      padding:14px 20px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:0.98rem;
+      transition:transform 160ms ease, opacity 160ms ease;
     }
+
+    .btn:hover{ transform:translateY(-1px); }
 
     .btn.primary{
       background:#fff;
       color:#111;
-      border-color:#fff;
+      border:1px solid #fff;
     }
 
-    .btn.ghost{
+    .btn.secondary{
       background:rgba(255,255,255,0.10);
       color:#fff;
-      backdrop-filter:blur(8px);
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter:blur(10px);
     }
 
-    .section{
-      padding:34px 24px 6px;
+    .hero-note{
+      font-size:0.95rem;
+      color:rgba(255,255,255,0.72);
+      font-weight:600;
     }
 
-    .section h2{
-      font-size:1.2rem;
+    .hero-visual{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      position:relative;
+    }
+
+    .hero-phone-wrap{
+      position:relative;
+      width:min(100%, 360px);
+    }
+
+    .glow{
+      position:absolute;
+      inset:auto 50% -10% 50%;
+      width:240px;
+      height:240px;
+      transform:translateX(-50%);
+      background:radial-gradient(circle, rgba(122,82,255,0.62) 0%, rgba(122,82,255,0.18) 40%, rgba(122,82,255,0) 72%);
+      filter:blur(18px);
+      pointer-events:none;
+    }
+
+    .phone-card{
+      position:relative;
+      border-radius:30px;
+      padding:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
+      border:1px solid rgba(255,255,255,0.18);
+      box-shadow:0 30px 80px rgba(0,0,0,0.45);
+      backdrop-filter:blur(16px);
+    }
+
+    .phone-card img{
+      width:100%;
+      display:block;
+      border-radius:22px;
+      background:#fff;
+    }
+
+    .mini-badge{
+      position:absolute;
+      right:-10px;
+      bottom:18px;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(14,10,25,0.92);
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:0 18px 35px rgba(0,0,0,0.35);
+      font-size:0.88rem;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    .mini-badge span{
+      display:block;
+      color:rgba(255,255,255,0.68);
+      font-size:0.75rem;
+      font-weight:700;
+      margin-top:2px;
+    }
+
+    /* stats */
+    .stats{
+      margin-top:18px;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+    }
+
+    .stat{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:18px;
+      backdrop-filter:blur(10px);
+    }
+
+    .stat strong{
+      display:block;
+      font-size:1.25rem;
       font-weight:900;
-      letter-spacing:0.01em;
-      opacity:0.98;
-      margin-bottom:12px;
+      margin-bottom:4px;
     }
 
-    .section p{
-      font-size:1.05rem;
-      line-height:1.65;
-      opacity:0.92;
-      max-width:760px;
+    .stat span{
+      color:var(--muted);
+      font-size:0.95rem;
+      line-height:1.45;
+    }
+
+    /* sections */
+    .section{
+      padding:58px 0 0;
+    }
+
+    .section-title{
+      font-size:1.8rem;
+      font-weight:950;
+      letter-spacing:-0.03em;
       margin-bottom:10px;
     }
 
-    .features-title{
-      padding:10px 24px 0;
+    .section-sub{
+      font-size:1.02rem;
+      line-height:1.7;
+      color:var(--muted);
+      max-width:720px;
+      margin-bottom:22px;
     }
 
-    .features-title h2{
-      font-size:1.15rem;
+    /* benefits */
+    .benefits-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+
+    .benefit{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:20px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
+    }
+
+    .benefit-icon{
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      margin-bottom:14px;
+      font-size:20px;
+    }
+
+    .benefit h3{
+      font-size:1.08rem;
       font-weight:900;
-      letter-spacing:0.02em;
-      text-transform:uppercase;
-      opacity:0.98;
+      margin-bottom:8px;
     }
 
-    .features-title .rule{
-      height:1px;
-      background:rgba(255,255,255,0.18);
-      margin-top:10px;
+    .benefit p{
+      color:var(--muted);
+      line-height:1.65;
+      font-size:0.97rem;
     }
 
-    .carousel{
-      padding:14px 24px 10px;
+    /* showcase */
+    .showcase-stack{
+      display:grid;
+      gap:18px;
     }
 
-    .card{
-      background:rgba(0,0,0,0.18);
-      border:1px solid rgba(255,255,255,0.14);
-      border-radius:18px;
-      padding:16px;
-      backdrop-filter:blur(10px);
-      box-shadow:0 18px 45px rgba(0,0,0,0.25);
+    .feature-card{
+      display:grid;
+      grid-template-columns:0.92fr 1.08fr;
+      gap:20px;
+      align-items:center;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:26px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
     }
 
-    .carousel-track{
-      display:flex;
-      gap:14px;
-      overflow-x:auto;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      padding-bottom:10px;
+    .feature-card.reverse{
+      grid-template-columns:1.08fr 0.92fr;
     }
 
-    .carousel-track::-webkit-scrollbar{ display:none; }
-    .carousel-track{ scrollbar-width:none; }
+    .feature-card.reverse .feature-copy{ order:1; }
+    .feature-card.reverse .feature-image{ order:2; }
 
-    .slide{
-      flex:0 0 100%;
-      scroll-snap-align:start;
+    .feature-image{
+      background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border:1px solid rgba(255,255,255,0.10);
+      border-radius:24px;
+      padding:14px;
     }
 
-    .slide img{
+    .feature-image img{
       width:100%;
       display:block;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,0.12);
-      background:rgba(255,255,255,0.06);
-      margin-bottom:14px;
-    }
-
-    .slide h3{
-      font-size:1.05rem;
-      margin-bottom:8px;
-      letter-spacing:0.01em;
-    }
-
-    .slide p{
-      opacity:0.92;
-      line-height:1.6;
-      font-size:0.98rem;
-    }
-
-    .dots{
-      display:flex;
-      justify-content:center;
-      gap:8px;
-      margin:12px 0 6px;
-    }
-
-    .dot{
-      width:7px;
-      height:7px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.40);
-      transition:transform 140ms ease, opacity 140ms ease;
-      opacity:0.8;
-    }
-
-    .dot.active{
+      border-radius:18px;
       background:#fff;
-      transform:scale(1.12);
-      opacity:1;
     }
 
-    .logo-cta{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:22px;
-      margin:26px 0 12px;
-      padding:0 24px;
-    }
-
-    .hero-logo img{
-      width:180px;
-      border-radius:28px;
-      filter:drop-shadow(0 20px 40px rgba(0,0,0,0.45));
-    }
-
-    .hero-cta{
-      cursor:pointer;
-      border:2px solid rgba(255,255,255,0.9);
-      padding:18px 28px;
-      text-align:center;
-      background:rgba(0,0,0,0.18);
-      border-radius:14px;
-      width:min(420px, 100%);
-    }
-
-    .hero-cta h3{
-      font-size:1.1rem;
-      font-weight:900;
-      margin-bottom:6px;
-      letter-spacing:0.25em;
-    }
-
-    .hero-cta span{
-      font-size:0.75rem;
-      opacity:0.9;
-      letter-spacing:0.18em;
-    }
-
-    #contact{ padding-top: 10px; }
-
-    .contact-title{
-      font-size:1.45rem;
-      font-weight:950;
-      letter-spacing:0.01em;
+    .feature-copy .tag{
+      display:inline-block;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.12);
+      color:#fff;
+      font-size:0.78rem;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:0.12em;
       margin-bottom:12px;
-      opacity:0.98;
+    }
+
+    .feature-copy h3{
+      font-size:1.55rem;
+      line-height:1.1;
+      font-weight:950;
+      letter-spacing:-0.03em;
+      margin-bottom:12px;
+    }
+
+    .feature-copy p{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:1rem;
+      margin-bottom:16px;
+    }
+
+    .feature-points{
+      display:grid;
+      gap:10px;
+    }
+
+    .feature-points div{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      color:#fff;
+      font-weight:700;
+      line-height:1.5;
+      font-size:0.96rem;
+    }
+
+    .feature-points i{
+      margin-top:3px;
+      color:#c7b6ff;
+    }
+
+    /* closing banner */
+    .closing{
+      padding-top:58px;
+    }
+
+    .closing-card{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(140,99,255,0.32) 0%, rgba(140,99,255,0) 38%),
+        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .closing-card h2{
+      font-size:clamp(1.9rem, 5vw, 3rem);
+      line-height:1.02;
+      font-weight:950;
+      letter-spacing:-0.04em;
+      margin-bottom:12px;
+      text-transform:uppercase;
+    }
+
+    .closing-card p{
+      max-width:680px;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:1.02rem;
+      margin-bottom:20px;
+    }
+
+    /* contact */
+    .contact{
+      padding-top:58px;
     }
 
     .contact-card{
-      background:rgba(0,0,0,0.18);
-      border:1px solid rgba(255,255,255,0.14);
-      border-radius:18px;
-      padding:16px;
-      box-shadow:0 18px 45px rgba(0,0,0,0.25);
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
     }
 
     .contact-row{
-      display:flex;
-      flex-direction:column;
+      display:grid;
       gap:14px;
     }
 
@@ -425,58 +620,164 @@
       display:flex;
       align-items:center;
       gap:12px;
-      font-size:1.02rem;
-      opacity:0.96;
+      padding:14px 14px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      font-size:1rem;
     }
 
     .contact-item i{
-      width:34px;
-      min-width:34px;
-      height:34px;
+      width:38px;
+      min-width:38px;
+      height:38px;
       display:grid;
       place-items:center;
-      font-size:22px;
-      filter:drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+      border-radius:12px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.10);
+      font-size:18px;
+    }
+
+    .contact-item span{
+      color:rgba(255,255,255,0.70);
+      font-weight:700;
+      margin-right:4px;
     }
 
     .contact-item a{
       color:#fff;
-      text-decoration:underline;
-      text-underline-offset:3px;
       font-weight:900;
+      text-decoration:none;
+      word-break:break-word;
     }
 
-    .final{
-      border-top:1px solid rgba(255,255,255,0.18);
-      padding:36px 24px 44px;
+    /* footer */
+    .footer{
+      border-top:1px solid rgba(255,255,255,0.12);
+      padding:36px 0 44px;
       text-align:center;
-      background:rgba(0,0,0,0.12);
-      margin-top:18px;
+      margin-top:58px;
+      background:rgba(0,0,0,0.10);
     }
 
-    .links{
+    .footer-links{
       display:flex;
       justify-content:center;
-      gap:24px;
-      margin-bottom:18px;
+      gap:22px;
       flex-wrap:wrap;
+      margin-bottom:20px;
     }
 
-    .links a{
+    .footer-links a{
       text-decoration:none;
       color:#fff;
-      opacity:0.88;
+      opacity:0.86;
       font-size:0.95rem;
+      font-weight:700;
     }
 
-    .appstore img{
-      width:160px;
-      margin:18px 0 16px;
+    .footer-badge img{
+      width:165px;
+      margin:12px 0 16px;
     }
 
-    .copyright{
-      font-size:0.8rem;
-      opacity:0.75;
+    .footer-copy{
+      font-size:0.82rem;
+      opacity:0.72;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .benefits-grid,
+      .feature-card,
+      .feature-card.reverse,
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+
+      .feature-card.reverse .feature-copy,
+      .feature-card.reverse .feature-image{
+        order:initial;
+      }
+
+      .hero-shell{
+        min-height:auto;
+      }
+
+      .hero-grid{
+        min-height:auto;
+        padding:24px 18px 22px;
+      }
+
+      .hero h1{
+        font-size:clamp(42px, 15vw, 72px);
+      }
+
+      .hero-visual{
+        padding-top:6px;
+      }
+
+      .mini-badge{
+        right:6px;
+        bottom:10px;
+      }
+
+      .section{
+        padding-top:46px;
+      }
+    }
+
+    @media (max-width: 560px){
+      .container{ padding:0 16px; }
+
+      .sitebar{
+        padding:12px 14px;
+      }
+
+      .brand{ font-size:15px; }
+
+      .hero{
+        padding-top:22px;
+      }
+
+      .hero-shell{
+        border-radius:24px;
+      }
+
+      .hero-grid{
+        padding:20px 16px 18px;
+      }
+
+      .eyebrow{
+        font-size:11px;
+        letter-spacing:0.14em;
+      }
+
+      .hero-sub{
+        font-size:1rem;
+      }
+
+      .pill{
+        font-size:0.86rem;
+        padding:9px 12px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .section-title{
+        font-size:1.55rem;
+      }
+
+      .feature-copy h3{
+        font-size:1.32rem;
+      }
+
+      .contact-item{
+        align-items:flex-start;
+      }
     }
   </style>
 </head>
@@ -502,7 +803,7 @@
 
     <nav class="side-menu__nav">
       <a href="#top" onclick="closeMenu()">Home</a>
-      <a href="#about-us" onclick="closeMenu()">About Us</a>
+      <a href="#why-stride" onclick="closeMenu()">Why Stride</a>
       <a href="#features" onclick="closeMenu()">Features</a>
       <a href="#contact" onclick="closeMenu()">Contact</a>
       <a href="#download" onclick="closeMenu()">Get the App</a>
@@ -515,157 +816,243 @@
     </div>
   </aside>
 
-  <section class="hero-landing" id="top">
-    <div class="hero-landing__overlay"></div>
+  <main>
+    <section class="hero container" id="top">
+      <div class="hero-shell">
+        <div class="hero-bg"></div>
 
-    <div class="container hero-landing__content">
-      <p class="hero-landing__kicker">STRIDE</p>
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <i class="fa-solid fa-bolt"></i>
+              Stride
+            </div>
 
-      <h1 class="hero-landing__title">
-        RUN.<br>
-        SMARTER.
-      </h1>
+            <h1>RUN.<br>SMARTER.</h1>
 
-      <p class="hero-landing__sub">
-        AI coaching + your season organized — PRs, training, and mindset in one place.
+            <p class="hero-sub">
+              AI coaching, training plans, PR tracking, and mindset tools — all in one place for runners who want clarity.
+            </p>
+
+            <div class="hero-pills">
+              <div class="pill">AI Coach</div>
+              <div class="pill">Training Plans</div>
+              <div class="pill">PR Tracking</div>
+              <div class="pill">Race Prep</div>
+            </div>
+
+            <div class="hero-buttons">
+              <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
+                Download
+              </a>
+              <a class="btn secondary" href="#features">
+                See Features
+              </a>
+            </div>
+
+            <div class="hero-note">
+              Built for runners who want structure, not chaos.
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-phone-wrap">
+              <div class="glow"></div>
+              <div class="phone-card">
+                <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
+              </div>
+              <div class="mini-badge">
+                Track your week
+                <span>Mileage • progress • consistency</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stats-grid">
+          <div class="stat">
+            <strong>Smarter training</strong>
+            <span>Keep your plan, recovery, and progress organized in one place.</span>
+          </div>
+          <div class="stat">
+            <strong>Less guessing</strong>
+            <span>Know what to do next without digging through notes or apps.</span>
+          </div>
+          <div class="stat">
+            <strong>Built for runners</strong>
+            <span>Made for people who care about progress, PRs, and race-day clarity.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="why-stride">
+      <h2 class="section-title">Why runners use Stride</h2>
+      <p class="section-sub">
+        Stride helps you train with more clarity. It brings together your training structure, personal records, AI support, and day-to-day focus so your season feels organized.
       </p>
 
-      <div class="hero-buttons">
-        <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
-          Download
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="benefit-icon"><i class="fa-solid fa-route"></i></div>
+          <h3>Stay on track</h3>
+          <p>Your training week stays clear, simple, and easy to follow so you always know what comes next.</p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>See real progress</h3>
+          <p>Keep your mileage, personal records, and season trends in one place instead of scattered everywhere.</p>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3>Get useful guidance</h3>
+          <p>Use the AI Coach for pacing, recovery, race prep, and training questions inside your running ecosystem.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="features">
+      <h2 class="section-title">Everything built to help you move better</h2>
+      <p class="section-sub">
+        The experience should feel clean, fast, and focused. No clutter. Just the stuff that actually helps runners improve.
+      </p>
+
+      <div class="showcase-stack">
+        <div class="feature-card">
+          <div class="feature-image">
+            <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
+          </div>
+          <div class="feature-copy">
+            <div class="tag">Dashboard</div>
+            <h3>A dashboard that keeps you locked in</h3>
+            <p>
+              See your week fast. Mileage, trends, and what matters most all stay visible without making the app feel overwhelming.
+            </p>
+            <div class="feature-points">
+              <div><i class="fa-solid fa-check"></i>Weekly view built for clarity</div>
+              <div><i class="fa-solid fa-check"></i>Easy way to see your progress</div>
+              <div><i class="fa-solid fa-check"></i>Clean layout that feels fast</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card reverse">
+          <div class="feature-copy">
+            <div class="tag">Training</div>
+            <h3>Your plan should feel simple, not messy</h3>
+            <p>
+              Stride helps you keep the week organized so you know what is coming, what is done, and how your training is building over time.
+            </p>
+            <div class="feature-points">
+              <div><i class="fa-solid fa-check"></i>Clear structure for the full week</div>
+              <div><i class="fa-solid fa-check"></i>Less guessing every day</div>
+              <div><i class="fa-solid fa-check"></i>Better rhythm through the season</div>
+            </div>
+          </div>
+          <div class="feature-image">
+            <img src="training.jpg" alt="Stride Training screenshot">
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-image">
+            <img src="coach.jpg" alt="Stride AI Coach screenshot">
+          </div>
+          <div class="feature-copy">
+            <div class="tag">AI Coach</div>
+            <h3>Advice that actually feels connected to your running</h3>
+            <p>
+              Ask training questions, get pacing help, think through recovery, and use the AI Coach as part of your actual running flow.
+            </p>
+            <div class="feature-points">
+              <div><i class="fa-solid fa-check"></i>Pacing and race-prep help</div>
+              <div><i class="fa-solid fa-check"></i>Recovery and training guidance</div>
+              <div><i class="fa-solid fa-check"></i>Built inside your ecosystem</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing container">
+      <div class="closing-card">
+        <h2>Built for runners who want clarity</h2>
+        <p>
+          Stride is for the runner who wants structure, consistency, and a cleaner way to improve. Less clutter. Less guessing. More confidence in what you are doing every week.
+        </p>
+
+        <div class="hero-buttons">
+          <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
+            Download the App
+          </a>
+          <a class="btn secondary" href="#contact">
+            Contact Stride
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact container" id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-sub">
+        Connect with Stride, follow the journey, or reach out directly.
+      </p>
+
+      <div class="contact-card">
+        <div class="contact-row">
+          <div class="contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div><span>Email:</span> <a href="mailto:business@runstride.org">business@runstride.org</a></div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fa-brands fa-instagram"></i>
+            <div><span>Instagram:</span> <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">@strideapp_</a></div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fa-brands fa-youtube"></i>
+            <div><span>YouTube:</span> <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a></div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fa-brands fa-tiktok"></i>
+            <div><span>TikTok:</span> <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">@stride.usa</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="download">
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">Instagram</a>
+        <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">YouTube</a>
+        <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">TikTok</a>
+      </div>
+
+      <div class="footer-badge">
+        <a href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
+          <img
+            src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+            alt="Download on the App Store">
         </a>
-        <a class="btn ghost" href="#about-us">
-          Learn more
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section container" id="about-us">
-    <h2>About Us.</h2>
-    <p>
-      Stride is built for runners who want clarity — not chaos. We combine training structure, personal records,
-      and an AI Coach that helps you make better decisions day to day.
-    </p>
-    <p>
-      The goal is simple: help runners train with intention, stay consistent, and improve faster — without feeling lost.
-    </p>
-  </section>
-
-  <section class="features-title container" id="features">
-    <h2>Features</h2>
-    <div class="rule"></div>
-  </section>
-
-  <section class="carousel container" id="showcase">
-    <div class="card">
-      <div class="carousel-track" id="carouselTrack" aria-label="Stride screenshots carousel">
-        <div class="slide" data-index="0">
-          <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
-          <h3>Dashboard that keeps you locked in.</h3>
-          <p>
-            A clean weekly view so you can see your progress fast — mileage, trends, and what matters
-            without getting overwhelmed.
-          </p>
-        </div>
-
-        <div class="slide" data-index="1">
-          <img src="coach.jpg" alt="Stride AI Coach screenshot">
-          <h3>Training plan that stays simple.</h3>
-          <p>
-            Your week laid out clearly — so you always know what’s next, what’s completed,
-            and how your plan is building over time.
-          </p>
-        </div>
-
-        <div class="slide" data-index="2">
-          <img src="training.jpg" alt="Stride Training Plan screenshot">
-          <h3>AI Coach that actually helps.</h3>
-          <p>
-            Ask questions, get pacing advice, recovery tips, and training guidance —
-            all inside your running ecosystem.
-          </p>
-        </div>
       </div>
 
-      <div class="dots" id="dots">
-        <div class="dot active" data-dot="0"></div>
-        <div class="dot" data-dot="1"></div>
-        <div class="dot" data-dot="2"></div>
-      </div>
+      <p class="footer-copy">© 2026 Stride, Inc. All Rights Reserved</p>
     </div>
-  </section>
-
-  <section class="logo-cta">
-    <div class="hero-logo">
-      <img src="stride-logo.png" alt="Stride App Logo">
-    </div>
-
-    <div class="hero-cta" onclick="openAppStore()">
-      <h3>STRIDE</h3>
-      <span>VISIT STRIDE NOW</span>
-    </div>
-  </section>
-
-  <section class="section container" id="contact">
-    <div class="contact-title">Contact</div>
-
-    <div class="contact-card">
-      <div class="contact-row">
-
-        <div class="contact-item">
-          <i class="fa-solid fa-envelope"></i>
-          <div>Email: <a href="mailto:business@runstride.org">business@runstride.org</a></div>
-        </div>
-
-        <div class="contact-item">
-          <i class="fa-brands fa-instagram"></i>
-          <div>Instagram: <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">@strideapp_</a></div>
-        </div>
-
-        <div class="contact-item">
-          <i class="fa-brands fa-youtube"></i>
-          <div>YouTube: <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a></div>
-        </div>
-
-        <div class="contact-item">
-          <i class="fa-brands fa-tiktok"></i>
-          <div>TikTok: <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">@stride.usa</a></div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="final" id="download">
-    <div class="links">
-      <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">Instagram</a>
-      <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">YouTube</a>
-      <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">TikTok</a>
-    </div>
-
-    <div class="appstore">
-      <a href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
-        <img
-          src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-          alt="Download on the App Store">
-      </a>
-    </div>
-
-    <p class="copyright">
-      © 2026 Stride, Inc. All Rights Reserved
-    </p>
-  </section>
+  </footer>
 
   <script>
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     window.addEventListener("load", () => {
       if (!location.hash) window.scrollTo(0, 0);
     });
-
-    function openAppStore() {
-      window.location.href = "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
-    }
 
     function openMenu(){
       document.body.classList.add("menu-open");
@@ -688,42 +1075,6 @@
         e.preventDefault();
       }
     }, { passive: false });
-
-    const track = document.getElementById("carouselTrack");
-    const dots = Array.from(document.querySelectorAll(".dot"));
-
-    function setActiveDot(index){
-      dots.forEach((d,i)=>d.classList.toggle("active", i===index));
-    }
-
-    function getClosestSlideIndex(){
-      const slides = Array.from(track.querySelectorAll(".slide"));
-      const trackRect = track.getBoundingClientRect();
-      const trackCenter = trackRect.left + trackRect.width / 2;
-
-      let bestIdx = 0;
-      let bestDist = Infinity;
-
-      slides.forEach((s, i) => {
-        const r = s.getBoundingClientRect();
-        const center = r.left + r.width / 2;
-        const dist = Math.abs(center - trackCenter);
-        if(dist < bestDist){
-          bestDist = dist;
-          bestIdx = i;
-        }
-      });
-
-      return bestIdx;
-    }
-
-    let raf = null;
-    track.addEventListener("scroll", () => {
-      if(raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        setActiveDot(getClosestSlideIndex());
-      });
-    });
   </script>
 </body>
 </html>
