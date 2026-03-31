@@ -24,24 +24,18 @@
     :root{
       --bg:#0a0713;
       --panel:rgba(255,255,255,0.08);
-      --panel-2:rgba(255,255,255,0.06);
       --border:rgba(255,255,255,0.12);
       --text:#ffffff;
-      --muted:rgba(255,255,255,0.78);
+      --muted:rgba(255,255,255,0.80);
       --purple:#6a35ff;
-      --purple-2:#8c63ff;
-      --purple-3:#32106f;
-      --black:#09080d;
-      --white:#ffffff;
       --shadow:0 24px 60px rgba(0,0,0,0.35);
-      --radius:22px;
       --max:1150px;
     }
 
     body{
       background:
-        radial-gradient(circle at top, rgba(106,53,255,0.28) 0%, rgba(10,7,19,0) 36%),
-        linear-gradient(180deg, #09080d 0%, #18072f 40%, #4b18c9 100%);
+        radial-gradient(circle at top, rgba(106,53,255,0.22) 0%, rgba(10,7,19,0) 34%),
+        linear-gradient(180deg, #09080d 0%, #140628 38%, #4b18c9 100%);
       color:var(--text);
     }
 
@@ -69,7 +63,7 @@
       display:flex;
       align-items:center;
       gap:14px;
-      background:rgba(255,255,255,0.92);
+      background:rgba(255,255,255,0.94);
       backdrop-filter:blur(14px);
       border-bottom:1px solid rgba(0,0,0,0.08);
     }
@@ -189,66 +183,53 @@
 
     /* hero */
     .hero{
-      position:relative;
-      padding:36px 0 26px;
+      padding:28px 0 8px;
     }
 
     .hero-shell{
       position:relative;
-      border:1px solid var(--border);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%),
-        linear-gradient(135deg, rgba(106,53,255,0.30) 0%, rgba(0,0,0,0.08) 70%);
-      border-radius:28px;
       overflow:hidden;
-      box-shadow:var(--shadow);
       min-height:640px;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow:var(--shadow);
+      background:#0b0814;
     }
 
     .hero-bg{
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg, rgba(5,5,8,0.80) 0%, rgba(10,7,19,0.66) 45%, rgba(10,7,19,0.18) 100%),
-        url("hero-v2.jpg") center/cover no-repeat;
-      opacity:.92;
+        linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.28) 46%, rgba(10,0,18,0.82) 100%),
+        url("hero.jpg") center/cover no-repeat;
     }
 
-    .hero-grid{
+    .hero-content{
       position:relative;
       z-index:2;
-      display:grid;
-      grid-template-columns:1.1fr 0.9fr;
-      gap:20px;
-      align-items:center;
       min-height:640px;
-      padding:34px;
+      display:flex;
+      align-items:flex-end;
+      padding:34px 26px 34px;
     }
 
     .hero-copy{
-      max-width:620px;
+      max-width:680px;
     }
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.10);
-      border:1px solid rgba(255,255,255,0.14);
-      font-size:12px;
+    .hero-kicker{
+      letter-spacing:0.22em;
       font-weight:800;
-      letter-spacing:0.18em;
+      font-size:12px;
+      opacity:0.96;
+      margin-bottom:12px;
       text-transform:uppercase;
-      margin-bottom:18px;
-      backdrop-filter:blur(8px);
     }
 
-    .hero h1{
-      font-size:clamp(48px, 10vw, 94px);
-      line-height:0.94;
+    .hero-title{
+      font-size:clamp(56px, 11vw, 104px);
       font-weight:950;
+      line-height:0.92;
       letter-spacing:-0.04em;
       text-transform:uppercase;
       margin-bottom:14px;
@@ -256,35 +237,16 @@
 
     .hero-sub{
       font-size:clamp(17px, 2.4vw, 21px);
-      color:var(--muted);
-      line-height:1.55;
-      max-width:560px;
-      margin-bottom:20px;
-    }
-
-    .hero-pills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+      line-height:1.5;
+      color:rgba(255,255,255,0.92);
+      max-width:620px;
       margin-bottom:24px;
-    }
-
-    .pill{
-      padding:10px 14px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.12);
-      color:#fff;
-      font-size:0.92rem;
-      font-weight:700;
-      backdrop-filter:blur(10px);
     }
 
     .hero-buttons{
       display:flex;
+      gap:14px;
       flex-wrap:wrap;
-      gap:12px;
-      margin-bottom:20px;
     }
 
     .btn{
@@ -292,189 +254,53 @@
       align-items:center;
       justify-content:center;
       text-decoration:none;
-      padding:14px 20px;
+      padding:14px 26px;
       border-radius:999px;
       font-weight:900;
-      font-size:0.98rem;
-      transition:transform 160ms ease, opacity 160ms ease;
+      font-size:1rem;
+      border:1px solid rgba(255,255,255,0.18);
+      transition:transform 160ms ease;
     }
 
-    .btn:hover{ transform:translateY(-1px); }
+    .btn:hover{
+      transform:translateY(-1px);
+    }
 
     .btn.primary{
       background:#fff;
       color:#111;
-      border:1px solid #fff;
+      border-color:#fff;
     }
 
     .btn.secondary{
       background:rgba(255,255,255,0.10);
       color:#fff;
-      border:1px solid rgba(255,255,255,0.18);
       backdrop-filter:blur(10px);
     }
 
-    .hero-note{
-      font-size:0.95rem;
-      color:rgba(255,255,255,0.72);
-      font-weight:600;
-    }
-
-    .hero-visual{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      position:relative;
-    }
-
-    .hero-phone-wrap{
-      position:relative;
-      width:min(100%, 360px);
-    }
-
-    .glow{
-      position:absolute;
-      inset:auto 50% -10% 50%;
-      width:240px;
-      height:240px;
-      transform:translateX(-50%);
-      background:radial-gradient(circle, rgba(122,82,255,0.62) 0%, rgba(122,82,255,0.18) 40%, rgba(122,82,255,0) 72%);
-      filter:blur(18px);
-      pointer-events:none;
-    }
-
-    .phone-card{
-      position:relative;
-      border-radius:30px;
-      padding:14px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
-      border:1px solid rgba(255,255,255,0.18);
-      box-shadow:0 30px 80px rgba(0,0,0,0.45);
-      backdrop-filter:blur(16px);
-    }
-
-    .phone-card img{
-      width:100%;
-      display:block;
-      border-radius:22px;
-      background:#fff;
-    }
-
-    .mini-badge{
-      position:absolute;
-      right:-10px;
-      bottom:18px;
-      padding:12px 14px;
-      border-radius:16px;
-      background:rgba(14,10,25,0.92);
-      border:1px solid rgba(255,255,255,0.12);
-      box-shadow:0 18px 35px rgba(0,0,0,0.35);
-      font-size:0.88rem;
-      font-weight:800;
-      line-height:1.35;
-    }
-
-    .mini-badge span{
-      display:block;
-      color:rgba(255,255,255,0.68);
-      font-size:0.75rem;
-      font-weight:700;
-      margin-top:2px;
-    }
-
-    /* stats */
-    .stats{
-      margin-top:18px;
-    }
-
-    .stats-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:14px;
-    }
-
-    .stat{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:18px;
-      backdrop-filter:blur(10px);
-    }
-
-    .stat strong{
-      display:block;
-      font-size:1.25rem;
-      font-weight:900;
-      margin-bottom:4px;
-    }
-
-    .stat span{
-      color:var(--muted);
-      font-size:0.95rem;
-      line-height:1.45;
-    }
-
-    /* sections */
+    /* features */
     .section{
-      padding:58px 0 0;
+      padding:34px 0 0;
     }
 
-    .section-title{
-      font-size:1.8rem;
+    .features-title{
+      margin-bottom:14px;
+    }
+
+    .features-title h2{
+      font-size:1.2rem;
       font-weight:950;
-      letter-spacing:-0.03em;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
       margin-bottom:10px;
     }
 
-    .section-sub{
-      font-size:1.02rem;
-      line-height:1.7;
-      color:var(--muted);
-      max-width:720px;
-      margin-bottom:22px;
+    .features-title .rule{
+      height:1px;
+      background:rgba(255,255,255,0.16);
+      width:100%;
     }
 
-    /* benefits */
-    .benefits-grid{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:16px;
-    }
-
-    .benefit{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:20px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(12px);
-    }
-
-    .benefit-icon{
-      width:46px;
-      height:46px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.10);
-      margin-bottom:14px;
-      font-size:20px;
-    }
-
-    .benefit h3{
-      font-size:1.08rem;
-      font-weight:900;
-      margin-bottom:8px;
-    }
-
-    .benefit p{
-      color:var(--muted);
-      line-height:1.65;
-      font-size:0.97rem;
-    }
-
-    /* features carousel */
     .features-shell{
       position:relative;
       background:var(--panel);
@@ -507,8 +333,8 @@
 
     .feature-slide{
       flex:0 0 100%;
-      scroll-snap-align:start;
       min-width:100%;
+      scroll-snap-align:start;
     }
 
     .feature-slide-card{
@@ -598,7 +424,7 @@
       height:9px;
       border-radius:999px;
       background:rgba(255,255,255,0.36);
-      transition:transform 140ms ease, opacity 140ms ease, background 140ms ease;
+      transition:transform 140ms ease, background 140ms ease;
     }
 
     .carousel-dot.active{
@@ -606,56 +432,69 @@
       transform:scale(1.08);
     }
 
-    /* closing banner */
-    .closing{
-      padding-top:58px;
+    /* logo cta */
+    .logo-cta{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:22px;
+      margin:26px 0 12px;
+      padding:0 24px;
     }
 
-    .closing-card{
-      position:relative;
-      overflow:hidden;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(140,99,255,0.32) 0%, rgba(140,99,255,0) 38%),
-        linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-      border:1px solid var(--border);
+    .hero-logo img{
+      width:180px;
       border-radius:28px;
-      padding:28px;
-      box-shadow:var(--shadow);
+      filter:drop-shadow(0 20px 40px rgba(0,0,0,0.45));
     }
 
-    .closing-card h2{
-      font-size:clamp(1.9rem, 5vw, 3rem);
-      line-height:1.02;
-      font-weight:950;
-      letter-spacing:-0.04em;
-      margin-bottom:12px;
-      text-transform:uppercase;
+    .hero-cta{
+      cursor:pointer;
+      border:2px solid rgba(255,255,255,0.9);
+      padding:18px 28px;
+      text-align:center;
+      background:rgba(0,0,0,0.18);
+      border-radius:14px;
+      width:min(420px, 100%);
     }
 
-    .closing-card p{
-      max-width:680px;
-      color:var(--muted);
-      line-height:1.7;
-      font-size:1.02rem;
-      margin-bottom:20px;
+    .hero-cta h3{
+      font-size:1.1rem;
+      font-weight:900;
+      margin-bottom:6px;
+      letter-spacing:0.25em;
+    }
+
+    .hero-cta span{
+      font-size:0.75rem;
+      opacity:0.9;
+      letter-spacing:0.18em;
     }
 
     /* contact */
     .contact{
-      padding-top:58px;
+      padding-top:18px;
+    }
+
+    .contact-title{
+      font-size:1.45rem;
+      font-weight:950;
+      letter-spacing:0.01em;
+      margin-bottom:12px;
+      opacity:0.98;
     }
 
     .contact-card{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:24px;
-      padding:20px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(12px);
+      background:rgba(0,0,0,0.18);
+      border:1px solid rgba(255,255,255,0.14);
+      border-radius:18px;
+      padding:16px;
+      box-shadow:0 18px 45px rgba(0,0,0,0.25);
     }
 
     .contact-row{
-      display:grid;
+      display:flex;
+      flex-direction:column;
       gap:14px;
     }
 
@@ -663,35 +502,25 @@
       display:flex;
       align-items:center;
       gap:12px;
-      padding:14px 14px;
-      border-radius:18px;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      font-size:1rem;
+      font-size:1.02rem;
+      opacity:0.96;
     }
 
     .contact-item i{
-      width:38px;
-      min-width:38px;
-      height:38px;
+      width:34px;
+      min-width:34px;
+      height:34px;
       display:grid;
       place-items:center;
-      border-radius:12px;
-      background:rgba(255,255,255,0.08);
-      border:1px solid rgba(255,255,255,0.10);
-      font-size:18px;
-    }
-
-    .contact-item span{
-      color:rgba(255,255,255,0.70);
-      font-weight:700;
-      margin-right:4px;
+      font-size:22px;
+      filter:drop-shadow(0 2px 6px rgba(0,0,0,0.25));
     }
 
     .contact-item a{
       color:#fff;
+      text-decoration:underline;
+      text-underline-offset:3px;
       font-weight:900;
-      text-decoration:none;
       word-break:break-word;
     }
 
@@ -700,7 +529,7 @@
       border-top:1px solid rgba(255,255,255,0.12);
       padding:36px 0 44px;
       text-align:center;
-      margin-top:58px;
+      margin-top:28px;
       background:rgba(0,0,0,0.10);
     }
 
@@ -728,40 +557,6 @@
     .footer-copy{
       font-size:0.82rem;
       opacity:0.72;
-    }
-
-    @media (max-width: 980px){
-      .hero-grid,
-      .benefits-grid,
-      .stats-grid{
-        grid-template-columns:1fr;
-      }
-
-      .hero-shell{
-        min-height:auto;
-      }
-
-      .hero-grid{
-        min-height:auto;
-        padding:24px 18px 22px;
-      }
-
-      .hero h1{
-        font-size:clamp(42px, 15vw, 72px);
-      }
-
-      .hero-visual{
-        padding-top:6px;
-      }
-
-      .mini-badge{
-        right:6px;
-        bottom:10px;
-      }
-
-      .section{
-        padding-top:46px;
-      }
     }
 
     @media (max-width: 700px){
@@ -794,33 +589,26 @@
       }
 
       .hero-shell{
+        min-height:520px;
         border-radius:24px;
       }
 
-      .hero-grid{
-        padding:20px 16px 18px;
+      .hero-content{
+        min-height:520px;
+        padding:24px 16px 24px;
       }
 
-      .eyebrow{
-        font-size:11px;
-        letter-spacing:0.14em;
+      .hero-title{
+        font-size:clamp(48px, 18vw, 72px);
       }
 
       .hero-sub{
         font-size:1rem;
       }
 
-      .pill{
-        font-size:0.86rem;
-        padding:9px 12px;
-      }
-
       .btn{
-        width:100%;
-      }
-
-      .section-title{
-        font-size:1.55rem;
+        padding:13px 22px;
+        font-size:0.98rem;
       }
 
       .feature-slide-card{
@@ -867,7 +655,6 @@
 
     <nav class="side-menu__nav">
       <a href="#top" onclick="closeMenu()">Home</a>
-      <a href="#why-stride" onclick="closeMenu()">Why Stride</a>
       <a href="#features" onclick="closeMenu()">Features</a>
       <a href="#contact" onclick="closeMenu()">Contact</a>
       <a href="#download" onclick="closeMenu()">Get the App</a>
@@ -885,105 +672,37 @@
       <div class="hero-shell">
         <div class="hero-bg"></div>
 
-        <div class="hero-grid">
+        <div class="hero-content">
           <div class="hero-copy">
-            <div class="eyebrow">
-              <i class="fa-solid fa-bolt"></i>
-              Stride
-            </div>
+            <p class="hero-kicker">STRIDE</p>
 
-            <h1>RUN.<br>SMARTER.</h1>
+            <h1 class="hero-title">
+              RUN.<br>
+              SMARTER.
+            </h1>
 
             <p class="hero-sub">
-              AI coaching, training plans, PR tracking, and mindset tools — all in one place for runners who want clarity.
+              AI coaching + your season organized — PRs, training, and mindset in one place.
             </p>
-
-            <div class="hero-pills">
-              <div class="pill">AI Coach</div>
-              <div class="pill">Training Plans</div>
-              <div class="pill">PR Tracking</div>
-              <div class="pill">Race Prep</div>
-            </div>
 
             <div class="hero-buttons">
               <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
                 Download
               </a>
               <a class="btn secondary" href="#features">
-                See Features
+                Learn more
               </a>
             </div>
-
-            <div class="hero-note">
-              Built for runners who want structure, not chaos.
-            </div>
           </div>
-
-          <div class="hero-visual">
-            <div class="hero-phone-wrap">
-              <div class="glow"></div>
-              <div class="phone-card">
-                <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
-              </div>
-              <div class="mini-badge">
-                Track your week
-                <span>Mileage • progress • consistency</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="stats">
-        <div class="stats-grid">
-          <div class="stat">
-            <strong>Smarter training</strong>
-            <span>Keep your plan, recovery, and progress organized in one place.</span>
-          </div>
-          <div class="stat">
-            <strong>Less guessing</strong>
-            <span>Know what to do next without digging through notes or apps.</span>
-          </div>
-          <div class="stat">
-            <strong>Built for runners</strong>
-            <span>Made for people who care about progress, PRs, and race-day clarity.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container" id="why-stride">
-      <h2 class="section-title">Why runners use Stride</h2>
-      <p class="section-sub">
-        Stride helps you train with more clarity. It brings together your training structure, personal records, AI support, and day-to-day focus so your season feels organized.
-      </p>
-
-      <div class="benefits-grid">
-        <div class="benefit">
-          <div class="benefit-icon"><i class="fa-solid fa-route"></i></div>
-          <h3>Stay on track</h3>
-          <p>Your training week stays clear, simple, and easy to follow so you always know what comes next.</p>
-        </div>
-
-        <div class="benefit">
-          <div class="benefit-icon"><i class="fa-solid fa-chart-line"></i></div>
-          <h3>See real progress</h3>
-          <p>Keep your mileage, personal records, and season trends in one place instead of scattered everywhere.</p>
-        </div>
-
-        <div class="benefit">
-          <div class="benefit-icon"><i class="fa-solid fa-brain"></i></div>
-          <h3>Get useful guidance</h3>
-          <p>Use the AI Coach for pacing, recovery, race prep, and training questions inside your running ecosystem.</p>
         </div>
       </div>
     </section>
 
     <section class="section container" id="features">
-      <h2 class="section-title">Everything built to help you move better</h2>
-      <p class="section-sub">
-        Swipe through the core parts of Stride. It works on phone and desktop, and keeps the same clean order as before.
-      </p>
+      <div class="features-title">
+        <h2>Features</h2>
+        <div class="rule"></div>
+      </div>
 
       <div class="features-shell">
         <div class="features-carousel-wrap">
@@ -1048,50 +767,40 @@
       </div>
     </section>
 
-    <section class="closing container">
-      <div class="closing-card">
-        <h2>Built for runners who want clarity</h2>
-        <p>
-          Stride is for the runner who wants structure, consistency, and a cleaner way to improve. Less clutter. Less guessing. More confidence in what you are doing every week.
-        </p>
+    <section class="logo-cta">
+      <div class="hero-logo">
+        <img src="stride-logo.png" alt="Stride App Logo">
+      </div>
 
-        <div class="hero-buttons">
-          <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
-            Download the App
-          </a>
-          <a class="btn secondary" href="#contact">
-            Contact Stride
-          </a>
-        </div>
+      <div class="hero-cta" onclick="openAppStore()">
+        <h3>STRIDE</h3>
+        <span>VISIT STRIDE NOW</span>
       </div>
     </section>
 
     <section class="contact container" id="contact">
-      <h2 class="section-title">Contact</h2>
-      <p class="section-sub">
-        Connect with Stride, follow the journey, or reach out directly.
-      </p>
+      <div class="contact-title">Contact</div>
 
       <div class="contact-card">
         <div class="contact-row">
           <div class="contact-item">
             <i class="fa-solid fa-envelope"></i>
-            <div><span>Email:</span> <a href="mailto:business@runstride.org">business@runstride.org</a></div>
+            <div>Email: <a href="mailto:business@runstride.org">business@runstride.org</a></div>
           </div>
 
           <div class="contact-item">
             <i class="fa-brands fa-instagram"></i>
-            <div><span>Instagram:</span> <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">@strideapp_</a></div>
+            <div>Instagram: <a href="https://www.instagram.com/strideapp_" target="_blank" rel="noreferrer">@strideapp_</a></div>
           </div>
 
           <div class="contact-item">
             <i class="fa-brands fa-youtube"></i>
-            <div><span>YouTube:</span> <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a></div>
+            <div>YouTube: <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a></div>
           </div>
 
           <div class="contact-item">
             <i class="fa-brands fa-tiktok"></i>
-            <div><span>TikTok:</span> <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">@stride.usa</a></div>
+            <div>TikTok: <a href="https://www.tiktok.com/@stride.usa" target="_blank" rel="noreferrer">@stride.usa</a></div>
           </div>
         </div>
       </div>
@@ -1124,6 +833,10 @@
       if (!location.hash) window.scrollTo(0, 0);
       updateFeatureCarousel();
     });
+
+    function openAppStore() {
+      window.location.href = "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
+    }
 
     function openMenu(){
       document.body.classList.add("menu-open");
