@@ -262,15 +262,16 @@ body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
 
 /* ===== SECTIONS ===== */
 .section{
-  padding:26px 24px 10px;
+  padding:48px 24px 10px;
 }
 
-.section h2{
-  font-size:1.25rem;
+.features-title{
+  font-size:1.2rem;
   font-weight:900;
   letter-spacing:0.02em;
-  margin-bottom:10px;
-  opacity:0.98;
+  margin-bottom:16px;
+  color:#ffffff;
+  opacity:1;
 }
 
 .section p{
