@@ -1,1016 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stride – Run Smarter</title>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-
-    html, body{
-      width:100%;
-      overflow-x:hidden;
-      scroll-behavior:smooth;
-    }
-
-    :root{
-      --panel:rgba(255,255,255,0.08);
-      --border:rgba(255,255,255,0.12);
-      --text:#ffffff;
-      --muted:rgba(255,255,255,0.80);
-      --purple:#6a35ff;
-      --shadow:0 24px 60px rgba(0,0,0,0.35);
-      --max:1150px;
-    }
-
-    body{
-      background:
-        radial-gradient(circle at top, rgba(106,53,255,0.22) 0%, rgba(10,7,19,0) 34%),
-        linear-gradient(180deg, #09080d 0%, #140628 38%, #4b18c9 100%);
-      color:var(--text);
-    }
-
-    body.menu-open{
-      overflow:hidden;
-      height:100vh;
-      touch-action:none;
-    }
-
-    a{ color:inherit; }
-
-    .container{
-      width:100%;
-      max-width:var(--max);
-      margin:0 auto;
-      padding:0 20px;
-    }
-
-    .sitebar{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:100;
-      padding:14px 18px;
-      display:flex;
-      align-items:center;
-      gap:14px;
-      background:rgba(255,255,255,0.94);
-      backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(0,0,0,0.08);
-    }
-
-    .brand{
-      font-weight:900;
-      letter-spacing:0.14em;
-      font-size:16px;
-      text-transform:uppercase;
-      color:#111;
-      opacity:.98;
-    }
-
-    .hamburger{
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      border:1px solid rgba(0,0,0,0.10);
-      background:rgba(0,0,0,0.04);
-      display:grid;
-      place-items:center;
-      padding:0;
-      cursor:pointer;
-    }
-
-    .hamburger-inner{ display:grid; gap:3px; }
-
-    .hamburger span{
-      display:block;
-      width:20px;
-      height:2px;
-      background:#111;
-      border-radius:99px;
-      opacity:.95;
-    }
-
-    .spacer-top{ height:76px; }
-
-    .menu-backdrop{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.48);
-      opacity:0;
-      pointer-events:none;
-      transition:opacity 180ms ease;
-      z-index:110;
-    }
-
-    .side-menu{
-      position:fixed;
-      top:0; left:0;
-      height:100vh;
-      width:min(80vw, 340px);
-      background:#fff;
-      color:#111;
-      transform:translateX(-105%);
-      transition:transform 220ms ease;
-      z-index:120;
-      display:flex;
-      flex-direction:column;
-      padding:18px;
-      box-shadow:0 24px 60px rgba(0,0,0,0.35);
-    }
-
-    body.menu-open .side-menu{ transform:translateX(0); }
-    body.menu-open .menu-backdrop{ opacity:1; pointer-events:auto; }
-
-    .side-menu__header{
-      display:flex;
-      justify-content:flex-start;
-      padding:6px 0 14px;
-    }
-
-    .close-btn{
-      border:none;
-      background:transparent;
-      font-size:28px;
-      line-height:1;
-      cursor:pointer;
-      color:#111;
-    }
-
-    .side-menu__nav{
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      padding:8px 0 18px;
-      border-bottom:1px solid #eee;
-    }
-
-    .side-menu__nav a{
-      text-decoration:none;
-      color:#111;
-      font-weight:800;
-      font-size:1.08rem;
-    }
-
-    .side-menu__actions{
-      margin-top:auto;
-      padding-top:18px;
-      padding-bottom:26px;
-    }
-
-    .menu-btn{
-      display:block;
-      width:100%;
-      text-align:center;
-      padding:14px 16px;
-      border-radius:14px;
-      background:var(--purple);
-      color:#fff;
-      text-decoration:none;
-      font-weight:900;
-      border:none;
-    }
-
-    .hero{
-      padding:28px 0 8px;
-    }
-
-    .hero-shell{
-      position:relative;
-      overflow:hidden;
-      min-height:640px;
-      border-radius:30px;
-      border:1px solid rgba(255,255,255,0.12);
-      box-shadow:var(--shadow);
-      background:#0b0814;
-    }
-
-    .hero-bg{
-      position:absolute;
-      inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.28) 46%, rgba(10,0,18,0.82) 100%),
-        url("hero.jpg") center/cover no-repeat;
-    }
-
-    .hero-content{
-      position:relative;
-      z-index:2;
-      min-height:640px;
-      display:flex;
-      align-items:flex-end;
-      padding:34px 26px 34px;
-    }
-
-    .hero-copy{
-      max-width:680px;
-    }
-
-    .hero-kicker{
-      letter-spacing:0.22em;
-      font-weight:800;
-      font-size:12px;
-      opacity:0.96;
-      margin-bottom:12px;
-      text-transform:uppercase;
-    }
-
-    .hero-title{
-      font-size:clamp(56px, 11vw, 104px);
-      font-weight:950;
-      line-height:0.92;
-      letter-spacing:-0.04em;
-      text-transform:uppercase;
-      margin-bottom:14px;
-    }
-
-    .hero-sub{
-      font-size:clamp(17px, 2.4vw, 21px);
-      line-height:1.5;
-      color:rgba(255,255,255,0.92);
-      max-width:620px;
-      margin-bottom:24px;
-    }
-
-    .hero-buttons{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      padding:14px 26px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:1rem;
-      border:1px solid rgba(255,255,255,0.18);
-      transition:transform 160ms ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-    }
-
-    .btn.primary{
-      background:#fff;
-      color:#111;
-      border-color:#fff;
-    }
-
-    .btn.secondary{
-      background:rgba(255,255,255,0.10);
-      color:#fff;
-      backdrop-filter:blur(10px);
-    }
-
-    .section{
-      padding:34px 0 0;
-    }
-
-    .features-title{
-      margin-bottom:14px;
-    }
-
-    .features-title h2{
-      font-size:1.2rem;
-      font-weight:950;
-      letter-spacing:0.04em;
-      text-transform:uppercase;
-      margin-bottom:10px;
-    }
-
-    .features-title .rule{
-      height:1px;
-      background:rgba(255,255,255,0.16);
-      width:100%;
-    }
-
-    .features-shell{
-      position:relative;
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:26px;
-      padding:18px;
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(12px);
-      overflow:hidden;
-    }
-
-    .features-carousel-wrap{
-      position:relative;
-    }
-
-    .features-carousel{
-      display:flex;
-      gap:18px;
-      overflow-x:auto;
-      scroll-snap-type:x mandatory;
-      scroll-behavior:smooth;
-      -webkit-overflow-scrolling:touch;
-      scrollbar-width:none;
-      padding-bottom:8px;
-    }
-
-    .features-carousel::-webkit-scrollbar{
-      display:none;
-    }
-
-    .feature-slide{
-      flex:0 0 100%;
-      min-width:100%;
-      scroll-snap-align:start;
-    }
-
-    .feature-slide-card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border:1px solid rgba(255,255,255,0.10);
-      border-radius:24px;
-      padding:16px;
-    }
-
-    .feature-image{
-      border-radius:22px;
-      padding:14px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      border:1px solid rgba(255,255,255,0.08);
-      margin-bottom:16px;
-    }
-
-    .feature-image img{
-      width:100%;
-      display:block;
-      border-radius:18px;
-      background:#fff;
-    }
-
-    .feature-copy h3{
-      font-size:clamp(1.35rem, 2.6vw, 1.9rem);
-      line-height:1.12;
-      font-weight:950;
-      letter-spacing:-0.03em;
-      margin-bottom:10px;
-    }
-
-    .feature-copy p{
-      color:var(--muted);
-      line-height:1.7;
-      font-size:1rem;
-      max-width:760px;
-    }
-
-    .carousel-arrow{
-      position:absolute;
-      top:50%;
-      transform:translateY(-50%);
-      width:52px;
-      height:52px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,0.16);
-      background:rgba(8,8,14,0.72);
-      color:#fff;
-      display:grid;
-      place-items:center;
-      font-size:18px;
-      cursor:pointer;
-      z-index:5;
-      backdrop-filter:blur(14px);
-      box-shadow:0 16px 30px rgba(0,0,0,0.30);
-      transition:opacity 160ms ease, transform 160ms ease;
-    }
-
-    .carousel-arrow:hover{
-      transform:translateY(-50%) scale(1.04);
-    }
-
-    .carousel-arrow.left{
-      left:14px;
-    }
-
-    .carousel-arrow.right{
-      right:14px;
-    }
-
-    .carousel-arrow.hidden{
-      opacity:0;
-      pointer-events:none;
-      transform:translateY(-50%) scale(0.92);
-    }
-
-    .carousel-dots{
-      display:flex;
-      justify-content:center;
-      gap:8px;
-      margin-top:16px;
-    }
-
-    .carousel-dot{
-      width:9px;
-      height:9px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.36);
-      transition:transform 140ms ease, background 140ms ease;
-    }
-
-    .carousel-dot.active{
-      background:#fff;
-      transform:scale(1.08);
-    }
-
-    .mission{
-      padding:28px 0 8px;
-    }
-
-    .mission-card{
-      background:linear-gradient(180deg, rgba(106,53,255,0.20), rgba(106,53,255,0.14));
-      border:1px solid rgba(255,255,255,0.14);
-      border-radius:28px;
-      padding:34px 30px;
-      box-shadow:0 24px 60px rgba(0,0,0,0.28);
-      backdrop-filter:blur(12px);
-    }
-
-    .mission-card h2{
-      font-size:clamp(2.1rem, 5vw, 4rem);
-      line-height:0.96;
-      font-weight:950;
-      letter-spacing:-0.05em;
-      text-transform:uppercase;
-      margin-bottom:18px;
-      max-width:780px;
-    }
-
-    .mission-card p{
-      max-width:760px;
-      color:rgba(255,255,255,0.82);
-      font-size:clamp(1.05rem, 2.2vw, 1.22rem);
-      line-height:1.78;
-      margin-bottom:24px;
-    }
-
-    .mission-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-    }
-
-    .mission-actions .btn{
-      min-width:260px;
-    }
-
-    .logo-cta{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:22px;
-      margin:30px 0 12px;
-      padding:0 24px;
-    }
-
-    .hero-logo img{
-      width:180px;
-      border-radius:28px;
-      filter:drop-shadow(0 20px 40px rgba(0,0,0,0.45));
-    }
-
-    .hero-cta{
-      cursor:pointer;
-      border:2px solid rgba(255,255,255,0.9);
-      padding:18px 28px;
-      text-align:center;
-      background:rgba(0,0,0,0.18);
-      border-radius:14px;
-      width:min(420px, 100%);
-    }
-
-    .hero-cta h3{
-      font-size:1.1rem;
-      font-weight:900;
-      margin-bottom:6px;
-      letter-spacing:0.25em;
-    }
-
-    .hero-cta span{
-      font-size:0.75rem;
-      opacity:0.9;
-      letter-spacing:0.18em;
-    }
-
-    .contact{
-      padding-top:18px;
-    }
-
-    .contact-title{
-      font-size:1.45rem;
-      font-weight:950;
-      letter-spacing:0.01em;
-      margin-bottom:12px;
-      opacity:0.98;
-    }
-
-    .contact-card{
-      background:rgba(0,0,0,0.18);
-      border:1px solid rgba(255,255,255,0.14);
-      border-radius:18px;
-      padding:16px;
-      box-shadow:0 18px 45px rgba(0,0,0,0.25);
-    }
-
-    .contact-row{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    .contact-item{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-size:1.02rem;
-      opacity:0.96;
-    }
-
-    .contact-item i{
-      width:34px;
-      min-width:34px;
-      height:34px;
-      display:grid;
-      place-items:center;
-      font-size:22px;
-      filter:drop-shadow(0 2px 6px rgba(0,0,0,0.25));
-    }
-
-    .contact-item a{
-      color:#fff;
-      text-decoration:underline;
-      text-underline-offset:3px;
-      font-weight:900;
-      word-break:break-word;
-    }
-
-    .footer{
-      border-top:1px solid rgba(255,255,255,0.12);
-      padding:36px 0 44px;
-      text-align:center;
-      margin-top:28px;
-      background:rgba(0,0,0,0.10);
-    }
-
-    .footer-links{
-      display:flex;
-      justify-content:center;
-      gap:22px;
-      flex-wrap:wrap;
-      margin-bottom:20px;
-    }
-
-    .footer-links a{
-      text-decoration:none;
-      color:#fff;
-      opacity:0.86;
-      font-size:0.95rem;
-      font-weight:700;
-    }
-
-    .footer-badge img{
-      width:165px;
-      margin:12px 0 16px;
-    }
-
-    .footer-copy{
-      font-size:0.82rem;
-      opacity:0.72;
-    }
-
-    @media (max-width: 700px){
-      .carousel-arrow{
-        width:42px;
-        height:42px;
-        font-size:15px;
-      }
-
-      .carousel-arrow.left{
-        left:10px;
-      }
-
-      .carousel-arrow.right{
-        right:10px;
-      }
-    }
-
-    @media (max-width: 560px){
-      .container{ padding:0 16px; }
-
-      .sitebar{
-        padding:12px 14px;
-      }
-
-      .brand{ font-size:15px; }
-
-      .hero{
-        padding-top:22px;
-      }
-
-      .hero-shell{
-        min-height:520px;
-        border-radius:24px;
-      }
-
-      .hero-content{
-        min-height:520px;
-        padding:24px 16px 24px;
-      }
-
-      .hero-title{
-        font-size:clamp(48px, 18vw, 72px);
-      }
-
-      .hero-sub{
-        font-size:1rem;
-      }
-
-      .btn{
-        padding:13px 22px;
-        font-size:0.98rem;
-      }
-
-      .feature-slide-card{
-        padding:12px;
-      }
-
-      .feature-image{
-        padding:10px;
-      }
-
-      .feature-copy h3{
-        font-size:1.3rem;
-      }
-
-      .feature-copy p{
-        font-size:0.98rem;
-      }
-
-      .mission{
-        padding:22px 0 6px;
-      }
-
-      .mission-card{
-        padding:24px 18px;
-        border-radius:22px;
-      }
-
-      .mission-card h2{
-        font-size:clamp(2rem, 12vw, 3.2rem);
-        margin-bottom:14px;
-      }
-
-      .mission-card p{
-        font-size:1rem;
-        line-height:1.72;
-        margin-bottom:20px;
-      }
-
-      .mission-actions .btn{
-        width:100%;
-        min-width:0;
-      }
-
-      .contact-item{
-        align-items:flex-start;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#13241e">
+  <meta name="description" content="Stride brings AI coaching, training plans, and running progress together in one focused app.">
+  <title>Stride | Run Smarter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="stride-logo.png">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
-
 <body>
-  <div class="sitebar">
-    <button class="hamburger" aria-label="Open menu" onclick="openMenu()">
-      <div class="hamburger-inner">
-        <span></span><span></span><span></span>
-      </div>
-    </button>
-    <div class="brand">STRIDE</div>
-  </div>
-
-  <div class="spacer-top"></div>
-
-  <div class="menu-backdrop" id="menuBackdrop" onclick="closeMenu()"></div>
-
-  <aside class="side-menu" id="sideMenu" aria-hidden="true">
-    <div class="side-menu__header">
-      <button class="close-btn" aria-label="Close menu" onclick="closeMenu()">✕</button>
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a class="wordmark" href="#top" aria-label="Stride home">STRIDE</a>
+      <nav class="desktop-nav" aria-label="Primary">
+        <a href="#product">App</a>
+        <a href="#features">Features</a>
+        <a href="#coaching">Coaching</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="header-download" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">Download</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+      </button>
     </div>
+  </header>
 
-    <nav class="side-menu__nav">
-      <a href="#top" onclick="closeMenu()">Home</a>
-      <a href="#features" onclick="closeMenu()">Features</a>
-      <a href="#contact" onclick="closeMenu()">Contact</a>
-      <a href="#download" onclick="closeMenu()">Get the App</a>
-      <a href="privacy-policy.html">Privacy Policy</a>
-      <a href="terms-of-service.html">Terms of Service</a>
-      <a href="about-us.html">About Us</a>
-    </nav>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile" aria-hidden="true">
+    <a href="#product">App</a>
+    <a href="#features">Features</a>
+    <a href="#coaching">Coaching</a>
+    <a href="#contact">Contact</a>
+    <a href="privacy-policy.html">Privacy</a>
+    <a href="terms-of-service.html">Terms</a>
+    <a class="mobile-download" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">Download on the App Store</a>
+  </nav>
 
-    <div class="side-menu__actions">
-      <a class="menu-btn" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
-        Get the App
+  <main id="top">
+    <section class="hero">
+      <img class="hero-image" src="hero-track.jpg" alt="Runner preparing on a sunlit outdoor track">
+      <div class="hero-shade"></div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Running, with purpose</p>
+          <h1>STRIDE</h1>
+          <p class="hero-statement">Train for what is next.</p>
+          <p class="hero-description">AI coaching, organized training, and progress that makes every week more intentional.</p>
+          <div class="hero-actions">
+            <a class="button button-light" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">Get the app</a>
+            <a class="button button-glass" href="#product">Explore Stride</a>
+          </div>
+        </div>
+        <div class="hero-meta">
+          <span>Plan</span>
+          <span>Record</span>
+          <span>Recover</span>
+          <span>Progress</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="signal-bar" aria-label="Stride benefits">
+      <div class="signal-inner">
+        <p class="signal-lead">Built for runners who want clarity, not noise.</p>
+        <div class="signal-items">
+          <div><strong>AI</strong><span>Personal coaching</span></div>
+          <div><strong>PRs</strong><span>Progress tracked</span></div>
+          <div><strong>Plans</strong><span>Weeks organized</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section" id="product">
+      <div class="product-copy">
+        <p class="section-tag">The app</p>
+        <h2>Your running season in one focused place.</h2>
+        <p>See mileage, shape your training plan, and ask for guidance without moving between scattered apps and notes.</p>
+        <div class="product-points">
+          <div>
+            <h3>See the week</h3>
+            <p>Distance, consistency, and activities at a glance.</p>
+          </div>
+          <div>
+            <h3>Build forward</h3>
+            <p>A plan that gives each run a reason.</p>
+          </div>
+        </div>
+      </div>
+      <div class="phone-showcase" aria-label="Stride app screens">
+        <figure class="phone phone-left">
+          <img src="training.jpg" alt="Stride AI Coach screen">
+        </figure>
+        <figure class="phone phone-main">
+          <img src="dashboard.jpg" alt="Stride dashboard screen">
+        </figure>
+        <figure class="phone phone-right">
+          <img src="coach.jpg" alt="Stride training plan screen">
+        </figure>
+      </div>
+    </section>
+
+    <section class="features-section" id="features">
+      <div class="section-heading">
+        <p class="section-tag">Designed to move with you</p>
+        <h2>A smarter training rhythm.</h2>
+      </div>
+      <div class="feature-grid">
+        <article>
+          <span class="feature-number">01</span>
+          <h3>Plan with intent</h3>
+          <p>Turn the season into a clear weekly structure that keeps the next session in view.</p>
+        </article>
+        <article>
+          <span class="feature-number">02</span>
+          <h3>Measure progress</h3>
+          <p>Keep mileage and personal records visible, so improvement has context.</p>
+        </article>
+        <article>
+          <span class="feature-number">03</span>
+          <h3>Get guidance</h3>
+          <p>Use an AI coach for pacing, recovery, and the questions that come between runs.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="coaching-section" id="coaching">
+      <div class="coach-preview">
+        <figure class="phone phone-coach">
+          <img src="training.jpg" alt="Stride Coach conversation screen">
+        </figure>
+      </div>
+      <div class="coaching-copy">
+        <p class="section-tag">Stride Coach</p>
+        <h2>Support for the run, and everything around it.</h2>
+        <p>Ask about pacing, recovery, race preparation, or your next training block. Your coach lives alongside the work you are already tracking.</p>
+        <a class="text-link" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">Start training with Stride <span aria-hidden="true">-&gt;</span></a>
+      </div>
+    </section>
+
+    <section class="download-section">
+      <div class="download-copy">
+        <p class="section-tag">Available on iPhone</p>
+        <h2>Make the next run count.</h2>
+        <p>Download Stride and bring your plan, coach, and progress together.</p>
+      </div>
+      <a class="store-badge" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
       </a>
-    </div>
-  </aside>
-
-  <main>
-    <section class="hero container" id="top">
-      <div class="hero-shell">
-        <div class="hero-bg"></div>
-
-        <div class="hero-content">
-          <div class="hero-copy">
-            <p class="hero-kicker">STRIDE</p>
-
-            <h1 class="hero-title">
-              RUN.<br>
-              SMARTER.
-            </h1>
-
-            <p class="hero-sub">
-              AI coaching + your season organized — PRs, training, and mindset in one place.
-            </p>
-
-            <div class="hero-buttons">
-              <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
-                Download
-              </a>
-              <a class="btn secondary" href="#features">
-                Learn more
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section container" id="features">
-      <div class="features-title">
-        <h2>Features</h2>
-        <div class="rule"></div>
-      </div>
-
-      <div class="features-shell">
-        <div class="features-carousel-wrap">
-          <button class="carousel-arrow left hidden" id="featurePrev" aria-label="Previous feature">
-            <i class="fa-solid fa-chevron-left"></i>
-          </button>
-
-          <button class="carousel-arrow right" id="featureNext" aria-label="Next feature">
-            <i class="fa-solid fa-chevron-right"></i>
-          </button>
-
-          <div class="features-carousel" id="featuresCarousel">
-            <div class="feature-slide">
-              <div class="feature-slide-card">
-                <div class="feature-image">
-                  <img src="dashboard.jpg" alt="Stride Dashboard screenshot">
-                </div>
-                <div class="feature-copy">
-                  <h3>Dashboard that keeps you locked in.</h3>
-                  <p>
-                    A clean weekly view so you can see your progress fast — mileage, trends, and what matters without getting overwhelmed.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="feature-slide">
-              <div class="feature-slide-card">
-                <div class="feature-image">
-                  <img src="coach.jpg" alt="Stride Training Plan screenshot">
-                </div>
-                <div class="feature-copy">
-                  <h3>Training plan that stays simple.</h3>
-                  <p>
-                    Your week laid out clearly — so you always know what’s next, what’s completed, and how your plan is building over time.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="feature-slide">
-              <div class="feature-slide-card">
-                <div class="feature-image">
-                  <img src="training.jpg" alt="Stride AI Coach screenshot">
-                </div>
-                <div class="feature-copy">
-                  <h3>AI Coach that actually helps.</h3>
-                  <p>
-                    Ask questions, get pacing advice, recovery tips, and training guidance — all inside your running ecosystem.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="carousel-dots" id="featureDots">
-            <div class="carousel-dot active"></div>
-            <div class="carousel-dot"></div>
-            <div class="carousel-dot"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="mission container">
-      <div class="mission-card">
-        <h2>BUILT FOR RUNNERS<br>WHO WANT CLARITY</h2>
-
-        <p>
-          Stride is built to help runners train with more direction, stay consistent, and actually understand their progress. It brings together your training, PRs, and guidance in one clean place so every week feels more organized, more focused, and easier to move through.
-        </p>
-
-        <div class="mission-actions">
-          <a class="btn primary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
-            Download the App
-          </a>
-          <a class="btn secondary" href="#contact">
-            Contact Stride
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="logo-cta">
-      <div class="hero-logo">
-        <img src="stride-logo.png" alt="Stride App Logo">
-      </div>
-
-      <div class="hero-cta" onclick="openAppStore()">
-        <h3>STRIDE</h3>
-        <span>VISIT STRIDE NOW</span>
-      </div>
-    </section>
-
-    <section class="contact container" id="contact">
-      <div class="contact-title">Contact</div>
-
-      <div class="contact-card">
-        <div class="contact-row">
-          <div class="contact-item">
-            <i class="fa-solid fa-envelope"></i>
-            <div>Email: <a href="mailto:business@runstride.org">business@runstride.org</a></div>
-          </div>
-
-          <div class="contact-item">
-            <i class="fa-brands fa-instagram"></i>
-            <div>Instagram: <a href="https://www.instagram.com/johnrunss" target="_blank" rel="noreferrer">@johnrunss</a></div>
-          </div>
-
-          <div class="contact-item">
-            <i class="fa-brands fa-youtube"></i>
-            <div>YouTube: <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">@stride_1of1</a></div>
-          </div>
-
-          <div class="contact-item">
-            <i class="fa-brands fa-tiktok"></i>
-            <div>TikTok: <a href="https://www.tiktok.com/@johnrunzz" target="_blank" rel="noreferrer">@johnrunzz</a></div>
-          </div>
-        </div>
-      </div>
     </section>
   </main>
 
-  <footer class="footer" id="download">
-    <div class="container">
-      <div class="footer-links">
+  <footer class="site-footer" id="contact">
+    <div class="footer-top">
+      <a class="footer-brand" href="#top">STRIDE</a>
+      <a class="footer-email" href="mailto:business@runstride.org">business@runstride.org</a>
+    </div>
+    <div class="footer-bottom">
+      <div class="social-links">
         <a href="https://www.instagram.com/johnrunss" target="_blank" rel="noreferrer">Instagram</a>
         <a href="https://www.youtube.com/@stride_1of1" target="_blank" rel="noreferrer">YouTube</a>
         <a href="https://www.tiktok.com/@johnrunzz" target="_blank" rel="noreferrer">TikTok</a>
       </div>
-
-      <div class="footer-badge">
-        <a href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">
-          <img
-            src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-            alt="Download on the App Store">
-        </a>
+      <div class="legal-links">
+        <a href="about-us.html">About</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-of-service.html">Terms</a>
+        <span>&copy; 2026 Stride, Inc.</span>
       </div>
-
-      <p class="footer-copy">© 2026 Stride, Inc. All Rights Reserved</p>
     </div>
   </footer>
 
   <script>
-    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-    window.addEventListener("load", () => {
-      if (!location.hash) window.scrollTo(0, 0);
-      updateFeatureCarousel();
-    });
+    const header = document.getElementById("siteHeader");
+    const toggle = document.getElementById("menuToggle");
+    const menu = document.getElementById("mobileMenu");
 
-    function openAppStore() {
-      window.location.href = "https://apps.apple.com/us/app/stride-run-smarter/id6746232026";
+    function updateHeader() {
+      header.classList.toggle("scrolled", window.scrollY > 24);
     }
 
-    function openMenu(){
-      document.body.classList.add("menu-open");
-      const menu = document.getElementById("sideMenu");
-      if(menu) menu.setAttribute("aria-hidden", "false");
-    }
-
-    function closeMenu(){
+    function closeMenu() {
       document.body.classList.remove("menu-open");
-      const menu = document.getElementById("sideMenu");
-      if(menu) menu.setAttribute("aria-hidden", "true");
+      toggle.setAttribute("aria-expanded", "false");
+      menu.setAttribute("aria-hidden", "true");
     }
 
-    document.addEventListener("keydown", (e) => {
-      if(e.key === "Escape") closeMenu();
+    toggle.addEventListener("click", function () {
+      const open = document.body.classList.toggle("menu-open");
+      toggle.setAttribute("aria-expanded", String(open));
+      menu.setAttribute("aria-hidden", String(!open));
     });
 
-    document.addEventListener("touchmove", function(e){
-      if(document.body.classList.contains("menu-open")){
-        e.preventDefault();
-      }
-    }, { passive: false });
-
-    const featuresCarousel = document.getElementById("featuresCarousel");
-    const featureSlides = Array.from(featuresCarousel.querySelectorAll(".feature-slide"));
-    const featureDots = Array.from(document.querySelectorAll("#featureDots .carousel-dot"));
-    const featurePrev = document.getElementById("featurePrev");
-    const featureNext = document.getElementById("featureNext");
-
-    function getFeatureIndex(){
-      const carouselRect = featuresCarousel.getBoundingClientRect();
-      const carouselCenter = carouselRect.left + carouselRect.width / 2;
-
-      let bestIndex = 0;
-      let bestDistance = Infinity;
-
-      featureSlides.forEach((slide, index) => {
-        const rect = slide.getBoundingClientRect();
-        const center = rect.left + rect.width / 2;
-        const distance = Math.abs(center - carouselCenter);
-
-        if(distance < bestDistance){
-          bestDistance = distance;
-          bestIndex = index;
-        }
-      });
-
-      return bestIndex;
-    }
-
-    function scrollToFeature(index){
-      const safeIndex = Math.max(0, Math.min(index, featureSlides.length - 1));
-      const target = featureSlides[safeIndex];
-      featuresCarousel.scrollTo({
-        left: target.offsetLeft,
-        behavior: "smooth"
-      });
-    }
-
-    function updateFeatureCarousel(){
-      const index = getFeatureIndex();
-
-      featureDots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
-      });
-
-      if(index === 0){
-        featurePrev.classList.add("hidden");
-      } else {
-        featurePrev.classList.remove("hidden");
-      }
-
-      if(index === featureSlides.length - 1){
-        featureNext.classList.add("hidden");
-      } else {
-        featureNext.classList.remove("hidden");
-      }
-    }
-
-    let featureRAF = null;
-    featuresCarousel.addEventListener("scroll", () => {
-      if(featureRAF) cancelAnimationFrame(featureRAF);
-      featureRAF = requestAnimationFrame(updateFeatureCarousel);
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", closeMenu);
     });
 
-    featurePrev.addEventListener("click", () => {
-      scrollToFeature(getFeatureIndex() - 1);
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
     });
 
-    featureNext.addEventListener("click", () => {
-      scrollToFeature(getFeatureIndex() + 1);
-    });
-
-    window.addEventListener("resize", updateFeatureCarousel);
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    updateHeader();
   </script>
 </body>
 </html>
