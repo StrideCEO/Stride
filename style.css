@@ -1,13 +1,13 @@
 :root {
-  --paper: #f6f4ef;
-  --white: #fffdf8;
-  --ink: #101918;
-  --muted: #5c6660;
-  --forest: #18372f;
-  --forest-deep: #10251f;
-  --track: #a34732;
-  --violet: #5242da;
-  --line: #d8d6cf;
+  --paper: #f8fafc;
+  --white: #ffffff;
+  --ink: #111827;
+  --muted: #667085;
+  --brand: #4f46e5;
+  --brand-bright: #6366f1;
+  --brand-soft: #eef2ff;
+  --brand-deep: #312e81;
+  --line: #e5e7eb;
   --max: 1240px;
   --serif: "Instrument Serif", Georgia, serif;
   --sans: "Inter", Arial, sans-serif;
@@ -52,7 +52,7 @@ img {
 
 .site-header.scrolled,
 body.menu-open .site-header {
-  background: rgba(246, 244, 239, 0.96);
+  background: rgba(248, 250, 252, 0.96);
   color: var(--ink);
   border-color: var(--line);
   backdrop-filter: blur(14px);
@@ -119,7 +119,7 @@ body.menu-open .site-header {
   overflow: hidden;
 }
 
-.hero-image,
+.hero-media,
 .hero-shade {
   position: absolute;
   inset: 0;
@@ -127,15 +127,22 @@ body.menu-open .site-header {
   height: 100%;
 }
 
+.hero-media {
+  display: block;
+}
+
 .hero-image {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
 }
 
 .hero-shade {
   background:
-    linear-gradient(90deg, rgba(11, 17, 16, 0.68) 0%, rgba(11, 17, 16, 0.33) 40%, rgba(11, 17, 16, 0.08) 65%),
-    linear-gradient(0deg, rgba(11, 17, 16, 0.52) 0%, rgba(11, 17, 16, 0) 42%);
+    linear-gradient(90deg, rgba(17, 24, 39, 0.68) 0%, rgba(30, 27, 75, 0.38) 40%, rgba(17, 24, 39, 0.08) 64%),
+    linear-gradient(0deg, rgba(30, 27, 75, 0.58) 0%, rgba(17, 24, 39, 0) 42%);
 }
 
 .hero-inner {
@@ -213,8 +220,12 @@ body.menu-open .site-header {
 }
 
 .button-light {
-  background: var(--white);
-  color: var(--ink);
+  background: var(--brand);
+  color: var(--white);
+}
+
+.button-light:hover {
+  background: var(--brand-bright);
 }
 
 .button-glass {
@@ -353,7 +364,7 @@ body.menu-open .site-header {
   border: 7px solid #171a1a;
   border-radius: 30px;
   overflow: hidden;
-  box-shadow: 0 24px 50px rgba(13, 22, 20, 0.14);
+  box-shadow: 0 24px 50px rgba(79, 70, 229, 0.12);
 }
 
 .phone img {
@@ -389,7 +400,7 @@ body.menu-open .site-header {
 
 .features-section {
   padding: 92px max(calc((100% - var(--max)) / 2), 28px) 96px;
-  background: var(--forest-deep);
+  background: var(--brand);
   color: var(--white);
 }
 
@@ -495,9 +506,9 @@ body.menu-open .site-header {
   align-items: center;
   gap: 12px;
   font-weight: 600;
-  color: var(--forest);
+  color: var(--brand);
   text-decoration: none;
-  border-bottom: 1px solid var(--forest);
+  border-bottom: 1px solid var(--brand);
   padding-bottom: 8px;
 }
 
@@ -505,12 +516,13 @@ body.menu-open .site-header {
   width: min(var(--max), calc(100% - 56px));
   margin: 0 auto 82px;
   padding: 68px 72px;
-  background: var(--track);
-  color: var(--white);
+  background: var(--brand-soft);
+  color: var(--ink);
   display: flex;
   align-items: end;
   justify-content: space-between;
   gap: 40px;
+  border: 1px solid #c7d2fe;
   border-radius: 6px;
 }
 
@@ -522,7 +534,7 @@ body.menu-open .site-header {
 .download-copy > p:not(.section-tag) {
   margin: 0;
   max-width: 440px;
-  color: rgba(255, 253, 248, 0.85);
+  color: var(--muted);
   line-height: 1.7;
 }
 
@@ -533,7 +545,7 @@ body.menu-open .site-header {
 
 .site-footer {
   color: var(--white);
-  background: var(--forest-deep);
+  background: var(--ink);
   padding: 58px max(calc((100% - var(--max)) / 2), 28px) 38px;
 }
 
@@ -691,7 +703,7 @@ body.menu-open .site-header {
     margin-top: 16px;
     padding: 18px;
     color: var(--white);
-    background: var(--forest);
+    background: var(--brand);
     border: 0;
     text-align: center;
   }
@@ -702,12 +714,12 @@ body.menu-open .site-header {
   }
 
   .hero-image {
-    object-position: 71% center;
+    object-position: center top;
   }
 
   .hero-shade {
     background:
-      linear-gradient(0deg, rgba(11, 17, 16, 0.78) 0%, rgba(11, 17, 16, 0.46) 52%, rgba(11, 17, 16, 0.14) 100%);
+      linear-gradient(0deg, rgba(30, 27, 75, 0.82) 0%, rgba(17, 24, 39, 0.5) 52%, rgba(17, 24, 39, 0.15) 100%);
   }
 
   .hero-inner {
