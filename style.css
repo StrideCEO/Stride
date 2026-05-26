@@ -591,6 +591,113 @@ body.menu-open .site-header {
   text-decoration: none;
 }
 
+.support-main {
+  width: min(920px, calc(100% - 56px));
+  margin: 0 auto;
+  padding: 150px 0 92px;
+}
+
+.support-hero {
+  max-width: 820px;
+  margin-bottom: 62px;
+}
+
+.support-hero .section-tag {
+  color: var(--brand);
+  margin-bottom: 24px;
+}
+
+.support-hero h1 {
+  margin: 0 0 24px;
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 8vw, 6.5rem);
+  font-weight: 400;
+  line-height: 0.96;
+}
+
+.support-intro {
+  max-width: 760px;
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.support-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.button-outline {
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.button-outline:hover {
+  color: var(--brand);
+  border-color: #c7d2fe;
+}
+
+.support-body {
+  max-width: 800px;
+}
+
+.support-section {
+  padding-bottom: 42px;
+  margin-bottom: 42px;
+  border-bottom: 1px solid var(--line);
+}
+
+.support-section:last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.support-section h2 {
+  margin: 0 0 18px;
+  font-family: var(--serif);
+  font-size: 2.35rem;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.support-section p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.support-section ul {
+  margin: 0;
+  padding-left: 23px;
+}
+
+.support-section li {
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
+.support-section li:last-child {
+  margin-bottom: 0;
+}
+
+.support-section strong {
+  color: var(--ink);
+}
+
+.support-section a {
+  color: var(--brand);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 1040px) {
   .hero h1 {
     font-size: 6.4rem;
@@ -706,6 +813,53 @@ body.menu-open .site-header {
     background: var(--brand);
     border: 0;
     text-align: center;
+  }
+
+  .support-main {
+    width: min(100% - 36px, var(--max));
+    padding: 112px 0 66px;
+  }
+
+  .support-hero {
+    margin-bottom: 44px;
+  }
+
+  .support-hero .section-tag {
+    margin-bottom: 19px;
+  }
+
+  .support-hero h1 {
+    margin-bottom: 19px;
+    font-size: clamp(3.2rem, 17vw, 4rem);
+  }
+
+  .support-intro {
+    font-size: 0.97rem;
+    line-height: 1.75;
+  }
+
+  .support-actions {
+    display: grid;
+    margin-top: 29px;
+  }
+
+  .support-actions .button {
+    width: 100%;
+  }
+
+  .support-section {
+    padding-bottom: 32px;
+    margin-bottom: 32px;
+  }
+
+  .support-section h2 {
+    margin-bottom: 15px;
+    font-size: 2.05rem;
+  }
+
+  .support-section p,
+  .support-section li {
+    font-size: 0.96rem;
   }
 
   .hero {
