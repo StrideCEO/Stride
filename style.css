@@ -464,6 +464,111 @@ body.menu-open .site-header {
   font-size: 0.93rem;
 }
 
+.capabilities-section {
+  padding: 96px max(calc((100% - var(--max)) / 2), 28px) 104px;
+  background: var(--white);
+  scroll-margin-top: 78px;
+}
+
+.capabilities-heading {
+  display: grid;
+  grid-template-columns: minmax(450px, 0.94fr) minmax(280px, 0.58fr);
+  justify-content: space-between;
+  align-items: end;
+  gap: 74px;
+  margin-bottom: 58px;
+}
+
+.capabilities-heading .section-tag {
+  color: var(--brand);
+}
+
+.capabilities-heading h2 {
+  margin: 0;
+  max-width: 650px;
+  font-family: var(--serif);
+  font-size: 4.7rem;
+  font-weight: 400;
+  line-height: 1.03;
+}
+
+.capabilities-heading > p {
+  margin: 0 0 9px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.capability-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+.capability-copy {
+  min-height: 190px;
+  padding: 30px 29px 28px;
+}
+
+.capability-label {
+  display: block;
+  margin-bottom: 22px;
+  color: var(--brand);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.capability-copy h3 {
+  margin: 0 0 12px;
+  font-size: 1.36rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.capability-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+
+.capability-screen {
+  height: 432px;
+  margin: 0;
+  overflow: hidden;
+  background: var(--white);
+  border-top: 1px solid var(--line);
+}
+
+.capability-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.capability-records img {
+  object-position: center 25%;
+}
+
+.capability-races img {
+  object-position: center 17%;
+}
+
+.capability-feed img {
+  object-position: center top;
+}
+
 .coaching-section {
   width: min(var(--max), calc(100% - 56px));
   margin: 0 auto;
@@ -728,6 +833,23 @@ body.menu-open .site-header {
 
   .coaching-section {
     gap: 50px;
+  }
+
+  .capabilities-heading {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .capabilities-heading h2 {
+    font-size: 3.9rem;
+  }
+
+  .capabilities-heading > p {
+    max-width: 560px;
+  }
+
+  .capability-copy {
+    padding: 26px 22px 24px;
   }
 }
 
@@ -1020,6 +1142,57 @@ body.menu-open .site-header {
 
   .feature-number {
     margin-bottom: 24px;
+  }
+
+  .capabilities-section {
+    padding: 62px 0 68px;
+    scroll-margin-top: 68px;
+  }
+
+  .capabilities-heading {
+    width: calc(100% - 36px);
+    margin: 0 auto 37px;
+    display: block;
+  }
+
+  .capabilities-heading h2 {
+    margin-bottom: 20px;
+    font-size: 3rem;
+  }
+
+  .capabilities-heading > p {
+    font-size: 0.94rem;
+  }
+
+  .capability-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 0 18px 13px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .capability-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .capability-card {
+    flex: 0 0 min(82vw, 332px);
+    scroll-snap-align: start;
+  }
+
+  .capability-copy {
+    min-height: 180px;
+    padding: 25px 23px 24px;
+  }
+
+  .capability-label {
+    margin-bottom: 17px;
+  }
+
+  .capability-screen {
+    height: 384px;
   }
 
   .coaching-section {
