@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="stride-logo.png">
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=8">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -292,6 +292,53 @@
 
     window.addEventListener("scroll", updateHeader, { passive: true });
     updateHeader();
+  </script>
+
+  <script>
+    // Scroll reveals — progressive enhancement.
+    // Skipped entirely for reduced-motion or no IntersectionObserver,
+    // so content is always visible without this running.
+    (function () {
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduce || !("IntersectionObserver" in window)) return;
+
+      document.documentElement.classList.add("js-reveal");
+
+      var groups = [
+        { sel: ".signal-lead" },
+        { sel: ".signal-items > div", stagger: true },
+        { sel: ".product-copy > *", stagger: true },
+        { sel: ".phone-showcase", fade: true },
+        { sel: ".section-heading > *", stagger: true },
+        { sel: ".feature-grid > article", stagger: true },
+        { sel: ".capabilities-heading > *", stagger: true },
+        { sel: ".capability-card", stagger: true },
+        { sel: ".coach-preview", fade: true },
+        { sel: ".coaching-copy > *", stagger: true },
+        { sel: ".download-copy > *", stagger: true },
+        { sel: ".store-badge" }
+      ];
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+      groups.forEach(function (group) {
+        var els = document.querySelectorAll(group.sel);
+        els.forEach(function (el, i) {
+          el.classList.add(group.fade ? "reveal-fade" : "reveal");
+          if (group.stagger) {
+            el.style.transitionDelay = Math.min(i * 70, 350) + "ms";
+          }
+          observer.observe(el);
+        });
+      });
+    })();
   </script>
 </body>
 </html>

@@ -1271,3 +1271,92 @@ body.menu-open .site-header {
     font-size: 1.45rem;
   }
 }
+
+/* ============================================================
+   Motion & animations  (subtle / premium)
+   - Scroll reveals are JS-gated via .js-reveal on <html>, so
+     content stays visible with no JS and for reduced-motion users.
+   - Continuous motion is wrapped in prefers-reduced-motion:
+     no-preference so it never plays for motion-sensitive users.
+   - Phones float via the independent `translate` property so the
+     existing positioning `transform` on them is preserved.
+   ============================================================ */
+
+/* --- Scroll reveals --- */
+.js-reveal .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+.js-reveal .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.js-reveal .reveal-fade {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  will-change: opacity;
+}
+.js-reveal .reveal-fade.is-visible {
+  opacity: 1;
+}
+
+/* --- Button sheen (hover) --- */
+.button-light {
+  position: relative;
+  overflow: hidden;
+}
+.button-light::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 32%, rgba(255, 255, 255, 0.42) 50%, transparent 68%);
+  transform: translateX(-130%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.button-light:hover::after {
+  transform: translateX(130%);
+}
+
+/* --- Continuous / entrance motion --- */
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance: stagger the headline copy in on load */
+  .hero-copy > *,
+  .hero-meta {
+    opacity: 0;
+    animation: stride-rise 0.75s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+  .hero-copy .eyebrow { animation-delay: 0.1s; }
+  .hero-copy h1 { animation-delay: 0.22s; }
+  .hero-copy .hero-statement { animation-delay: 0.36s; }
+  .hero-copy .hero-description { animation-delay: 0.48s; }
+  .hero-copy .hero-actions { animation-delay: 0.6s; }
+  .hero-meta { animation-delay: 0.74s; }
+
+  /* Ken Burns: slow drift/zoom on the hero photo */
+  .hero-image {
+    animation: stride-kenburns 28s ease-in-out infinite alternate;
+  }
+
+  /* Phone float (uses `translate`, composes with existing transform) */
+  .phone-main { animation: stride-float 6s ease-in-out infinite alternate; }
+  .phone-left { animation: stride-float 7s ease-in-out infinite alternate; animation-delay: -2.5s; }
+  .phone-right { animation: stride-float 6.6s ease-in-out infinite alternate; animation-delay: -4s; }
+  .phone-coach { animation: stride-float 6.4s ease-in-out infinite alternate; }
+  .capability-phone { animation: stride-float 7.2s ease-in-out infinite alternate; }
+}
+
+@keyframes stride-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes stride-kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+@keyframes stride-float {
+  from { translate: 0 0; }
+  to { translate: 0 -6px; }
+}
