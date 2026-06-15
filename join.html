@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4F46E5">
+  <meta name="robots" content="noindex">
+  <title>Join your team on Stride</title>
+  <link rel="icon" href="stride-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #F5F6FF; color: #0F172A; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+    }
+    .card {
+      background: #fff; border-radius: 24px; padding: 36px 28px; max-width: 420px; width: 100%;
+      text-align: center; box-shadow: 0 20px 60px rgba(79, 70, 229, 0.15);
+    }
+    .logo { width: 64px; height: 64px; border-radius: 16px; margin: 0 auto 18px; display: block; }
+    .brand { font-size: 12px; font-weight: 800; letter-spacing: 3px; color: #4F46E5; text-transform: uppercase; margin-bottom: 14px; }
+    h1 { font-size: 24px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.5px; }
+    p.lead { font-size: 15px; color: #475569; line-height: 1.5; margin-bottom: 24px; }
+    .code-box { background: #EEF2FF; border: 1px dashed #C7D2FE; border-radius: 14px; padding: 14px; margin-bottom: 24px; }
+    .code-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #4F46E5; text-transform: uppercase; }
+    .code { font-size: 28px; font-weight: 800; letter-spacing: 4px; color: #1E1B4B; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+      padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 700; text-decoration: none; margin-bottom: 12px;
+    }
+    .btn-primary { background: #4F46E5; color: #fff; }
+    .btn-secondary { background: #fff; color: #4F46E5; border: 1.5px solid #C7D2FE; }
+    .hint { font-size: 13px; color: #94A3B8; margin-top: 8px; }
+    .free { font-size: 13px; font-weight: 700; color: #4F46E5; margin-top: 18px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="stride-logo.png" alt="Stride">
+    <div class="brand">Stride</div>
+    <h1>Join your team on Stride</h1>
+    <p class="lead">Open the Stride app to join the club. Don&rsquo;t have it yet? Grab it free, then come back and tap join.</p>
+
+    <div class="code-box" id="codeBox" hidden>
+      <div class="code-label">Your join code</div>
+      <div class="code" id="codeText">&mdash;</div>
+    </div>
+
+    <a class="btn btn-primary" id="openBtn" href="#">Open Stride &amp; Join</a>
+    <a class="btn btn-secondary" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026">Get Stride on the App Store</a>
+
+    <p class="hint">After installing, reopen this link or enter the code in the app.</p>
+    <p class="free">Free for your whole team.</p>
+  </div>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var code = (params.get("code") || "").toUpperCase().trim();
+      var appUrl = "stride://join/" + encodeURIComponent(code);
+
+      document.getElementById("openBtn").setAttribute("href", appUrl);
+
+      if (code) {
+        document.getElementById("codeText").textContent = code;
+        document.getElementById("codeBox").hidden = false;
+        // Try to open the app automatically (works instantly if Stride is installed).
+        setTimeout(function () { window.location.href = appUrl; }, 400);
+      }
+    })();
+  </script>
+</body>
+</html>
