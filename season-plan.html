@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0a12">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="The full structure I use to plan a cross country season — phases, weekly schedule, workouts, and racing strategy.">
+  <title>Your XC Season Plan | Stride</title>
+  <link rel="icon" href="stride-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0a12;
+      --ink: #f7f5fb;
+      --muted: rgba(247, 245, 251, 0.68);
+      --faint: rgba(247, 245, 251, 0.44);
+      --line: rgba(247, 245, 251, 0.12);
+      --accent: #7b2fbe;
+      --accent-bright: #9243d6;
+      --accent-text: #c39bec;
+      --serif: "Instrument Serif", Georgia, serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(120% 60% at 50% -10%, rgba(123, 47, 190, 0.34) 0%, rgba(123, 47, 190, 0) 60%),
+        var(--bg);
+      background-repeat: no-repeat;
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.5;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    .page {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 calc(40px + env(safe-area-inset-bottom));
+    }
+
+    .wordmark {
+      display: inline-block;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+
+    /* Download (primary) */
+    .delivery {
+      display: grid;
+      gap: 36px;
+      padding: 44px 0 56px;
+    }
+
+    .delivery h1 {
+      margin: 0 0 16px;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.9rem, 11vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.01em;
+    }
+
+    .subhead {
+      margin: 0 0 30px;
+      max-width: 34rem;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      min-height: 68px;
+      padding: 0 28px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 1.14rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 14px 40px rgba(123, 47, 190, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      transition: background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .download:hover {
+      background: var(--accent-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 18px 48px rgba(123, 47, 190, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+
+    .download:focus-visible,
+    .preview:focus-visible,
+    .secondary-button:focus-visible {
+      outline: 3px solid var(--accent-text);
+      outline-offset: 3px;
+    }
+
+    .download svg { width: 22px; height: 22px; flex: none; }
+
+    .file-meta {
+      margin: 12px 0 0;
+      font-size: 0.84rem;
+      color: var(--faint);
+      text-align: center;
+    }
+
+    .preview {
+      justify-self: center;
+      width: min(280px, 78%);
+      text-decoration: none;
+      transform: rotate(-1.5deg);
+      transition: transform 200ms ease;
+    }
+
+    .preview:hover { transform: rotate(0deg) translateY(-2px); }
+
+    .preview img {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      background: #fff;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      margin: 0;
+      border: 0;
+      background: var(--line);
+    }
+
+    /* Stride (secondary) */
+    .coach-pitch {
+      padding: 52px 0 44px;
+      max-width: 36rem;
+    }
+
+    .coach-pitch h2 {
+      margin: 0 0 14px;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2rem, 7.4vw, 2.8rem);
+      line-height: 1.05;
+    }
+
+    .coach-pitch p {
+      margin: 0 0 26px;
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .secondary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 26px;
+      border: 1px solid rgba(195, 155, 236, 0.5);
+      border-radius: 6px;
+      color: var(--ink);
+      font-size: 0.98rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 150ms ease, border-color 150ms ease;
+    }
+
+    .secondary-button:hover {
+      background: rgba(123, 47, 190, 0.16);
+      border-color: var(--accent-text);
+    }
+
+    .signoff {
+      margin: 0;
+      padding-top: 26px;
+      border-top: 1px solid var(--line);
+      font-size: 0.9rem;
+      color: var(--faint);
+    }
+
+    @media (min-width: 820px) {
+      .page { padding-top: 36px; }
+
+      .delivery {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: 64px;
+        padding: 72px 0 84px;
+      }
+
+      .download { display: inline-flex; width: auto; min-width: 340px; }
+      .file-meta { text-align: left; padding-left: 2px; }
+      .preview { width: min(340px, 100%); }
+      .coach-pitch { padding: 68px 0 56px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .download, .preview, .secondary-button { transition: none; }
+      .preview, .preview:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <span class="wordmark">STRIDE</span>
+
+    <main>
+      <section class="delivery">
+        <div>
+          <h1>Here&rsquo;s your season plan.</h1>
+          <p class="subhead">The full structure I use to plan a cross country season &mdash; phases, weekly schedule, workouts, and racing strategy.</p>
+          <a class="download" href="https://drive.google.com/file/d/16zxtTSLE-pnAsJOrSbDEKexotJGH9Jb8/view?usp=sharing" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+            Download the PDF
+          </a>
+          <p class="file-meta">Free &middot; 1-page PDF &middot; opens in Google Drive</p>
+        </div>
+
+        <a class="preview" href="https://drive.google.com/file/d/16zxtTSLE-pnAsJOrSbDEKexotJGH9Jb8/view?usp=sharing" target="_blank" rel="noopener" aria-label="Open the season plan PDF">
+          <img src="season-plan-preview.jpg" width="800" height="1035" alt="First page of The Cross Country Season Plan I Use: the four phases, a normal week, sessions, and racing strategy">
+        </a>
+      </section>
+
+      <hr class="divider">
+
+      <section class="coach-pitch">
+        <h2>I built the app I run my team on.</h2>
+        <p>Stride handles the roster, workouts, attendance, and mileage tracking for my high school cross country team. If you coach, you can run yours on it too.</p>
+        <a class="secondary-button" href="for-coaches.html">See Stride for coaches <span aria-hidden="true">&rarr;</span></a>
+      </section>
+    </main>
+
+    <p class="signoff">&mdash; John, high school XC coach &middot; @coachjohn_xc</p>
+  </div>
+</body>
+</html>
