@@ -9,10 +9,11 @@
 (function () {
   var POSTHOG_KEY = 'phc_LgimMgRlWJSbQRYNm526ROJGPsWpndAS3LK4aVAHcz9';
   var POSTHOG_HOST = 'https://us.i.posthog.com';
-  // App Store Connect > Apps > Stride > App Analytics > Acquisition > Campaigns >
-  // "Generate a Campaign Link" shows it as pt=... in the link. While empty, App
-  // Store links are left as they are and only the website side is measured.
-  var APP_STORE_PROVIDER_TOKEN = '';
+  // The pt=... in a link from App Store Connect > Analytics > Acquisition >
+  // Campaigns > "Generate a Campaign Link". Installs then show up there per ad.
+  var APP_STORE_PROVIDER_TOKEN = '127850192';
+  // App Store Connect shows campaign names up to 30 characters.
+  var CAMPAIGN_MAX = 30;
 
   var AD_KEY = 'stride_ad';
   var AD_TTL_MS = 30 * 24 * 60 * 60 * 1000;
@@ -94,7 +95,7 @@
       if (ad && APP_STORE_PROVIDER_TOKEN) {
         var url = new URL(link.href);
         url.searchParams.set('pt', APP_STORE_PROVIDER_TOKEN);
-        url.searchParams.set('ct', (ad.campaign || ad.source || 'web').slice(0, 40));
+        url.searchParams.set('ct', (ad.campaign || ad.source || 'web').slice(0, CAMPAIGN_MAX));
         url.searchParams.set('mt', '8');
         link.href = url.toString();
       }
