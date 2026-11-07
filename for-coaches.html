@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="stride-logo.png">
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,6 +51,7 @@
   }
   </script>
   <script src="analytics.js?v=2" defer></script>
+  <script src="video.js?v=1" defer></script>
 </head>
 <body class="coaches-page">
   <header class="site-header scrolled" id="siteHeader">
@@ -103,6 +104,23 @@
         <figure class="phone capability-phone coach-hero-phone coach-hero-phone-front">
           <img src="club-ai.png" loading="lazy" decoding="async" alt="Stride Club AI, a private co-pilot for coaches">
         </figure>
+      </div>
+    </section>
+
+    <section class="video-section" id="watch" aria-labelledby="watchTitle">
+      <div class="video-inner">
+        <div class="video-heading">
+          <p class="section-tag">Watch</p>
+          <h2 id="watchTitle">See the app your athletes will use.</h2>
+          <p class="video-lead">Five minutes, filmed on the track: how Stride helps every runner train smarter and get faster. Then bring your whole team in.</p>
+        </div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube-nocookie.com/embed/qOyLRjpbpG4?rel=0&amp;playsinline=1&amp;enablejsapi=1" title="This running app is made to get you faster" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-video-id="qOyLRjpbpG4" data-placement="for_coaches"></iframe>
+        </div>
+        <div class="video-actions">
+          <a class="button button-light" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">Get Stride for your team</a>
+          <p class="video-note">Free for your whole team.</p>
+        </div>
       </div>
     </section>
 
@@ -288,6 +306,8 @@
       var groups = [
         { sel: ".coach-hero-copy > *", stagger: true },
         { sel: ".coach-hero-screens", fade: true },
+        { sel: ".video-heading > *", stagger: true },
+        { sel: ".video-frame", fade: true },
         { sel: ".wedge-heading > *", stagger: true },
         { sel: ".wedge-card", stagger: true },
         { sel: ".section-heading > *", stagger: true },

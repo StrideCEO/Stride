@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="stride-logo.png">
-  <link rel="stylesheet" href="style.css?v=10">
+  <link rel="stylesheet" href="style.css?v=11">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,6 +51,7 @@
   }
   </script>
   <script src="analytics.js?v=2" defer></script>
+  <script src="video.js?v=1" defer></script>
 </head>
 <body>
   <header class="site-header" id="siteHeader">
@@ -98,7 +99,7 @@
           <p class="hero-description">One running platform for you and your whole team. AI coaching, PRs, and race tracking for every runner &mdash; plus leaderboards, rosters, and a shared training calendar to run a club.</p>
           <div class="hero-actions">
             <a class="button button-light" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">Get the app</a>
-            <a class="button button-glass" href="#product">Explore Stride</a>
+            <a class="button button-glass" href="#watch">Watch the video</a>
           </div>
         </div>
         <div class="hero-meta">
@@ -117,6 +118,23 @@
           <div><strong>AI</strong><span>Smarter coaching</span></div>
           <div><strong>PRs</strong><span>Progress tracked</span></div>
           <div><strong>Clubs</strong><span>Run your team</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section" id="watch" aria-labelledby="watchTitle">
+      <div class="video-inner">
+        <div class="video-heading">
+          <p class="section-tag">Watch</p>
+          <h2 id="watchTitle">See how Stride gets you faster.</h2>
+          <p class="video-lead">Five minutes, filmed on the track. See what Stride does and how it helps you train smarter.</p>
+        </div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube-nocookie.com/embed/qOyLRjpbpG4?rel=0&amp;playsinline=1&amp;enablejsapi=1" title="This running app is made to get you faster" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen data-video-id="qOyLRjpbpG4" data-placement="home"></iframe>
+        </div>
+        <div class="video-actions">
+          <a class="button button-light" href="https://apps.apple.com/us/app/stride-run-smarter/id6746232026" target="_blank" rel="noreferrer">Download Stride free</a>
+          <p class="video-note">Free on the App Store.</p>
         </div>
       </div>
     </section>
@@ -343,6 +361,8 @@
       var groups = [
         { sel: ".signal-lead" },
         { sel: ".signal-items > div", stagger: true },
+        { sel: ".video-heading > *", stagger: true },
+        { sel: ".video-frame", fade: true },
         { sel: ".coaches-copy > *", stagger: true },
         { sel: ".coaches-screens", fade: true },
         { sel: ".product-copy > *", stagger: true },
