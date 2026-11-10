@@ -101,11 +101,18 @@
         link.href = url.toString();
       }
       link.addEventListener('click', function () {
+        // Which part of the page the button sits in (hero, video, header, footer…).
+        var area = link.closest('section, header, nav, footer');
+        var where = area ? (area.id || (area.className || '').split(' ')[0] || area.tagName.toLowerCase()) : 'page';
+        var ct = null;
+        try { ct = new URL(link.href).searchParams.get('ct'); } catch (e) {}
         // window.posthog, not the stub: after loading it is the real client.
         // Sent right away: the App Store opening sends the browser to the background.
         window.posthog.capture('download_clicked', {
           page: window.location.pathname,
-          link_text: (link.textContent || '').trim().slice(0, 60),
+          link_text: (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 60),
+          section: where,
+          app_store_ct: ct,
         }, { transport: 'sendBeacon', send_instantly: true });
       });
     });
