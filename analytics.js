@@ -92,8 +92,9 @@
   onReady(function () {
     var links = document.querySelectorAll('a[href*="apps.apple.com"]');
     Array.prototype.forEach.call(links, function (link) {
-      if (ad && APP_STORE_PROVIDER_TOKEN) {
-        var url = new URL(link.href);
+      // A link that already names its own App Store campaign (ct) keeps it.
+      var url = new URL(link.href);
+      if (ad && APP_STORE_PROVIDER_TOKEN && !url.searchParams.has('ct')) {
         url.searchParams.set('pt', APP_STORE_PROVIDER_TOKEN);
         url.searchParams.set('ct', (ad.campaign || ad.source || 'web').slice(0, CAMPAIGN_MAX));
         url.searchParams.set('mt', '8');
@@ -101,10 +102,11 @@
       }
       link.addEventListener('click', function () {
         // window.posthog, not the stub: after loading it is the real client.
+        // Sent right away: the App Store opening sends the browser to the background.
         window.posthog.capture('download_clicked', {
           page: window.location.pathname,
           link_text: (link.textContent || '').trim().slice(0, 60),
-        }, { transport: 'sendBeacon' });
+        }, { transport: 'sendBeacon', send_instantly: true });
       });
     });
   });
