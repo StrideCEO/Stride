@@ -11,6 +11,166 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" href="stride-logo.png">
   <link rel="stylesheet" href="style.css?v=11">
+  <!-- Coach ad test (Nov 2026). Everything for the test lives in this file.
+       Restore the original: git checkout for-coaches-before-ad-test -- for-coaches.html -->
+  <style>
+    .ad-hero {
+      width: min(1080px, calc(100% - 56px));
+      margin: 0 auto;
+      padding: 110px 0 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      grid-template-rows: 1fr auto auto auto 1fr;
+      grid-template-areas: ". shot" "title shot" "points shot" "cta shot" ". shot";
+      column-gap: 72px;
+    }
+    .ad-hero h1 {
+      grid-area: title;
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 4rem;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .ad-hero-shot {
+      grid-area: shot;
+      margin: 0;
+      width: 300px;
+      aspect-ratio: 1179 / 2556;
+      border: 7px solid #171a1a;
+      border-radius: 34px;
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 27px 52px rgba(79, 70, 229, 0.18);
+    }
+    .ad-hero-shot img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .ad-hero-points {
+      grid-area: points;
+      list-style: none;
+      margin: 30px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 16px;
+    }
+    .ad-hero-points li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1.12rem;
+      line-height: 1.4;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .ad-hero-icon {
+      flex: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--brand-soft);
+      color: var(--brand);
+      display: grid;
+      place-items: center;
+    }
+    .ad-hero-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .ad-hero-cta {
+      grid-area: cta;
+      margin-top: 34px;
+    }
+    .ad-hero-cta .button {
+      min-width: 240px;
+      font-size: 1.05rem;
+    }
+    .ad-hero-trust {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    /* The old hero, now the second section. */
+    .ad-hero + .coach-hero { padding-top: 40px; }
+    .coach-hero-copy h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 3.4rem;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .ad-sticky { display: none; }
+
+    @media (max-width: 760px) {
+      .ad-hero {
+        width: calc(100% - 32px);
+        padding: 82px 0 36px;
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        grid-template-areas: "title" "shot" "points" "cta";
+        column-gap: 0;
+      }
+      .ad-hero h1 { font-size: 2.1rem; line-height: 1.04; }
+      /* On phones: a crop of the screenshot at full width, so the text is readable. */
+      .ad-hero-shot {
+        width: 100%;
+        aspect-ratio: auto;
+        height: 210px;
+        height: min(230px, 31svh);
+        margin-top: 14px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: 0 14px 30px rgba(79, 70, 229, 0.14);
+      }
+      .ad-hero-shot img { object-position: 50% 9%; }
+      .ad-hero-points { margin-top: 16px; gap: 10px; }
+      .ad-hero-points li { font-size: 0.95rem; line-height: 1.3; gap: 11px; }
+      .ad-hero-icon { width: 30px; height: 30px; border-radius: 8px; }
+      .ad-hero-icon svg { width: 17px; height: 17px; }
+      .ad-hero-cta { margin-top: 18px; }
+      .ad-hero-cta .button { width: 100%; min-height: 52px; }
+      .ad-hero-trust { margin-top: 10px; font-size: 0.85rem; text-align: center; }
+      .coach-hero-copy h2 { font-size: 2.6rem; }
+
+      /* Bottom bar: shows once the main button has scrolled off screen. */
+      .ad-sticky {
+        display: flex;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 60;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--line);
+        transform: translateY(110%);
+        transition: transform 220ms ease;
+      }
+      .ad-sticky.is-shown { transform: none; }
+      .ad-sticky p { margin: 0; flex: 1; font-size: 0.82rem; line-height: 1.3; color: var(--muted); }
+      .ad-sticky p strong { display: block; color: var(--ink); font-size: 0.92rem; }
+      .ad-sticky .button { flex: none; min-height: 46px; padding: 0 22px; }
+      body.menu-open .ad-sticky { display: none; }
+      body.coaches-page { padding-bottom: 76px; }
+    }
+  </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -85,10 +245,35 @@
   </nav>
 
   <main id="top">
+    <section class="ad-hero" id="ad-hero">
+      <h1>Tired of your athletes not knowing when to show up?</h1>
+      <figure class="ad-hero-shot">
+        <img src="club-chat.png?v=2" fetchpriority="high" decoding="async" alt="Stride team chat, where the coach posts to the whole team">
+      </figure>
+      <ul class="ad-hero-points">
+        <li>
+          <span class="ad-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M8 2.5v4M16 2.5v4M3 9.5h18M12 13v3l2 1.2"/></svg></span>
+          <span>Post practice times once, and the whole team sees them</span>
+        </li>
+        <li>
+          <span class="ad-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10v4a1 1 0 0 0 1 1h2.5L14 19V5L7.5 9H5a1 1 0 0 0-1 1z"/><path d="M17.5 9a4.5 4.5 0 0 1 0 6M20 6.5a8 8 0 0 1 0 11"/></svg></span>
+          <span>Send workouts and announcements in one place</span>
+        </li>
+        <li>
+          <span class="ad-hero-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20h18M6 20v-6M11 20V9M16 20v-9M21 4l-5 5-4-3-6 5"/></svg></span>
+          <span>See who&rsquo;s actually putting in the miles</span>
+        </li>
+      </ul>
+      <div class="ad-hero-cta">
+        <a class="button button-light" href="https://apps.apple.com/app/apple-store/id6746232026?pt=127850192&amp;ct=coaches_appstore_nov26&amp;mt=8" target="_blank" rel="noreferrer">Download free</a>
+        <p class="ad-hero-trust">Free for coaches and teams. Built by a high school XC coach for his own team.</p>
+      </div>
+    </section>
+
     <section class="coach-hero">
       <div class="coach-hero-copy">
         <p class="eyebrow">For Coaches &amp; Teams</p>
-        <h1>The running app built for your whole team.</h1>
+        <h2>The running app built for your whole team.</h2>
         <p class="coach-hero-statement">Training, PRs, races, and team culture in one place &mdash; for high school, college, and club running teams.</p>
         <p class="coach-hero-description">One coach brings the whole roster. See every athlete&rsquo;s mileage, rank your team, plan the week, and keep everyone moving &mdash; all in the app your runners already love.</p>
         <div class="coach-hero-actions">
@@ -247,6 +432,11 @@
     </section>
   </main>
 
+  <section class="ad-sticky" id="sticky-download" aria-label="Download Stride" aria-hidden="true">
+    <p><strong>Stride for your team</strong>Free on iPhone</p>
+    <a class="button button-light" href="https://apps.apple.com/app/apple-store/id6746232026?pt=127850192&amp;ct=coaches_appstore_nov26&amp;mt=8" target="_blank" rel="noreferrer" tabindex="-1">Download free</a>
+  </section>
+
   <footer class="site-footer" id="contact">
     <div class="footer-top">
       <a class="footer-brand" href="index.html">STRIDE</a>
@@ -293,6 +483,25 @@
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") closeMenu();
     });
+  </script>
+
+  <script>
+    // Phones: show the bottom Download bar once the main button is off screen.
+    (function () {
+      var bar = document.getElementById("sticky-download");
+      var cta = document.querySelector(".ad-hero-cta .button");
+      if (!bar || !cta) return;
+      var barLink = bar.querySelector("a");
+      function show(on) {
+        bar.classList.toggle("is-shown", on);
+        bar.setAttribute("aria-hidden", String(!on));
+        barLink.tabIndex = on ? 0 : -1;
+      }
+      if (!("IntersectionObserver" in window)) { show(true); return; }
+      new IntersectionObserver(function (entries) {
+        show(!entries[0].isIntersecting);
+      }).observe(cta);
+    })();
   </script>
 
   <script>
