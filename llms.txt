@@ -1,0 +1,22 @@
+# Stride Run
+
+> Stride Run ("Stride: Run Smarter" on the App Store) is a free iPhone app for running teams. Cross country and track coaches use it to post practice times, send workouts and announcements, organize the roster into training groups, and see team mileage, PRs and meet results in one place. Runners use it for training plans, PRs, race logs and an AI coach. Built by a high school cross country coach for his own team.
+
+- Price: free for coaches and athletes. Optional Coach Premium ($19.99/month or $159.99/year) adds attendance, readiness check-ins, weekly team goals, athlete training views and private coach notes. New clubs get those free for 7 days.
+- Platform: iPhone only for now (iOS 17 or later). Runs import from Apple Health, including Apple Watch, and Garmin or COROS watches that sync to Apple Health.
+- App Store rating: 4.7 out of 5 from 14 ratings (November 2026).
+- Download: https://apps.apple.com/us/app/stride-run-smarter/id6746232026
+
+## Coaches
+- [The best free app for cross country and track coaches](https://runstride.org/best-app-for-cross-country-coaches): what Stride does for a team, with screenshots, and how to add your team
+- [Stride for coaches and teams](https://runstride.org/for-coaches.html)
+- [Coach FAQ](https://runstride.org/faq): pricing, adding a team, practice times, XC and track, Android, watches, privacy
+
+## Comparisons
+- [Stride vs TeamSnap for running teams](https://runstride.org/stride-vs-teamsnap-for-running-teams)
+- [Stride vs Strava for coaches](https://runstride.org/stride-vs-strava-for-coaches)
+
+## About
+- [Our story](https://runstride.org/our-story.html)
+- [Support](https://runstride.org/support.html)
+- [Privacy policy](https://runstride.org/privacy-policy.html)
