@@ -11,6 +11,14 @@
   <link rel="preconnect" href="https://us.i.posthog.com" crossorigin>
   <!-- Tracking first: nothing below may delay it. -->
   <script src="analytics.js?v=3"></script>
+  <!-- Ads whose campaign name starts with "runners" get the runner version of this page. -->
+  <script>
+    try {
+      if (/^runners/i.test(new URLSearchParams(location.search).get('utm_campaign') || '')) {
+        document.documentElement.setAttribute('data-aud', 'runners');
+      }
+    } catch (e) {}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Fonts load without blocking anything (the page shows in system fonts first). -->
@@ -116,6 +124,9 @@
     .qr canvas, .qr img { width: 168px; height: 168px; }
 
     [hidden] { display: none !important; }
+    /* Coach wording by default; runner wording when the ad is a runners campaign. */
+    html:not([data-aud="runners"]) .for-runners,
+    html[data-aud="runners"] .for-coaches { display: none !important; }
     @media (min-width: 700px) {
       body { display: grid; place-items: center; }
       h1 { font-size: 54px; }
@@ -144,8 +155,10 @@
         <span class="status-label">Opening the App Store…</span>
         <div class="bar"><span></span></div>
       </div>
-      <h1>Run your whole team on Stride.</h1>
-      <p class="lead">Training, PRs, team leaderboards and an AI coach in one app. Free for your whole team.</p>
+      <h1 class="for-coaches">Run your whole team on Stride.</h1>
+      <p class="lead for-coaches">Training, PRs, team leaderboards and an AI coach in one app. Free for your whole team.</p>
+      <h1 class="for-runners">Get faster with Stride.</h1>
+      <p class="lead for-runners">Your training plan, PRs, race log and an AI coach that reads your runs, all in one free app.</p>
       <a class="btn" id="open-store" href="https://apps.apple.com/app/apple-store/id6746232026?pt=127850192&amp;ct=coaches_appstore_nov26&amp;mt=8">
         Get Stride free
         <small>on the App Store</small>
@@ -159,19 +172,25 @@
       <div class="qr" id="qr" hidden aria-label="QR code to open this page on your iPhone"></div>
       <a class="btn" id="desktop-store" hidden href="https://apps.apple.com/app/apple-store/id6746232026?pt=127850192&amp;ct=coaches_appstore_nov26&amp;mt=8">
         Get it on the App Store
-        <small>Free for your whole team</small>
+        <small class="for-coaches">Free for your whole team</small>
+        <small class="for-runners">Free to download</small>
       </a>
       <button class="btn" id="copy-link" type="button" hidden>
         Copy link
-        <small>Send it to your team's iPhones</small>
+        <small class="for-coaches">Send it to your team's iPhones</small>
+        <small class="for-runners">Open it later on an iPhone</small>
       </button>
-      <a class="btn ghost" id="coach-link" href="for-coaches.html">See Stride for coaches</a>
+      <a class="btn ghost for-coaches" id="coach-link" href="for-coaches.html">See Stride for coaches</a>
+      <a class="btn ghost for-runners" id="runner-link" href="./">See what Stride does</a>
     </section>
 
     <ul class="checks">
-      <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free for your whole team, no credit card</li>
-      <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Rank your roster by weekly mileage and send workouts to the team calendar</li>
-      <li><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Built for high school, college and club running teams</li>
+      <li class="for-coaches"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free for your whole team, no credit card</li>
+      <li class="for-coaches"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Rank your roster by weekly mileage and send workouts to the team calendar</li>
+      <li class="for-coaches"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Built for high school, college and club running teams</li>
+      <li class="for-runners"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free to download, no credit card</li>
+      <li class="for-runners"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Apple Watch, Garmin and COROS runs come in through Apple Health</li>
+      <li class="for-runners"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#4f46e5"/><path d="M5.5 10.2l3 3 6-6.4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Join your team or club and climb the weekly mileage leaderboard</li>
     </ul>
 
     <!-- Real limited-edition badges. Each line hides itself once its date has passed. -->
@@ -195,16 +214,26 @@
 
   <script>
     (function () {
-      var STORE_URL = 'https://apps.apple.com/app/apple-store/id6746232026?pt=127850192&ct=coaches_appstore_nov26&mt=8';
       var started = Date.now();
-
       var params = new URLSearchParams(window.location.search);
+      var isRunners = document.documentElement.getAttribute('data-aud') === 'runners';
+
+      // App Store Connect campaign name (letters, numbers, _ and -, at most 30).
+      // Coach ads always use coaches_appstore_nov26. Runner ads use their own
+      // campaign name, so installs show up under it in App Store Connect.
+      var ct = 'coaches_appstore_nov26';
+      if (isRunners) {
+        ct = (params.get('utm_campaign') || '').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 30) || 'runners_nov26';
+      }
+      var STORE_URL = 'https://apps.apple.com/app/apple-store/id6746232026?pt=127850192&ct=' + ct + '&mt=8';
+
       var props = {
         utm_source: params.get('utm_source'),
         utm_medium: params.get('utm_medium'),
         utm_campaign: params.get('utm_campaign'),
         utm_content: params.get('utm_content'),
-        app_store_ct: 'coaches_appstore_nov26',
+        app_store_ct: ct,
+        audience: isRunners ? 'runners' : 'coaches',
       };
 
       var ua = navigator.userAgent || '';
@@ -222,12 +251,13 @@
       if (!shown) document.getElementById('drop').hidden = true;
 
       // analytics.js rewrites App Store links to the ad's campaign name; this page
-      // always sends App Store installs to coaches_appstore_nov26.
+      // sets its own (see ct above).
       function keepStoreLinks() {
         document.getElementById('open-store').href = STORE_URL;
         document.getElementById('desktop-store').href = STORE_URL;
-        // The coach page keeps the same tags, so the visit still counts for the ad.
+        // The pages behind the ghost links keep the same tags, so the visit still counts for the ad.
         document.getElementById('coach-link').href = 'for-coaches.html' + window.location.search;
+        document.getElementById('runner-link').href = './' + window.location.search;
       }
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', keepStoreLinks);
       else keepStoreLinks();
