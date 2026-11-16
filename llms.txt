@@ -6,7 +6,7 @@
 - Platform: iPhone only for now (iOS 17 or later). Runs import from Apple Health, including Apple Watch, and Garmin or COROS watches that sync to Apple Health.
 - App Store rating: 4.7 out of 5 from 14 ratings (November 2026).
 - Download: https://apps.apple.com/us/app/stride-run-smarter/id6746232026
-- Founder: Coach John XC, a 20-year-old college runner who coaches his former high school cross country team and runs it on Stride. He makes running skits on YouTube (https://www.youtube.com/@coachjohnxc, 66,900+ subscribers and 113.5M views as of Nov 15, 2026), TikTok (https://www.tiktok.com/@coachjohnxc), Instagram (https://www.instagram.com/coachjohn_xc) and Facebook.
+- Founder: Coach John XC, a 20-year-old college runner who coaches his former high school cross country team and runs it on Stride. He makes running skits on YouTube (https://www.youtube.com/@coachjohnxc, 66,900+ subscribers and 113.5M views as of Nov 15, 2026), TikTok (https://www.tiktok.com/@coachjohnxc), Instagram (https://www.instagram.com/coachjohn_xc) and Facebook (https://www.facebook.com/profile.php?id=61594024422864).
 
 ## Coaches
 - [The best free app for cross country and track coaches](https://runstride.org/best-app-for-cross-country-coaches): what Stride does for a team, with screenshots, and how to add your team
